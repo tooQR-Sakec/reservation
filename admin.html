@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<link rel="icon" type="image/png" href="icons/favicon.ico"/>    
+<title>Contact Us &mdash; Blue Pen</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet">
+
+</head>
+<body>
+
+<!-- heading section -->
+<section>
+    <div class="container" style="padding-top: 10vh;">
+        <div class="jumbotron mt-4 mb-4 bg-2blue">
+            <div class="row">
+                <div class="col-12 col-lg-7">
+                    <h1 class="display-4 font-weight-bolder mb-4 text-white">
+                        Admin Panel
+                    </h1>
+                    <p class="text-white">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                    </p>
+                </div>
+                <div class="col-lg-5 d-none d-lg-block">
+                    <img src="assets/images/undraw_Creation_process_ukbh.svg!--"
+                        class="img-fluid vec-image float-right" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="card-deck">
+    <div class="card">
+      <img class="card-img-top" src="..." alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+      <div class="card-footer">
+        <button
+                              type="button"
+                              data-toggle="modal"
+                              {% if tableIndex %}
+                                data-target="#modelId{{forloop.counter0}}"
+                              {% else %}
+                                data-target="#modelId1"
+                              {% endif %}
+                              class="btn btn-info mt-4 stretched-link"
+                          >
+                              Learn More
+                          </button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img class="card-img-top" src="..." alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+      </div>
+      <div class="card-footer">
+        <button
+                              type="button"
+                              data-toggle="modal"
+                              {% if tableIndex %}
+                                data-target="#modelId{{forloop.counter0}}"
+                              {% else %}
+                                data-target="#modelId1"
+                              {% endif %}
+                              class="btn btn-info mt-4 stretched-link"
+                          >
+                              Learn More
+                          </button>
+      </div>
+    </div>
+    <div class="card">
+      <img class="card-img-top" src="..." alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+      </div>
+      <div class="card-footer">
+        <button
+        type="button"
+        data-toggle="modal"
+        {% if tableIndex %}
+          data-target="#modelId{{forloop.counter0}}"
+        {% else %}
+          data-target="#modelId1"
+        {% endif %}
+        class="btn btn-info mt-4 stretched-link"
+    >
+        Learn More
+    </button>
+      </div>
+    </div>
+  </div>
+
+<!--section>
+       <div class="container pt-4 mb-4">
+          <h3>Table Booking</h3>
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 pt-4">
+                <div class="col mb-4">
+                  <div class="card h-100 hov-2blue">
+                      <div class="card-body text-center">
+                          <h6 class="card-title">
+                            ABC
+                        </h6>
+                          <h1 class="display-3 font-weight-normal">
+                             12 <span style="color: red;">*</span>                      
+                          </h1>
+                          <button
+                              type="button"
+                              data-toggle="modal"
+                              {% if tableIndex %}
+                                data-target="#modelId{{forloop.counter0}}"
+                              {% else %}
+                                data-target="#modelId1"
+                              {% endif %}
+                              class="btn btn-info mt-4 stretched-link"
+                          >
+                              Learn More
+                          </button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </section-->
+    <!-- modals here -->
+<section>
+    <div
+      class="modal fade"
+        id="modelId{{forloop.counter0}}"
+        data-target="#modelId{{forloop.counter0}}"
+        id="modelId1"
+        data-target="#modelId1"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="modelTitleId"
+      aria-hidden="true"
+  >
+      <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title">
+                      Best offer for the Month
+                  </h5>
+                  <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                  >
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <div class="table-responsive-sm">
+                      <table class="table table-bordered table-hover">
+                            <thead class="bg-2blue text-white">
+                              <tr>
+                                  <th rowspan="1" colspan="4" >
+                                  </th>
+                              </tr>
+                          </thead>
+                          <thead class="bg-3blue text-white">
+                              <tr>  
+                                  
+                              </tr>
+                          </thead>
+                          <tbody>
+                                <tr>
+                                  
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                  <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-dismiss="modal"
+                  >
+                      Close
+                  </button>
+                  <!-- <button type="button" class="btn btn-primary">Save</button> -->
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+</body>
+</html>
