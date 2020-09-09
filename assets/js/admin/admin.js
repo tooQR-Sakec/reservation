@@ -36,11 +36,15 @@ function editTableModal(tableID) {
 	$.ajax({
 		type: "POST",
 		data: formdata,
-		url: "fetchCapacity.php",
+		url: "fetchTableInfo.php",
 		contentType: false, // Dont delete this (jQuery 1.6+)
 		processData: false, // Dont delete this
 		success: function (data) {
-			$('#edit-table-capacity').val(data);
+			data = JSON.parse(data);
+			$('#edit-table-capacity').val(data.capacity);
+			$('#edit-table-reserved').prop("checked", false);
+			if(data.reserved == 1)
+				$('#edit-table-reserved').prop("checked", true);
 		}
 	});
 }
@@ -48,9 +52,13 @@ function editTableModal(tableID) {
 function editTable() {
 	var tableID = $('#edit-table-ID').val();
 	var capacity = $('#edit-table-capacity').val();
+	var reserved = 0;
+	if($("#edit-table-reserved").is(':checked'))
+		reserved = 1;
 	var formdata = new FormData();
 	formdata.append("tableID", tableID);
 	formdata.append("capacity", capacity);
+	formdata.append("reserved", reserved);
 	$.ajax({
 		type: "POST",
 		data: formdata,
@@ -75,12 +83,18 @@ function deleteTable(tableID) {
 	});
 }
 
+function cancelReservation(slot, date, guestEmail) {
+	console.log(slot);
+	console.log(date);
+	console.log(guestEmail);
+}
+
 function checkStatusModal(tableID) {
 	$('#checkStatus-table-ID').val(tableID);
+	checkStatus();
 }
 
 function checkStatus() {
-	console.log("HI");
 	var tableID = $('#checkStatus-table-ID').val();
 	var slot = $('#tableSlot').val();
 	var formdata = new FormData();
@@ -94,9 +108,13 @@ function checkStatus() {
 		processData: false, // Dont delete this
 		success: function (data) {
 			if(data != "none") {
+				data = JSON.parse(data);
 				var html = `
 				<h2>Booked by: </h2>
-				<h5>`+data+`</h5>`;
+				<h5>`+data.guestName+`</h5>
+				<h5>E=mail: `+data.guestEmail+`</h5>
+				<h5>for `+data.numberOfPeople+` people</h5>
+				<button onclick="cancelReservation('`+slot+`', '`+data.date+`', '`+data.guestEmail+`')">Cancel Reservation</button>`;
 			} else {
 				var html = `
 				<h2>Available</h2>`;
