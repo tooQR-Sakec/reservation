@@ -1,200 +1,298 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-<link rel="icon" type="image/png" href="icons/favicon.ico"/>    
-<title>Asmin Panel</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    
-    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700" rel="stylesheet">
 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Admin Panel</title>
+    
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link type="text/css" rel="stylesheet" href="../assets/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+    <!-- Custom stlylesheet -->
+    <link type="text/css" rel="stylesheet" href="../assets/css/style.css" />
 </head>
 <body>
 
 <!-- heading section -->
-<section>
-    <div class="container" style="padding-top: 10vh;">
+<section class="container">
         <div class="jumbotron mt-4 mb-4 bg-2blue">
             <div class="row">
                 <div class="col-12 col-lg-7">
-                    <h1 class="display-4 font-weight-bolder mb-4 text-white">
+                    <h1 class="display-4 font-weight-bolder mb-4 text-black" style="text-align: center;">
                         Admin Panel
                     </h1>
-                    <p class="text-white">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-                    </p>
+                    <div class="form-btn" style="text-align: center;">
+                      <button type="button" class="btn btn-secondary text-black" data-toggle="modal"
+                        data-target="#add-table" style="margin-top: 5%; width: 175px">
+                        Add Table
+                      </button>
+                    </div>
                 </div>
                 <div class="col-lg-5 d-none d-lg-block">
-                    <img src="assets/images/undraw_Creation_process_ukbh.svg!--"
+                    <img src="../assets/images/undraw_Creation_process_ukbh.svg"
                         class="img-fluid vec-image float-right" />
                 </div>
             </div>
         </div>
-    </div>
 </section>
-
-<div class="card-deck">
-    <div class="card">
-      <img class="card-img-top" src="..." alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
-      <div class="card-footer">
-        <button
-                              type="button"
-                              data-toggle="modal"
-                              {% if tableIndex %}
-                                data-target="#modelId{{forloop.counter0}}"
-                              {% else %}
-                                data-target="#modelId1"
-                              {% endif %}
-                              class="btn btn-info mt-4 stretched-link"
-                          >
-                              Learn More
-                          </button>
-      </div>
-    </div>
-
-    <div class="card">
-      <img class="card-img-top" src="..." alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-      </div>
-      <div class="card-footer">
-        <button
-                              type="button"
-                              data-toggle="modal"
-                              {% if tableIndex %}
-                                data-target="#modelId{{forloop.counter0}}"
-                              {% else %}
-                                data-target="#modelId1"
-                              {% endif %}
-                              class="btn btn-info mt-4 stretched-link"
-                          >
-                              Learn More
-                          </button>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img-top" src="..." alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-      </div>
-      <div class="card-footer">
-        <button
-        type="button"
-        data-toggle="modal"
-        {% if tableIndex %}
-          data-target="#modelId{{forloop.counter0}}"
-        {% else %}
-          data-target="#modelId1"
-        {% endif %}
-        class="btn btn-info mt-4 stretched-link"
-    >
-        Learn More
-    </button>
+<!--Card View-->
+<section class="container">
+<div class="row row-col-4">
+  <div class="col mb-4 search-card">
+    <div class="card h-100">
+        <div class="card-body">
+          <div class="row no-gutters justify-content-center">
+            <h5 class="card-title">Table</h5>
+          </div>
+          <div class="row no-gutters">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+          <div class="form-btn" style="text-align: center;">
+            <button type="button" class="btn btn-primary" data-toggle="modal"
+            data-target="#edit-table" style="margin-top: 5%; width: 175px">
+            Edit Table
+            </button>
+          </div>
+          <div class="form-btn" style="text-align: center;">
+            <button type="button" class="btn btn-primary" style="margin-top: 5%; width: 175px">
+              Delete Table
+            </button>
+          </div>
+          <div class="form-btn" style="text-align: center;">
+            <button type="button" class="btn btn-primary" data-toggle="modal"
+              data-target="#slot-info" style="margin-top: 5%; width: 175px">
+              Check Status
+            </button>
+          </div>
       </div>
     </div>
   </div>
-
-<!--section>
-       <div class="container pt-4 mb-4">
-          <h3>Table Booking</h3>
-          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 pt-4">
-                <div class="col mb-4">
-                  <div class="card h-100 hov-2blue">
-                      <div class="card-body text-center">
-                          <h6 class="card-title">
-                            ABC
-                        </h6>
-                          <h1 class="display-3 font-weight-normal">
-                             12 <span style="color: red;">*</span>                      
-                          </h1>
-                          <button
-                              type="button"
-                              data-toggle="modal"
-                              {% if tableIndex %}
-                                data-target="#modelId{{forloop.counter0}}"
-                              {% else %}
-                                data-target="#modelId1"
-                              {% endif %}
-                              class="btn btn-info mt-4 stretched-link"
-                          >
-                              Learn More
-                          </button>
-                      </div>
-                  </div>
-              </div>
+  <div class="col mb-4 search-card">
+    <div class="card h-100">
+        <div class="card-body">
+          <div class="row no-gutters justify-content-center">
+            <h5 class="card-title">Table</h5>
+          </div>
+          <div class="row no-gutters">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+          <div class="form-btn" style="text-align: center;">
+            <button type="button" class="btn btn-primary" data-toggle="modal"
+            data-target="#edit-table" style="margin-top: 5%; width: 175px">
+            Edit Table
+            </button>
+          </div>
+          <div class="form-btn" style="text-align: center;">
+            <button type="button" class="btn btn-primary" style="margin-top: 5%; width: 175px">
+              Delete Table
+            </button>
+          </div>
+          <div class="form-btn" style="text-align: center;">
+            <button type="button" class="btn btn-primary" data-toggle="modal"
+              data-target="#slot-info" style="margin-top: 5%; width: 175px">
+              Check Status
+            </button>
           </div>
       </div>
-    </section-->
-    <!-- modals here -->
+    </div>
+  </div>
+  <div class="col mb-4 search-card">
+    <div class="card h-100">
+        <div class="card-body">
+          <div class="row no-gutters justify-content-center">
+            <h5 class="card-title">Table</h5>
+          </div>
+          <div class="row no-gutters">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+          <div class="form-btn" style="text-align: center;">
+            <button type="button" class="btn btn-primary" data-toggle="modal"
+            data-target="#edit-table" style="margin-top: 5%; width: 175px">
+            Edit Table
+            </button>
+          </div>
+          <div class="form-btn" style="text-align: center;">
+            <button type="button" class="btn btn-primary" style="margin-top: 5%; width: 175px">
+              Delete Table
+            </button>
+          </div>
+          <div class="form-btn" style="text-align: center;">
+            <button type="button" class="btn btn-primary" data-toggle="modal"
+              data-target="#slot-info" style="margin-top: 5%; width: 175px">
+              Check Status
+            </button>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="col mb-4 search-card">
+    <div class="card h-100">
+        <div class="card-body">
+          <div class="row no-gutters justify-content-center">
+            <h5 class="card-title">Table</h5>
+          </div>
+          <div class="row no-gutters">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+          <div class="form-btn" style="text-align: center;">
+            <button type="button" class="btn btn-primary" data-toggle="modal"
+            data-target="#edit-table" style="margin-top: 5%; width: 175px">
+            Edit Table
+            </button>
+          </div>
+          <div class="form-btn" style="text-align: center;">
+            <button type="button" class="btn btn-primary" style="margin-top: 5%; width: 175px">
+              Delete Table
+            </button>
+          </div>
+          <div class="form-btn" style="text-align: center;">
+            <button type="button" class="btn btn-primary" data-toggle="modal"
+              data-target="#slot-info" style="margin-top: 5%; width: 175px">
+              Check Status
+            </button>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!--Modals-->
 <section>
-    <div
-      class="modal fade"
-        id="modelId{{forloop.counter0}}"
-        data-target="#modelId{{forloop.counter0}}"
-        id="modelId1"
-        data-target="#modelId1"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="modelTitleId"
-      aria-hidden="true"
-  >
-      <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h5 class="modal-title">
-                      Best offer for the Month
-                  </h5>
-                  <button
-                      type="button"
-                      class="close"
-                      data-dismiss="modal"
-                      aria-label="Close"
-                  >
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-              <div class="modal-body">
-                  <div class="table-responsive-sm">
-                      <table class="table table-bordered table-hover">
-                            <thead class="bg-2blue text-white">
-                              <tr>
-                                  <th rowspan="1" colspan="4" >
-                                  </th>
-                              </tr>
-                          </thead>
-                          <thead class="bg-3blue text-white">
-                              <tr>  
-                                  
-                              </tr>
-                          </thead>
-                          <tbody>
-                                <tr>
-                                  
-                              </tr>
-                          </tbody>
-                      </table>
-                  </div>
-              </div>
-              <div class="modal-footer">
-                  <button
-                      type="button"
-                      class="btn btn-secondary"
-                      data-dismiss="modal"
-                  >
-                      Close
-                  </button>
-                  <!-- <button type="button" class="btn btn-primary">Save</button> -->
-              </div>
+  <div class="modal fade" id="slot-info" data-target="#slot-info" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">
+              Slot Info
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+          <div class="table-responsive-sm">
+            <select class="custom-select" id="tableSlot">
+              <option value="1">12:00 am to 1:00 am</option>
+              <option value="2">1:00 am to 2:00 am</option>
+              <option value="3">2:00 am to 3:00 am</option>
+              <option value="4">3:00 am to 4:00 am</option>
+              <option value="5">4:00 am to 5:00 am</option>
+              <option value="6">5:00 am to 6:00 am</option>
+              <option value="7">6:00 am to 7:00 am</option>
+              <option value="8">7:00 am to 8:00 am</option>
+              <option value="9">8:00 am to 9:00 am</option>
+              <option value="10">9:00 am to 10:00 am</option>
+              <option value="11">10:00 am to 11:00 am</option>
+              <option value="12">11:00 am to 12:00 pm</option>
+              <option value="13">12:00 pm to 1:00 pm</option>
+              <option value="14">1:00 pm to 2:00 pm</option>
+              <option value="15">2:00 pm to 3:00 pm</option>
+              <option value="16">3:00 pm to 4:00 pm</option>
+              <option value="17">4:00 pm to 5:00 pm</option>
+              <option value="18">5:00 pm to 6:00 pm</option>
+              <option value="19">6:00 pm to 7:00 pm</option>
+              <option value="20">7:00 pm to 8:00 pm</option>
+              <option value="21">8:00 pm to 9:00 pm</option>
+              <option value="22">9:00 pm to 10:00 pm</option>
+              <option value="23">10:00 pm to 11:00 pm</option>
+              <option value="24">11:00 pm to 12:00 am</option>
+            </select>
           </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                      Close
+            </button>
+          </div>
+        </div>
       </div>
+    </div>
+  </div>
+  <div class="modal fade" id="add-table" data-target="#add-table" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">
+              Add Table
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+          <div class="table-responsive-sm">
+            <form id="addTable">
+              <div class="form-row">
+                <div class="col-md-6 mb-3">
+                  <label for="add-table-no">Table No</label>
+                  <input type="text" class="form-control" id="add-table-no" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-6 mb-3">
+                  <label for="add-table-capacity">Capacity</label>
+                  <input type="text" class="form-control" id="add-table-capacity" required>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary" form="addTable">Add Table</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="edit-table" data-target="#edit-table" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">
+              Edit Table
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+          <div class="table-responsive-sm">
+            <form id="editTable">
+              <div class="form-row">
+                <div class="col-md-6 mb-3">
+                  <label for="edit-table-capacity">Capacity</label>
+                  <input type="text" class="form-control" id="edit-table-capacity" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-6 mb-3">
+                  <label for="edit-adj-tables">Adjacent Tables</label>
+                  <input type="text" class="form-control" id="edit-adj-tables" required>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary" form="editTable">Edit Table</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
+<script src="../assets/node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../assets/node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 </body>
 </html>
