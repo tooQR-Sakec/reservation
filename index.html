@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 	<title>Booking Form</title>
@@ -13,7 +14,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
 
 	<!-- Bootstrap -->
-	<link type="text/css" rel="stylesheet" href="assets/node_modules\bootstrap/dist/css/bootstrap.min.css" />
+	<link type="text/css" rel="stylesheet" href="assets/node_modules/bootstrap/dist/css/bootstrap.min.css" />
 
 	<!-- Custom stlylesheet -->
 	<link type="text/css" rel="stylesheet" href="assets/css/style.css" />
@@ -71,7 +72,7 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<select class="form-control">
+											<select class="form-control select-arrow">
 												<option>12:00 am to 1:00 am</option>
 												<option>1:00 am to 2:00 am</option>
 												<option>2:00 am to 3:00 am</option>
@@ -104,6 +105,11 @@
 								<div class="form-btn">
 									<button class="submit-btn">Book Now</button>
 								</div>
+								<div class="form-btn">
+									<button type="button" class="submit-btn" data-toggle="modal" data-target="#exampleModal" style="margin-top: 5%;">
+										Check Status
+									</button>
+								</div>
 							</form>
 						</div>
 					</div>
@@ -111,9 +117,29 @@
 			</div>
 		</div>
 	</div>
-
 	
-	<script src="js/jquery.min.js"></script>
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>
+				<div class="modal-body">
+				...
+				</div>
+				<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="assets/node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<script>
 		$('.form-control').each(function () {
 			floatedLabel($(this));
