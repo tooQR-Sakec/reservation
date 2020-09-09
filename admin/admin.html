@@ -2,297 +2,185 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Admin Panel</title>
-    
-    <!-- Google font -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
+	<title>Admin Panel</title>
 
-    <!-- Bootstrap -->
-    <link type="text/css" rel="stylesheet" href="../assets/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
 
-    <!-- Custom stlylesheet -->
-    <link type="text/css" rel="stylesheet" href="../assets/css/style.css" />
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="../assets/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="../assets/css/style.css" />
 </head>
+
 <body>
 
-<!-- heading section -->
-<section class="container">
-        <div class="jumbotron mt-4 mb-4 bg-2blue">
-            <div class="row">
-                <div class="col-12 col-lg-7">
-                    <h1 class="display-4 font-weight-bolder mb-4 text-black" style="text-align: center;">
-                        Admin Panel
-                    </h1>
-                    <div class="form-btn" style="text-align: center;">
-                      <button type="button" class="btn btn-secondary text-black" data-toggle="modal"
-                        data-target="#add-table" style="margin-top: 5%; width: 175px">
-                        Add Table
-                      </button>
-                    </div>
-                </div>
-                <div class="col-lg-5 d-none d-lg-block">
-                    <img src="../assets/images/undraw_Creation_process_ukbh.svg"
-                        class="img-fluid vec-image float-right" />
-                </div>
-            </div>
-        </div>
-</section>
-<!--Card View-->
-<section class="container">
-<div class="row row-col-4">
-  <div class="col mb-4 search-card">
-    <div class="card h-100">
-        <div class="card-body">
-          <div class="row no-gutters justify-content-center">
-            <h5 class="card-title">Table</h5>
-          </div>
-          <div class="row no-gutters">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-          <div class="form-btn" style="text-align: center;">
-            <button type="button" class="btn btn-primary" data-toggle="modal"
-            data-target="#edit-table" style="margin-top: 5%; width: 175px">
-            Edit Table
-            </button>
-          </div>
-          <div class="form-btn" style="text-align: center;">
-            <button type="button" class="btn btn-primary" style="margin-top: 5%; width: 175px">
-              Delete Table
-            </button>
-          </div>
-          <div class="form-btn" style="text-align: center;">
-            <button type="button" class="btn btn-primary" data-toggle="modal"
-              data-target="#slot-info" style="margin-top: 5%; width: 175px">
-              Check Status
-            </button>
-          </div>
-      </div>
-    </div>
-  </div>
-  <div class="col mb-4 search-card">
-    <div class="card h-100">
-        <div class="card-body">
-          <div class="row no-gutters justify-content-center">
-            <h5 class="card-title">Table</h5>
-          </div>
-          <div class="row no-gutters">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-          <div class="form-btn" style="text-align: center;">
-            <button type="button" class="btn btn-primary" data-toggle="modal"
-            data-target="#edit-table" style="margin-top: 5%; width: 175px">
-            Edit Table
-            </button>
-          </div>
-          <div class="form-btn" style="text-align: center;">
-            <button type="button" class="btn btn-primary" style="margin-top: 5%; width: 175px">
-              Delete Table
-            </button>
-          </div>
-          <div class="form-btn" style="text-align: center;">
-            <button type="button" class="btn btn-primary" data-toggle="modal"
-              data-target="#slot-info" style="margin-top: 5%; width: 175px">
-              Check Status
-            </button>
-          </div>
-      </div>
-    </div>
-  </div>
-  <div class="col mb-4 search-card">
-    <div class="card h-100">
-        <div class="card-body">
-          <div class="row no-gutters justify-content-center">
-            <h5 class="card-title">Table</h5>
-          </div>
-          <div class="row no-gutters">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-          <div class="form-btn" style="text-align: center;">
-            <button type="button" class="btn btn-primary" data-toggle="modal"
-            data-target="#edit-table" style="margin-top: 5%; width: 175px">
-            Edit Table
-            </button>
-          </div>
-          <div class="form-btn" style="text-align: center;">
-            <button type="button" class="btn btn-primary" style="margin-top: 5%; width: 175px">
-              Delete Table
-            </button>
-          </div>
-          <div class="form-btn" style="text-align: center;">
-            <button type="button" class="btn btn-primary" data-toggle="modal"
-              data-target="#slot-info" style="margin-top: 5%; width: 175px">
-              Check Status
-            </button>
-          </div>
-      </div>
-    </div>
-  </div>
-  <div class="col mb-4 search-card">
-    <div class="card h-100">
-        <div class="card-body">
-          <div class="row no-gutters justify-content-center">
-            <h5 class="card-title">Table</h5>
-          </div>
-          <div class="row no-gutters">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-          <div class="form-btn" style="text-align: center;">
-            <button type="button" class="btn btn-primary" data-toggle="modal"
-            data-target="#edit-table" style="margin-top: 5%; width: 175px">
-            Edit Table
-            </button>
-          </div>
-          <div class="form-btn" style="text-align: center;">
-            <button type="button" class="btn btn-primary" style="margin-top: 5%; width: 175px">
-              Delete Table
-            </button>
-          </div>
-          <div class="form-btn" style="text-align: center;">
-            <button type="button" class="btn btn-primary" data-toggle="modal"
-              data-target="#slot-info" style="margin-top: 5%; width: 175px">
-              Check Status
-            </button>
-          </div>
-      </div>
-    </div>
-  </div>
-</div>
-</section>
+	<!-- heading section -->
+	<section class="container">
+		<div class="jumbotron mt-4 mb-4 bg-2blue">
+			<div class="row">
+				<div class="col-12 col-lg-7">
+					<h1 class="display-4 font-weight-bolder mb-4 text-black" style="text-align: center;">
+						Admin Panel
+					</h1>
+					<div class="form-btn" style="text-align: center;">
+						<button type="button" class="btn btn-secondary text-black" data-toggle="modal"
+							data-target="#add-table" style="margin-top: 5%; width: 175px">
+							Add Table
+						</button>
+					</div>
+				</div>
+				<div class="col-lg-5 d-none d-lg-block">
+					<img src="../assets/images/undraw_Creation_process_ukbh.svg"
+						class="img-fluid vec-image float-right" />
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--Card View-->
+	<section class="container">
+		<div class="row row-col-4" id="tableCard">
+		</div>
+	</section>
 
-<!--Modals-->
-<section>
-  <div class="modal fade" id="slot-info" data-target="#slot-info" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title">
-              Slot Info
-            </h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-          <div class="table-responsive-sm">
-            <select class="custom-select" id="tableSlot">
-              <option value="1">12:00 am to 1:00 am</option>
-              <option value="2">1:00 am to 2:00 am</option>
-              <option value="3">2:00 am to 3:00 am</option>
-              <option value="4">3:00 am to 4:00 am</option>
-              <option value="5">4:00 am to 5:00 am</option>
-              <option value="6">5:00 am to 6:00 am</option>
-              <option value="7">6:00 am to 7:00 am</option>
-              <option value="8">7:00 am to 8:00 am</option>
-              <option value="9">8:00 am to 9:00 am</option>
-              <option value="10">9:00 am to 10:00 am</option>
-              <option value="11">10:00 am to 11:00 am</option>
-              <option value="12">11:00 am to 12:00 pm</option>
-              <option value="13">12:00 pm to 1:00 pm</option>
-              <option value="14">1:00 pm to 2:00 pm</option>
-              <option value="15">2:00 pm to 3:00 pm</option>
-              <option value="16">3:00 pm to 4:00 pm</option>
-              <option value="17">4:00 pm to 5:00 pm</option>
-              <option value="18">5:00 pm to 6:00 pm</option>
-              <option value="19">6:00 pm to 7:00 pm</option>
-              <option value="20">7:00 pm to 8:00 pm</option>
-              <option value="21">8:00 pm to 9:00 pm</option>
-              <option value="22">9:00 pm to 10:00 pm</option>
-              <option value="23">10:00 pm to 11:00 pm</option>
-              <option value="24">11:00 pm to 12:00 am</option>
-            </select>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                      Close
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="add-table" data-target="#add-table" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title">
-              Add Table
-            </h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-          <div class="table-responsive-sm">
-            <form id="addTable">
-              <div class="form-row">
-                <div class="col-md-6 mb-3">
-                  <label for="add-table-no">Table No</label>
-                  <input type="text" class="form-control" id="add-table-no" required>
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="col-md-6 mb-3">
-                  <label for="add-table-capacity">Capacity</label>
-                  <input type="text" class="form-control" id="add-table-capacity" required>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">
-              Close
-            </button>
-            <button type="submit" class="btn btn-primary" form="addTable">Add Table</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="edit-table" data-target="#edit-table" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title">
-              Edit Table
-            </h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-          <div class="table-responsive-sm">
-            <form id="editTable">
-              <div class="form-row">
-                <div class="col-md-6 mb-3">
-                  <label for="edit-table-capacity">Capacity</label>
-                  <input type="text" class="form-control" id="edit-table-capacity" required>
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="col-md-6 mb-3">
-                  <label for="edit-adj-tables">Adjacent Tables</label>
-                  <input type="text" class="form-control" id="edit-adj-tables" required>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">
-              Close
-            </button>
-            <button type="submit" class="btn btn-primary" form="editTable">Edit Table</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<script src="../assets/node_modules/jquery/dist/jquery.min.js"></script>
-<script src="../assets/node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
-<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+	<!--Modals-->
+	<section>
+		<div class="modal fade" id="slot-info" data-target="#slot-info" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">
+							Slot Info
+						</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="table-responsive-sm">
+							<select class="custom-select" id="tableSlot">
+								<option value="1">12:00 am to 1:00 am</option>
+								<option value="2">1:00 am to 2:00 am</option>
+								<option value="3">2:00 am to 3:00 am</option>
+								<option value="4">3:00 am to 4:00 am</option>
+								<option value="5">4:00 am to 5:00 am</option>
+								<option value="6">5:00 am to 6:00 am</option>
+								<option value="7">6:00 am to 7:00 am</option>
+								<option value="8">7:00 am to 8:00 am</option>
+								<option value="9">8:00 am to 9:00 am</option>
+								<option value="10">9:00 am to 10:00 am</option>
+								<option value="11">10:00 am to 11:00 am</option>
+								<option value="12">11:00 am to 12:00 pm</option>
+								<option value="13">12:00 pm to 1:00 pm</option>
+								<option value="14">1:00 pm to 2:00 pm</option>
+								<option value="15">2:00 pm to 3:00 pm</option>
+								<option value="16">3:00 pm to 4:00 pm</option>
+								<option value="17">4:00 pm to 5:00 pm</option>
+								<option value="18">5:00 pm to 6:00 pm</option>
+								<option value="19">6:00 pm to 7:00 pm</option>
+								<option value="20">7:00 pm to 8:00 pm</option>
+								<option value="21">8:00 pm to 9:00 pm</option>
+								<option value="22">9:00 pm to 10:00 pm</option>
+								<option value="23">10:00 pm to 11:00 pm</option>
+								<option value="24">11:00 pm to 12:00 am</option>
+							</select>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">
+								Close
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="add-table" data-target="#add-table" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">
+							Add Table
+						</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="table-responsive-sm">
+							<form id="addTable">
+								<div class="form-row">
+									<div class="col-md-6 mb-3">
+										<label for="add-table-no">Table No</label>
+										<input type="text" class="form-control" id="add-table-no" required>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-md-6 mb-3">
+										<label for="add-table-capacity">Capacity</label>
+										<input type="text" class="form-control" id="add-table-capacity" required>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">
+								Close
+							</button>
+							<button type="submit" class="btn btn-primary" form="addTable">Add Table</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="edit-table" data-target="#edit-table" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">
+							Edit Table
+						</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="table-responsive-sm">
+							<form id="editTable">
+								<div class="form-row">
+									<div class="col-md-6 mb-3">
+										<label for="edit-table-capacity">Capacity</label>
+										<input type="text" class="form-control" id="edit-table-capacity" required>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-md-6 mb-3">
+										<label for="edit-adj-tables">Adjacent Tables</label>
+										<input type="text" class="form-control" id="edit-adj-tables" required>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">
+								Close
+							</button>
+							<button type="submit" class="btn btn-primary" form="editTable">Edit Table</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script src="../assets/node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../assets/node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+	<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+	<script src="../assets/js/admin/admin.js"></script>
 </body>
+
 </html>
