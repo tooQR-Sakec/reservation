@@ -43,7 +43,7 @@
 	</section>
 	<!--Card View-->
 	<section class="container">
-		<div class="row row-col-4" id="tableCard">
+		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" id="tableCard">
 		</div>
 	</section>
 
@@ -89,6 +89,8 @@
 								<option value="24">11:00 pm to 12:00 am</option>
 							</select>
 						</div>
+						<input id="checkStatus-table-ID" type="hidden"/>
+						<div id="reservationStatus"></div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">
 								Close
@@ -98,6 +100,8 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- Add Table -->
 		<div class="modal fade" id="add-table" data-target="#add-table" aria-hidden="true">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
@@ -136,6 +140,8 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- Edit Table -->
 		<div class="modal fade" id="edit-table" data-target="#edit-table" aria-hidden="true">
 			<div class="modal-dialog modal-lg">
 				<div class="modal-content">
@@ -153,7 +159,7 @@
 								<div class="form-row">
 									<div class="col-md-6 mb-3">
 										<label for="edit-table-capacity">Capacity</label>
-										<input type="text" class="form-control" id="edit-table-capacity" required>
+										<input type="number" class="form-control" id="edit-table-capacity" required>
 									</div>
 								</div>
 								<div class="form-row">
@@ -162,6 +168,7 @@
 										<input type="text" class="form-control" id="edit-adj-tables" required>
 									</div>
 								</div>
+								<input id="edit-table-ID" type="hidden" />
 							</form>
 						</div>
 						<div class="modal-footer">
