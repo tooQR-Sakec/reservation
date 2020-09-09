@@ -25,6 +25,11 @@ function reserveTable(event) {
 		processData: false, // Dont delete this
 		success: function (data) {
 			console.log(data);
+			if(data != "full") {
+				console.log("Reserved!");
+			} else {
+				console.log("Sorry! All the tables have been booked!");
+			}
 		},
 		//Other options
 	});
