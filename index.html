@@ -106,7 +106,7 @@
 									<button class="submit-btn">Book Now</button>
 								</div>
 								<div class="form-btn">
-									<button type="button" class="submit-btn" data-toggle="modal" data-target="#exampleModal" style="margin-top: 5%;">
+									<button type="button" class="submit-btn" data-toggle="modal" data-target="#StatusModal" style="margin-top: 5%;">
 										Check Status
 									</button>
 								</div>
@@ -118,21 +118,33 @@
 		</div>
 	</div>
 	
-	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal fade" id="StatusModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+				<h3 class="modal-title" id="StatusHead" style="text-align: center; font-weight: 400;">Status</h3>
 				</div>
 				<div class="modal-body">
-				...
+					<form>
+						<div class="container">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label for="name" class="form-label">Name</label>
+										<input class="form-control" type="text" id="name">
+									</div>
+									<div class="form-group">
+										<label for="mail" class="form-label">Email</label>
+										<input class="form-control" type="email" id="mail">
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
 				</div>
 				<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
+				<button type="button" class="btn btn-primary" style="background-color: rgb(50, 209, 1);">Check Status</button>
 				</div>
 			</div>
 		</div>
