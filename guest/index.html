@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
+
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 	<title>Booking Form</title>
@@ -14,10 +14,10 @@
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
 
 	<!-- Bootstrap -->
-	<link type="text/css" rel="stylesheet" href="assets/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+	<link type="text/css" rel="stylesheet" href="../assets/node_modules/bootstrap/dist/css/bootstrap.min.css" />
 
 	<!-- Custom stlylesheet -->
-	<link type="text/css" rel="stylesheet" href="assets/css/style.css" />
+	<link type="text/css" rel="stylesheet" href="../assets/css/style.css" />
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -58,7 +58,8 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<input class="form-control" type="number" id="guestCapacity" min="1" max="10" oninput="this.value = Math.abs(this.value)" required>
+											<input class="form-control" type="number" id="guestCapacity" min="1"
+												max="10" oninput="this.value = Math.abs(this.value)" required>
 											<span class="form-label">Number of People</span>
 										</div>
 									</div>
@@ -106,7 +107,8 @@
 									<button class="submit-btn">Book Now</button>
 								</div>
 								<div class="form-btn">
-									<button type="button" class="submit-btn" data-toggle="modal" data-target="#statusModal" style="margin-top: 5%;">
+									<button type="button" class="submit-btn" data-toggle="modal"
+										data-target="#statusModal" style="margin-top: 5%;">
 										Check Status
 									</button>
 								</div>
@@ -117,12 +119,12 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="modal fade" id="statusModal" tabindex="-1" aria-labelledby="statusModal" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-				<h3 class="modal-title" id="statusHead" style="text-align: center; font-weight: 400;">Status</h3>
+					<h3 class="modal-title" id="statusHead" style="text-align: center; font-weight: 400;">Status</h3>
 				</div>
 				<div class="modal-body">
 					<form id="reserveStatusForm">
@@ -143,18 +145,19 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="submit" class="btn btn-primary" form="reserveStatusForm" style="background-color: rgb(50, 209, 1);">Check Status</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary" form="reserveStatusForm"
+						style="background-color: rgb(50, 209, 1);">Check Status</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<script src="assets/node_modules/jquery/dist/jquery.min.js"></script>
-	<script src="assets/node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
-	<script src="assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="../assets/node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../assets/node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+	<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
-	<script src="assets/js/guest.js"></script>
+	<script src="../assets/js/guest/guest.js"></script>
 	<script>
 		$('.form-control').each(function () {
 			floatedLabel($(this));
