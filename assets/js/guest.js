@@ -1,4 +1,5 @@
 $("#reserveTableForm").submit(reserveTable);
+$("#reserveStatusForm").submit(reserveStatus);
 
 function reserveTable(event) {
 	event.preventDefault();
@@ -14,4 +15,14 @@ function reserveTable(event) {
 	console.log(guestCapacity);
 	console.log(guestDate);
 	console.log(guestSlot);
+}
+
+function reserveStatus(event) {
+	event.preventDefault();
+
+	var statusName = $('#statusName').val();
+	var statusEmail = $('#statusEmail').val();
+
+	console.log(statusName);
+	console.log(statusEmail);
 }
