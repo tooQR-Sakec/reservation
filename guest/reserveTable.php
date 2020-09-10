@@ -26,7 +26,7 @@ $data["capacity"] = $guestCapacity;
 $data["table"] = $availableSlot;
 $data = json_encode($data);
 
-$ch = curl_init('http://127.0.0.1:5000/');
+$ch = curl_init('localhost:5000');
 # Setup request to send json via POST.
 curl_setopt( $ch, CURLOPT_POSTFIELDS, $data );
 curl_setopt( $ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
@@ -51,7 +51,7 @@ $reserveTableSTMT->bindParam(':date', $guestDate);
 $reserveTableSTMT->bindParam(':numberOfPeople', $guestCapacity);
 $reserveTableSTMT->bindParam(':roomID', $roomID);
 
-foreach($availableTables["table combination"] as $tableID) {
+foreach($availableTables as $tableID) {
 	echo $tableID;
 	$reserveTableSTMT->bindParam(':tableID', $tableID);
 	$reserveTableSTMT->execute();

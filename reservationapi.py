@@ -43,14 +43,14 @@ def index():
                         table.pop(j,table[j])
                         break
             return tablepair
-        def combineTable( noOfPeople):
+        def combineTable(noOfPeople):
             
             return lowCapacity(noOfPeople)
         noOfPeople = int(tableInfo.get("capacity"))
         table = {int(k):int(v) for k, v in tableInfo.get('table').items()}
         if (sum(list(table.values()))<noOfPeople):
             return 'False'
-        return jsonify({"table combination":combineTable(noOfPeople)})
+        return jsonify(combineTable(noOfPeople))
 
     else:
         return jsonify({'data':'none'})

@@ -5,6 +5,7 @@ $(document).ready(function () {
 $("#addTable").submit(addTable);
 $("#editTable").submit(editTable);
 $("#tableSlot").change(checkStatus);
+$("#checkStatusDate").change(checkStatus);
 
 function addTable(event) {
 	event.preventDefault();
@@ -102,15 +103,18 @@ function cancelReservation(slot, date, guestEmail) {
 
 function checkStatusModal(tableID) {
 	$('#checkStatus-table-ID').val(tableID);
+	document.getElementById('checkStatusDate').valueAsDate = new Date();
 	checkStatus();
 }
 
 function checkStatus() {
 	var tableID = $('#checkStatus-table-ID').val();
 	var slot = $('#tableSlot').val();
+	var date = $('#checkStatusDate').val();
 	var formdata = new FormData();
 	formdata.append("tableID", tableID);
 	formdata.append("slot", slot);
+	formdata.append("date", date);
 	$.ajax({
 		type: "POST",
 		data: formdata,

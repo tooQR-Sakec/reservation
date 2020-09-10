@@ -3,11 +3,13 @@ include('../db.php');
 
 $tableID = $_POST['tableID'];
 $slot = $_POST['slot'];
+$date = $_POST['date'];
 
-$statusSQL = "SELECT * FROM booking WHERE tableID = :tableID AND slot = :slot";
+$statusSQL = "SELECT * FROM booking WHERE tableID = :tableID AND slot = :slot AND date = :date";
 $getStatusSTMT = $conn->prepare($statusSQL);
 $getStatusSTMT->bindParam(':tableID', $tableID);
 $getStatusSTMT->bindParam(':slot', $slot);
+$getStatusSTMT->bindParam(':date', $date);
 $getStatusSTMT->execute();
 $statusRow = $getStatusSTMT->fetchObject();
 
