@@ -56,6 +56,11 @@ function cancelBooking(guestEmail, date, slot){
 	});
 }
 
+function clearStatusModal() {
+	$('#reservationStatus').html('');
+	$('#statusModal').find('form').trigger('reset');
+}
+
 function reserveStatusButton(event) {
 	event.preventDefault();
 	reserveStatus();
@@ -78,12 +83,11 @@ function reserveStatus() {
 		success: function (data) {
 			var html = '';
 			if(data) {
-				html += `
-				<table class="table table-bordered">
-					<tbody>`;
 				data = JSON.parse(data);
 				data.forEach(element => {
 					html += `
+					<table class="table table-bordered">
+						<tbody>
 							<tr>
 								<th scope="row">Name</th>
 								<td>`+element.guestName+`</td>
@@ -108,10 +112,15 @@ function reserveStatus() {
 							</tr>`;
 					}
 					html +=`
+							<tr>
+								<td colspan="2">
+									<button class="btn btn-secondary" onclick="cancelBooking('`+statusEmail+`', '`+element.date+`', '`+element.slot+`')">
+										Cancel Booking
+									</button>
+								</td>
+							</tr>
 						</tbody>
-					</table>
-					<button class="btn btn-secondary" onclick="cancelBooking('`+statusEmail+`', '`+element.date+`', '`+element.slot+`')">Cancel Booking</button>
-					<div></div>`;
+					</table>`;
 					document.getElementById('reservationStatus').innerHTML = html;
 				});
 			} else {
