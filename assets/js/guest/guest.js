@@ -28,9 +28,9 @@ function reserveTable(event) {
 		success: function (data) {
 			console.log(data);
 			if(data != "full") {
-				console.log("Reserved!");
+				document.getElementById("bookingStatus").innerHTML = "Reserved!";
 			} else {
-				console.log("Sorry! All the tables have been booked!");
+				document.getElementById("bookingStatus").innerHTML = "Sorry! All the tables have been booked!";
 			}
 		},
 		//Other options
@@ -78,27 +78,50 @@ function reserveStatus() {
 		success: function (data) {
 			var html = '';
 			if(data) {
+				html += `
+				<table class="table table-bordered">
+					<tbody>`;
 				data = JSON.parse(data);
 				data.forEach(element => {
 					html += `
-					<div class="row">
-							<div class="col-md-12">
-								<div class="row mb-2" style="margin-left: 2px; font-weight: bold;">Name: `+element.guestName+`<span id="gName"></span></div>
-								<div class="row mb-2" style="margin-left: 2px; font-weight: bold;">No of People:<span id="gNoPeople"> `+element.numberOfPeople+`</span></div>
-								<div class="row mb-2" style="margin-left: 2px; font-weight: bold;">Date: `+element.date+`<span id="gDate"></span></div>
-								<div class="row mb-2" style="margin-left: 2px; font-weight: bold;">Time Slot: `+element.slot+`<span id="gTime"></span></div>`;
+							<tr>
+								<th scope="row">Name</th>
+								<td>`+element.guestName+`</td>
+							</tr>
+							<tr>
+								<th scope="row">No of people</th>
+								<td>`+element.numberOfPeople+`</td>
+							</tr>
+							<tr>
+								<th scope="row">Date</th>
+								<td>`+element.date+`</td>
+							</tr>
+							<tr>
+								<th scope="row">Time Slot</th>
+								<td>`+element.slot+`</td>
+							</tr>`;
 					if(element.roomID) {
-						html += 
-								`<div class="row mb-2" style="margin-left: 2px; font-weight: bold;">Room No: `+element.roomID+`<span id="gRoom"></span></div>`;
+						html +=  `
+							<tr>
+								<th scope="row">Room no</th>
+								<td>`+element.roomID+`</td>
+							</tr>`;
 					}
-					html +=
-								`<button class="btn btn-secondary" onclick="cancelBooking('`+statusEmail+`', '`+element.date+`', '`+element.slot+`')">Cancel Booking</button>
-							</div>
-						</div>`;
+					html +=`
+						</tbody>
+					</table>
+					<button class="btn btn-secondary" onclick="cancelBooking('`+statusEmail+`', '`+element.date+`', '`+element.slot+`')">Cancel Booking</button>
+					<div></div>`;
 					document.getElementById('reservationStatus').innerHTML = html;
 				});
 			} else {
-				console.log("No Reservations!");
+				html += `
+				<div class="row">
+					<div class="col-md-12">
+						<div class="row mb-2" style="margin-left: 2px; font-weight: bold;">No Reservations</div>
+					</div>
+				</div>`;
+				document.getElementById('reservationStatus').innerHTML = html;
 			}
 		},
 		//Other options

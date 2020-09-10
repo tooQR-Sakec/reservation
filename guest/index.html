@@ -110,7 +110,8 @@
 									</div>
 								</div>
 								<div class="form-btn">
-									<button class="submit-btn">Book Now</button>
+									<button class="submit-btn" data-toggle="modal"
+									data-target="#bookingModal">Book Now</button>
 								</div>
 								<div class="form-btn">
 									<button type="button" class="submit-btn" data-toggle="modal"
@@ -130,7 +131,7 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h3 class="modal-title" id="statusHead" style="text-align: center; font-weight: 400;">Status</h3>
+					<h3 class=" col-12 modal-title text-center" id="statusHead">Status</h3>
 				</div>
 				<div class="modal-body">
 					<form id="reserveStatusForm">
@@ -155,6 +156,22 @@
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 					<button type="submit" class="btn btn-primary" form="reserveStatusForm"
 						style="background-color: rgb(50, 209, 1);">Check Status</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class=" col-12 modal-title text-center" id="bookingHead">Table Booking</h3>
+				</div>
+				<div class="modal-body">
+					<div id="bookingStatus" style="text-align: center; font-weight: 400;"></div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
