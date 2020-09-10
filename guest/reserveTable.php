@@ -6,6 +6,7 @@ $guestEmail = $_POST['guestEmail'];
 $guestCapacity = $_POST['guestCapacity'];
 $guestDate = $_POST['guestDate'];
 $guestSlot = $_POST['guestSlot'];
+$roomID = $_POST['roomID'];
 
 $getTableSQL = "SELECT booking.tableID, capacity
 	FROM booking inner join tables on booking.tableID = tables.tableID
@@ -24,34 +25,33 @@ while ($tableRow = $getTableSTMT->fetchObject()) {
 $data["capacity"] = $guestCapacity;
 $data["table"] = $availableSlot;
 $data = json_encode($data);
-/* data{
-	capacity: guest capacity,
-	table: {
-		1: capacity,
-		2: capacity,
-	}
-} */
-// to python api
-//print_r($data);
-//output python
-// suppose table 4 and 5
-$fromPython = "[5,6]";
-$availableTables = json_decode($fromPython);
 
-if(!$availableTables) { // if table not available
+$ch = curl_init('http://127.0.0.1:5000/');
+# Setup request to send json via POST.
+curl_setopt( $ch, CURLOPT_POSTFIELDS, $data );
+curl_setopt( $ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+# Return response instead of printing.
+curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+# Send request.
+$result = curl_exec($ch);
+curl_close($ch);
+
+if($result == "False") { // if table not available
 	echo "full";
 	exit;
 }
+$availableTables = json_decode($result, true);
 
-$reserveTableSQL = "INSERT INTO booking (tableID, slot, guestName, guestEmail, date, numberOfPeople) VALUES (:tableID, :slot, :name, :email, :date, :numberOfPeople)";
+$reserveTableSQL = "INSERT INTO booking (tableID, slot, guestName, guestEmail, date, numberOfPeople, roomID) VALUES (:tableID, :slot, :name, :email, :date, :numberOfPeople, :roomID)";
 $reserveTableSTMT = $conn->prepare($reserveTableSQL);
 $reserveTableSTMT->bindParam(':slot', $guestSlot);
 $reserveTableSTMT->bindParam(':name', $guestName);
 $reserveTableSTMT->bindParam(':email', $guestEmail);
 $reserveTableSTMT->bindParam(':date', $guestDate);
 $reserveTableSTMT->bindParam(':numberOfPeople', $guestCapacity);
+$reserveTableSTMT->bindParam(':roomID', $roomID);
 
-foreach($availableTables as $tableID) {
+foreach($availableTables["table combination"] as $tableID) {
 	echo $tableID;
 	$reserveTableSTMT->bindParam(':tableID', $tableID);
 	$reserveTableSTMT->execute();

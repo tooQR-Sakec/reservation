@@ -84,9 +84,20 @@ function deleteTable(tableID) {
 }
 
 function cancelReservation(slot, date, guestEmail) {
-	console.log(slot);
-	console.log(date);
-	console.log(guestEmail);
+	var formdata = new FormData();
+	formdata.append("slot", slot);
+	formdata.append("date", date);
+	formdata.append("guestEmail", guestEmail);
+	$.ajax({
+		type: "POST",
+		data: formdata,
+		url: "cancelTable.php",
+		contentType: false, // Dont delete this (jQuery 1.6+)
+		processData: false, // Dont delete this
+		success: function (data) {
+			checkStatus();
+		}
+	});
 }
 
 function checkStatusModal(tableID) {
@@ -113,7 +124,11 @@ function checkStatus() {
 				<h2>Booked by: </h2>
 				<h5>`+data.guestName+`</h5>
 				<h5>E=mail: `+data.guestEmail+`</h5>
-				<h5>for `+data.numberOfPeople+` people</h5>
+				<h5>for `+data.numberOfPeople+` people</h5>`;
+				if(data.roomID) {
+					html += `<h5>Room No: `+data.roomID+`</h5>`;
+				}
+				html += `
 				<button onclick="cancelReservation('`+slot+`', '`+data.date+`', '`+data.guestEmail+`')">Cancel Reservation</button>`;
 			} else {
 				var html = `

@@ -8,10 +8,16 @@ $getStatusSQL = "SELECT * FROM booking WHERE guestEmail = :guestEmail";
 $getStatusSTMT = $conn->prepare($getStatusSQL);
 $getStatusSTMT->bindParam(':guestEmail', $statusEmail);
 $getStatusSTMT->execute();
-$statusRow = $getStatusSTMT->fetchObject();
 
-$data['slot'] = $statusRow->slot;
-$data['guestName'] = $statusRow->guestName;
-$data['date'] = $statusRow->date;
-$data['numberOfPeople'] = $statusRow->numberOfPeople;
-echo json_encode($data);
+while($statusRow = $getStatusSTMT->fetchObject()) {
+	$booking['slot'] = $statusRow->slot;
+	$booking['guestName'] = $statusRow->guestName;
+	$booking['date'] = $statusRow->date;
+	$booking['numberOfPeople'] = $statusRow->numberOfPeople;
+	$booking['roomID'] = $statusRow->roomID;
+	$data[] = $booking;
+}
+if(isset($data))
+	echo json_encode($data);
+else
+	echo null;

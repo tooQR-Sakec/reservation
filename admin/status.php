@@ -16,6 +16,7 @@ if(isset($statusRow->guestEmail)) {
 	$data['guestEmail'] = $statusRow->guestEmail;
 	$data['date'] = $statusRow->date;
 	$data['numberOfPeople'] = $statusRow->numberOfPeople;
+	$data['roomID'] = $statusRow->roomID;
 	echo json_encode($data);
 } else {
 	echo "none";
