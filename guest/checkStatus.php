@@ -10,5 +10,8 @@ $getStatusSTMT->bindParam(':guestEmail', $statusEmail);
 $getStatusSTMT->execute();
 $statusRow = $getStatusSTMT->fetchObject();
 
-$slot = $statusRow->slot;
-echo $slot;
+$data['slot'] = $statusRow->slot;
+$data['guestName'] = $statusRow->guestName;
+$data['date'] = $statusRow->date;
+$data['numberOfPeople'] = $statusRow->numberOfPeople;
+echo json_encode($data);

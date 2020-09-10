@@ -11,7 +11,12 @@ $getStatusSTMT->bindParam(':slot', $slot);
 $getStatusSTMT->execute();
 $statusRow = $getStatusSTMT->fetchObject();
 
-$guestEmail = "none";
-if(isset($statusRow->guestEmail))
-	$guestEmail = $statusRow->guestEmail;
-echo $guestEmail;
+if(isset($statusRow->guestEmail)) {
+	$data['guestName'] = $statusRow->guestName;
+	$data['guestEmail'] = $statusRow->guestEmail;
+	$data['date'] = $statusRow->date;
+	$data['numberOfPeople'] = $statusRow->numberOfPeople;
+	echo json_encode($data);
+} else {
+	echo "none";
+}
