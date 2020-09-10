@@ -73,7 +73,7 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<select class="form-control select-arrow" id="guestSlot">
+											<select class="form-control custom-select" id="guestSlot">
 												<option value="1">12:00 am to 1:00 am</option>
 												<option value="2">1:00 am to 2:00 am</option>
 												<option value="3">2:00 am to 3:00 am</option>
@@ -100,6 +100,12 @@
 												<option value="24">11:00 pm to 12:00 am</option>
 											</select>
 											<span class="form-label">Time Slot</span>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<input class="form-control" type="text" id="guestRoomId">
+											<span class="form-label">Room No (If in hotel)</span>
 										</div>
 									</div>
 								</div>
@@ -130,7 +136,7 @@
 					<form id="reserveStatusForm">
 						<div class="container">
 							<div class="row">
-								<div class="col-md-6">
+								<div class="col-md-12">
 									<div class="form-group">
 										<label for="statusName" class="form-label">Name</label>
 										<input class="form-control" type="text" id="statusName">
@@ -143,6 +149,19 @@
 							</div>
 						</div>
 					</form>
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="row mb-2" style="margin-left: 2px; font-weight: bold;">Name:<span id="gName"></span></div>
+								<div class="row mb-2" style="margin-left: 2px; font-weight: bold;">Email:<span id="gEmail"></span></div>
+								<div class="row mb-2" style="margin-left: 2px; font-weight: bold;">No of People:<span id="gNoPeople"></span></div>
+								<div class="row mb-2" style="margin-left: 2px; font-weight: bold;">Date:<span id="gDate"></span></div>
+								<div class="row mb-2" style="margin-left: 2px; font-weight: bold;">Time Slot:<span id="gTime"></span></div>
+								<div class="row mb-2" style="margin-left: 2px; font-weight: bold;">Room No:<span id="gRoom"></span></div>
+								<button class="btn btn-secondary">Cancel Booking</button>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
