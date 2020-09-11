@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Admin Panel</title>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="../assets/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="../assets/css/style.css" />
+	<link rel="stylesheet" href="../assets/css/timetablejs.css">
+    <link rel="stylesheet" href="../assets/css/demo.css">
+</head>
+
+<body>
+    <!-- heading section -->
+	<section class="container">
+		<div class="jumbotron mt-4 mb-4 bg-2blue">
+			<div class="row">
+				<div class="col-12 col-lg-7">
+					<h1 class="display-4 font-weight-bolder mb-4 text-black" style="text-align: center;">
+						Admin Panel
+					</h1>
+				</div>
+				<div class="col-lg-5 d-none d-lg-block">
+					<img src="../assets/images/undraw_Creation_process_ukbh.svg"
+						class="img-fluid vec-image float-right" />
+				</div>
+			</div>
+		</div>
+		<div class="timetable" style="margin-bottom: 10%;"></div>
+    </section>
+    <script src="../assets/node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../assets/node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+	<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+	<script src="../assets/js/admin/timetable.js"></script>
+	<script>
+		var timetable = new Timetable();
+  
+		timetable.setScope(0,23);
+		timetable.useTwelveHour();
+  
+		timetable.addLocations(['Table 1', 'Table 2', 'Table 3', 'Table 4', 'Table 5', 'Table 6', 'Table 7']);
+  
+		timetable.addEvent('Booking ID: 9367', 'Table 1', new Date(2015,7,17,9,00), new Date(2015,7,17,10,00), { url: '#' });
+		timetable.addEvent('Booking ID: 2387', 'Table 2', new Date(2015,7,17,12), new Date(2015,7,17,13), { url: '#' });
+		timetable.addEvent('Booking ID: 7483', 'Table 2', new Date(2015,7,17,13), new Date(2015,7,17,14), { url: '#' });
+		timetable.addEvent('Booking ID: 2093', 'Table 3', new Date(2015,7,17,17), new Date(2015,7,17,18));
+		timetable.addEvent('Booking ID: 8367', 'Table 4', new Date(2015,7,17,4), new Date(2015,7,17,5), { url: '#' });
+		timetable.addEvent('Booking ID: 3452', 'Table 5', new Date(2015,7,17,11), new Date(2015,7,17,12)); // options attribute is not used for this event
+		timetable.addEvent('Booking ID:1342', 'Table 6', new Date(2015,7,17,22), new Date(2015,7,17,23)); // options attribute is not used for this event
+		timetable.addEvent('Booking ID: 2345', 'Table 7', new Date(2015,7,17,9), new Date(2015,7,17,10), { onClick: function(event) {
+		  window.alert('You clicked on the ' + event.name + ' event in ' + event.location + '. This is an example of a click handler');
+		}});
+		timetable.addEvent('Booking ID:1234', 'Table 1', new Date(2015,7,18,00,00), new Date(2015,7,18,01,00));
+  
+		var renderer = new Timetable.Renderer(timetable);
+		renderer.draw('.timetable');
+	  </script>
+</body>
+
+</html>
