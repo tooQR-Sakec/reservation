@@ -1,5 +1,25 @@
+$(document).ready(function () {
+	loadSlots();
+});
+
 $("#reserveTableForm").submit(reserveTable);
 $("#reserveStatusForm").submit(reserveStatusButton);
+
+function loadSlots() {
+	$.ajax({
+		url: "loadSlots.php",
+		contentType: false, // Dont delete this (jQuery 1.6+)
+		processData: false, // Dont delete this
+		success: function (data) {
+			data = JSON.parse(data);
+			var guestSlot = document.getElementById('guestSlot');
+			data.forEach(element => {
+				guestSlot.options[guestSlot.options.length] = new Option(element.time, element.slot);
+			});
+		},
+		//Other options
+	});
+}
 
 function reserveTable(event) {
 	event.preventDefault();

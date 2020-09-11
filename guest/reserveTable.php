@@ -27,7 +27,7 @@ $getTableSTMT->execute();
 $rowCount = $getTableSTMT->rowCount();
 if ($rowCount == 1) {
 	$tableRow = $getTableSTMT->fetchObject();
-	echo $tableRow->tableID;
+	$reservedTables[] = $tableRow->tableID;
 } else {
 	// query to get table count
 	$getTableCountSQL = "SELECT count(*) AS tableCount, capacity
@@ -87,7 +87,6 @@ if ($rowCount == 1) {
 	}
 	$data["capacity"] = $guestCapacity;
 	$data["table"] = $availableTables;
-	print_r($availableTables);
 	$data = json_encode($data);
 
 	$ch = curl_init('localhost:5000');
@@ -104,20 +103,20 @@ if ($rowCount == 1) {
 		echo "full";
 		exit;
 	}
-	$availableTables = json_decode($result, true);
+	$reservedTables = json_decode($result, true);
+}
 
-	$reserveTableSQL = "INSERT INTO booking (tableID, slot, guestName, guestEmail, date, numberOfPeople, roomID) VALUES (:tableID, :slot, :name, :email, :date, :numberOfPeople, :roomID)";
-	$reserveTableSTMT = $conn->prepare($reserveTableSQL);
-	$reserveTableSTMT->bindParam(':slot', $guestSlot);
-	$reserveTableSTMT->bindParam(':name', $guestName);
-	$reserveTableSTMT->bindParam(':email', $guestEmail);
-	$reserveTableSTMT->bindParam(':date', $guestDate);
-	$reserveTableSTMT->bindParam(':numberOfPeople', $guestCapacity);
-	$reserveTableSTMT->bindParam(':roomID', $roomID);
+print_r($reservedTables);
+$reserveTableSQL = "INSERT INTO booking (tableID, slot, guestName, guestEmail, date, numberOfPeople, roomID) VALUES (:tableID, :slot, :name, :email, :date, :numberOfPeople, :roomID)";
+$reserveTableSTMT = $conn->prepare($reserveTableSQL);
+$reserveTableSTMT->bindParam(':slot', $guestSlot);
+$reserveTableSTMT->bindParam(':name', $guestName);
+$reserveTableSTMT->bindParam(':email', $guestEmail);
+$reserveTableSTMT->bindParam(':date', $guestDate);
+$reserveTableSTMT->bindParam(':numberOfPeople', $guestCapacity);
+$reserveTableSTMT->bindParam(':roomID', $roomID);
 
-	foreach ($availableTables as $tableID) {
-		echo $tableID;
-		$reserveTableSTMT->bindParam(':tableID', $tableID);
-		$reserveTableSTMT->execute();
-	}
+foreach ($reservedTables as $tableID) {
+	$reserveTableSTMT->bindParam(':tableID', $tableID);
+	$reserveTableSTMT->execute();
 }

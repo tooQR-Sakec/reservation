@@ -4,7 +4,7 @@ include('../db.php');
 $statusName = $_POST['statusName'];
 $statusEmail = $_POST['statusEmail'];
 
-$getStatusSQL = "SELECT * FROM booking WHERE guestEmail = :guestEmail";
+$getStatusSQL = "SELECT * FROM booking WHERE guestEmail = :guestEmail GROUP BY slot, date";
 $getStatusSTMT = $conn->prepare($getStatusSQL);
 $getStatusSTMT->bindParam(':guestEmail', $statusEmail);
 $getStatusSTMT->execute();
@@ -17,7 +17,9 @@ while($statusRow = $getStatusSTMT->fetchObject()) {
 	$booking['roomID'] = $statusRow->roomID;
 	$data[] = $booking;
 }
-if(isset($data))
+
+if(isset($data)) {
 	echo json_encode($data);
-else
+} else {
 	echo null;
+}
