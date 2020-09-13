@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" style="background:linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url(../assets/images/background.jpg) no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size:cover; background-size: cover;">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Guest Page</title>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="../assets/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+
+	<!-- Scripts -->
+	<script src="../assets/node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../assets/node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+	<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Custom Stylesheet-->
+    <link type="text/css" rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+	<div id="guest" class="section">
+		<div class="section-center">
+			<div class="container">
+				<div class="row">
+					<div class="text-center col">
+						<div class="booking-cta">
+							<h1>Book a Table</h1>
+						</div>
+						<div class="col">
+							<div class="guest-form">
+								<form id="reserveTableForm">
+									<div class="row">
+										<div class="col">
+											<div class="form-group">
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<span class="input-group-text" id="basic-addon1">
+															Name
+														</span>
+													</div>
+													<input type="text" class="form-control" aria-label="Name" aria-describedby="basic-addon1"  id="guestName" required>
+												</div>
+											</div>
+										</div>
+										<div class="col">
+											<div class="form-group">
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<span class="input-group-text" id="basic-addon1">Email</span>
+													</div>
+													<input type="email" class="form-control" aria-label="Email" aria-describedby="basic-addon1"id="guestEmail" required>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col">
+											<div class="form-group">
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<span class="input-group-text" id="basic-addon1">
+															No of People
+														</span>
+													</div>
+													<input type="number" class="form-control" aria-label="Capacity" aria-describedby="basic-addon1" id="guestCapacity" min="1"
+												oninput="this.value = Math.abs(this.value)" required>
+												</div>
+											</div>
+										</div>
+										<div class="col">
+											<div class="form-group">
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<span class="input-group-text" id="basic-addon1">
+															Room No
+														</span>
+													</div>
+													<input type="text" class="form-control" aria-label="Room No" aria-describedby="basic-addon1" id="guestRoomId">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col">
+											<div class="form-group">
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<span class="input-group-text" id="basic-addon1">
+															Date & Time
+														</span>
+													</div>
+													<input type="datetime-local" class="form-control" aria-label="datetime" aria-describedby="basic-addon1" id="guestCapacity">
+												</div>
+											</div>
+										</div>
+										<div class="col">
+											<div class="form-group">
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<span class="input-group-text" id="basic-addon1">
+															Type
+														</span>
+													</div>
+													<select class="custom-select" id="guestFoodType">
+													    <option value="1">BreakFast</option>
+													    <option value="2">Lunch</option>
+													    <option value="3">Dinner</option>
+													</select>
+												</div>
+											</div>
+										</div>
+									</div>
+									<button type="button" class="btn btn-outline-primary" data-toggle="modal"
+									data-target="#bookingModal">Book Now</button>
+									<button type="button" class="btn btn-outline-secondary" data-toggle="modal"
+										data-target="#statusModal" onclick="clearStatusModal()">Check Status</button>
+								</form>
+							</div>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="statusModal" tabindex="-1" aria-labelledby="statusModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class=" col-12 modal-title text-center" id="statusHead">Status</h3>
+				</div>
+				<div class="modal-body">
+					<form id="reserveStatusForm">
+						<div class="container">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="statusName" class="form-label">Name</label>
+										<input class="form-control" type="text" id="statusName">
+									</div>
+									<div class="form-group">
+										<label for="statusEmail" class="form-label">Email</label>
+										<input class="form-control" type="email" id="statusEmail">
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+					<div class="container" id="reservationStatus"></div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary" form="reserveStatusForm"
+						style="background-color: rgb(50, 209, 1);">Check Status</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class=" col-12 modal-title text-center" id="bookingHead">Table Booking</h3>
+				</div>
+				<div class="modal-body">
+					<div id="bookingStatus" style="text-align: center; font-weight: 400;"></div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>				
+</body>
+</html>
