@@ -35,7 +35,7 @@
 									<div class="row">
 										<div class="col">
 											<div class="form-group">
-												<div class="input-group mb-3">
+												<div class="input-group custom-style mb-3">
 													<div class="input-group-prepend">
 														<span class="input-group-text" id="basic-addon1">
 															Name
@@ -47,7 +47,7 @@
 										</div>
 										<div class="col">
 											<div class="form-group">
-												<div class="input-group mb-3">
+												<div class="input-group custom-style mb-3">
 													<div class="input-group-prepend">
 														<span class="input-group-text" id="basic-addon1">Email</span>
 													</div>
@@ -59,7 +59,7 @@
 									<div class="row">
 										<div class="col">
 											<div class="form-group">
-												<div class="input-group mb-3">
+												<div class="input-group custom-style mb-3">
 													<div class="input-group-prepend">
 														<span class="input-group-text" id="basic-addon1">
 															No of People
@@ -72,7 +72,7 @@
 										</div>
 										<div class="col">
 											<div class="form-group">
-												<div class="input-group mb-3">
+												<div class="input-group custom-style mb-3">
 													<div class="input-group-prepend">
 														<span class="input-group-text" id="basic-addon1">
 															Room No
@@ -86,19 +86,19 @@
 									<div class="row">
 										<div class="col">
 											<div class="form-group">
-												<div class="input-group mb-3">
+												<div class="input-group custom-style mb-3">
 													<div class="input-group-prepend">
 														<span class="input-group-text" id="basic-addon1">
 															Date & Time
 														</span>
 													</div>
-													<input type="datetime-local" class="form-control" aria-label="datetime" aria-describedby="basic-addon1" id="guestCapacity">
+													<input type="datetime-local" class="form-control" aria-label="datetime" aria-describedby="basic-addon1" id="guestDateTime" style="cursor:pointer; background-color: #FFFFFF">
 												</div>
 											</div>
 										</div>
 										<div class="col">
 											<div class="form-group">
-												<div class="input-group mb-3">
+												<div class="input-group custom-style mb-3">
 													<div class="input-group-prepend">
 														<span class="input-group-text" id="basic-addon1">
 															Type
@@ -113,10 +113,16 @@
 											</div>
 										</div>
 									</div>
-									<button type="button" class="btn btn-outline-primary" data-toggle="modal"
-									data-target="#bookingModal">Book Now</button>
-									<button type="button" class="btn btn-outline-secondary" data-toggle="modal"
-										data-target="#statusModal" onclick="clearStatusModal()">Check Status</button>
+									<div class="row" style="padding-left: 33%; padding-right: 33%;">
+										<div class="col mb-3">
+												<button type="button" class="btn btn-dark" style="width: 150px;" data-toggle="modal"
+												data-target="#bookingModal">Book Now</button>
+										</div>
+										<div class="col">
+												<button type="button" class="btn btn-dark" style="width: 150px;" data-toggle="modal"
+												data-target="#statusModal" onclick="clearStatusModal()">Check Status</button>
+										</div>
+									</div>
 								</form>
 							</div>
 						</div>
@@ -153,8 +159,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="submit" class="btn btn-primary" form="reserveStatusForm"
-						style="background-color: rgb(50, 209, 1);">Check Status</button>
+					<button type="submit" class="btn btn-dark" form="reserveStatusForm">Check Status</button>
 				</div>
 			</div>
 		</div>
@@ -170,10 +175,55 @@
 					<div id="bookingStatus" style="text-align: center; font-weight: 400;"></div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
 	</div>				
 </body>
+
+<!--<link rel="stylesheet" type="text/css" href="../assets/css/jquery.datetimepicker.min.css"/>
+<script src="../assets/js/guest/jquery.datetimepicker.js"></script>
+<script>
+	var checkPastTime = function(inputDateTime) {
+    if (typeof(inputDateTime) != "undefined" && inputDateTime !== null) {
+        var current = new Date();
+ 
+        //check past year and month
+        if (inputDateTime.getFullYear() < current.getFullYear()) {
+            $('#guestDateTime').datetimepicker('reset');
+            alert("Sorry! Past date time not allow.");
+        } else if ((inputDateTime.getFullYear() == current.getFullYear()) && (inputDateTime.getMonth() < current.getMonth())) {
+            $('#guestDateTime').datetimepicker('reset');
+            alert("Sorry! Past date time not allow.");
+        }
+ 
+        // 'this' is jquery object datetimepicker
+        // check input date equal to todate date
+        if (inputDateTime.getDate() == current.getDate()) {
+            if (inputDateTime.getHours() < current.getHours()) {
+                $('#guestDateTime').datetimepicker('reset');
+            }
+            this.setOptions({
+                minTime: current.getHours() + ':00' //here pass current time hour
+            });
+        } else {
+            this.setOptions({
+                minTime: false
+            });
+        }
+    }
+};
+ 
+var currentYear = new Date();
+$('#guestDateTime').datetimepicker({
+    format:'Y-m-d H:i',
+    minDate : 0,
+    yearStart : currentYear.getFullYear(), // Start value for current Year selector
+    onChangeDateTime:checkPastTime,
+    onShow:checkPastTime
+});
+</script>-->
+
 </html>
+

@@ -20,6 +20,8 @@
 	background: #fff;
 	margin: auto;
 	padding: 40px 30px;
+	border-radius: 10px;
+	background-color: rgba(255, 255, 255, 0.7);
 }
 
 .section {
@@ -57,3 +59,18 @@
 	margin-bottom: 20px;
 }
 
+.custom-style > input {
+	background-color: transparent !important;
+	border-color: black;
+}
+
+.custom-style > select {
+	background-color: transparent !important;
+	border-color: black;
+}
+
+.custom-style .input-group-prepend .input-group-text {
+	background-color: transparent !important;
+	border-color: black;
+	color: black;
+}
