@@ -4,8 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<title>Admin Panel</title>
+	<title>Admin Table View</title>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
@@ -13,99 +12,65 @@
 	<!-- Bootstrap -->
 	<link type="text/css" rel="stylesheet" href="../assets/node_modules/bootstrap/dist/css/bootstrap.min.css" />
 
-	<!-- Custom stlylesheet -->
-	<link type="text/css" rel="stylesheet" href="../assets/css/style.css" />
+	<!-- Scripts -->
+	<script src="../assets/node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../assets/node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+	<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	
+    <!-- Custom Stylesheet-->
+    <link type="text/css" rel="stylesheet" href="../assets/css/style.css">
 </head>
 
 <body>
-
-	<!-- heading section -->
-	<section class="container">
-		<div class="jumbotron mt-4 mb-4 bg-2blue">
-			<div class="row">
-				<div class="col-12 col-lg-7">
-					<h1 class="display-4 font-weight-bolder mb-4 text-black" style="text-align: center;">
-						Admin Panel
-					</h1>
-					<div class="form-btn" style="text-align: center;">
-						<button type="button" class="btn btn-secondary text-black" data-toggle="modal"
-							data-target="#add-table" style="margin-top: 5%; width: 175px">
-							Add Table
-						</button>
-					</div>
-				</div>
-				<div class="col-lg-5 d-none d-lg-block">
-					<img src="../assets/images/undraw_Creation_process_ukbh.svg"
-						class="img-fluid vec-image float-right" />
-				</div>
-			</div>
+	<!--NavBar-->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#" style="font-family: 'Montserrat', sans-serif;
+		font-size: xx-large;
+		font-weight: bold;">Administrator Panel</a>
+		<div class="collapse navbar-collapse" id="navbarTogglerDemo02"></div>
+			<ul class="nav">
+				<li class="nav-item" role="presentation">
+				  <button class="btn btn-light" style="margin-right: 10px"  data-toggle="modal" data-target="#add-table">Add Table</button>
+				</li>
+				<div class="vl"></div>
+				<li class="nav-item" role="presentation">
+				  <button class="btn btn-light ml">Timetable view</button>
+				</li>
+				<li class="nav-item" role="presentation">
+				  <button class="btn btn-light ml">Settings</button>
+				</li>
+			  </ul>
 		</div>
-	</section>
-	<!--Card View-->
-	<section class="container">
-		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" id="tableCard">
-		</div>
-	</section>
+	  </nav>
 
-	<!--Modals-->
-	<section>
-		<div class="modal fade" id="slot-info" data-target="#slot-info" aria-hidden="true">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title">
-							Slot Info
-						</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<div class="row">
-							<div class="table-responsive-sm">
-								<select class="custom-select" id="tableSlot">
-									<option value="1">12:00 am to 1:00 am</option>
-									<option value="2">1:00 am to 2:00 am</option>
-									<option value="3">2:00 am to 3:00 am</option>
-									<option value="4">3:00 am to 4:00 am</option>
-									<option value="5">4:00 am to 5:00 am</option>
-									<option value="6">5:00 am to 6:00 am</option>
-									<option value="7">6:00 am to 7:00 am</option>
-									<option value="8">7:00 am to 8:00 am</option>
-									<option value="9">8:00 am to 9:00 am</option>
-									<option value="10">9:00 am to 10:00 am</option>
-									<option value="11">10:00 am to 11:00 am</option>
-									<option value="12">11:00 am to 12:00 pm</option>
-									<option value="13">12:00 pm to 1:00 pm</option>
-									<option value="14">1:00 pm to 2:00 pm</option>
-									<option value="15">2:00 pm to 3:00 pm</option>
-									<option value="16">3:00 pm to 4:00 pm</option>
-									<option value="17">4:00 pm to 5:00 pm</option>
-									<option value="18">5:00 pm to 6:00 pm</option>
-									<option value="19">6:00 pm to 7:00 pm</option>
-									<option value="20">7:00 pm to 8:00 pm</option>
-									<option value="21">8:00 pm to 9:00 pm</option>
-									<option value="22">9:00 pm to 10:00 pm</option>
-									<option value="23">10:00 pm to 11:00 pm</option>
-									<option value="24">11:00 pm to 12:00 am</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<input class="form-control" type="date" id="checkStatusDate" required>
-							</div>
-						</div>
-						<input id="checkStatus-table-ID" type="hidden" />
-						<div id="reservationStatus"></div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">
-								Close
+  <!-- Table Component-->
+	  	<section class="container" style="padding-top: 5%;">
+			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+	  			<div class="col-md-6 mb-5">
+					<div class="skill-card">
+						<header class="skill-card__header"><div class="skill-card__icon"></div></header>
+						<section class="skill-card__body">
+							<h2 class="skill-card__title">Table No:1</h2><div class="skill-card__duration">Capacity:</div>
+							<div class="skill-card__knowledge">
+								<div class="form-btn" style="text-align: center;">
+							<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#edit-table"
+								style="margin-top: 5%; width: 175px" onclick="editTableModal(`+ element.tableID + `)">
+								Edit Table
 							</button>
 						</div>
+						<div class="form-btn" style="text-align: center;">
+							<button type="button" class="btn btn-dark" style="margin-top: 5%; width: 175px" onclick="deleteTable(`+ element.tableID + `)">
+								Delete Table
+							</button>
+						</div>
+							</div>
+						</section>
 					</div>
 				</div>
 			</div>
-		</div>
-
+		</section>
+		<!--Modals-->
+		<section>
 		<!-- Add Table -->
 		<div class="modal fade" id="add-table" data-target="#add-table" aria-hidden="true">
 			<div class="modal-dialog modal-lg">
@@ -197,12 +162,6 @@
 			</div>
 		</div>
 	</section>
-	<script src="../assets/node_modules/jquery/dist/jquery.min.js"></script>
-	<script src="../assets/node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
-	<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
-
-	<script src="../assets/js/admin/admin.js"></script>
+		 
 </body>
-
 </html>
