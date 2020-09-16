@@ -12,7 +12,11 @@
 
 	<!-- Bootstrap -->
 	<link type="text/css" rel="stylesheet" href="../assets/node_modules/bootstrap/dist/css/bootstrap.min.css" />
-
+	<script src="../assets/node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../assets/node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+	<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+	<script src="../assets/js/admin/timetable.js"></script>
 	<!-- Custom stlylesheet -->
 	<link type="text/css" rel="stylesheet" href="../assets/css/style.css" />
 	<link rel="stylesheet" href="../assets/css/timetablejs.css">
@@ -20,28 +24,47 @@
 </head>
 
 <body>
-    <!-- heading section -->
-	<section class="container">
-		<div class="jumbotron mt-4 mb-4 bg-2blue">
-			<div class="row">
-				<div class="col-12 col-lg-7">
-					<h1 class="display-4 font-weight-bolder mb-4 text-black" style="text-align: center;">
-						Admin Panel
-					</h1>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#" style="font-family: 'Montserrat', sans-serif;
+		font-size: xx-large;
+		font-weight: bold;">Administrator Panel</a>
+		<div class="collapse navbar-collapse" id="navbarTogglerDemo02"></div>
+			<ul class="nav">
+				<li class="nav-item" role="presentation"  style="margin-right: 10px">
+				  <input type="date" class="form-control">
+				</li>
+				<div class="vl"></div>
+				<li class="nav-item" role="presentation">
+				  <a class="btn btn-light ml" href="admin.html">Table View</a>
+				</li>
+				<li class="nav-item" role="presentation">
+				  <a href="settings.html" class="btn btn-light ml">Settings</a>
+				</li>
+			</ul>
+		</div>
+	  </nav>
+	<div class="timetable"></div>
+
+	<!--Modal-->
+	<div class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="reservationModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class=" col-12 modal-title text-center" id="resinfo">Reservation Info</h3>
 				</div>
-				<div class="col-lg-5 d-none d-lg-block">
-					<img src="../assets/images/undraw_Creation_process_ukbh.svg"
-						class="img-fluid vec-image float-right" />
+				<div class="modal-body">
+					<div class="container" id="reservationStatus"></div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-dark">Extend</button>
+					<button type="submit" class="btn btn-dark">Checkin</button>
+					<button type="submit" class="btn btn-dark">CheckOut</button>
 				</div>
 			</div>
 		</div>
-		<div class="timetable" style="margin-bottom: 10%;"></div>
-    </section>
-    <script src="../assets/node_modules/jquery/dist/jquery.min.js"></script>
-	<script src="../assets/node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
-	<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
-	<script src="../assets/js/admin/timetable.js"></script>
+	</div>
+
 	<script>
 		var timetable = new Timetable();
   
