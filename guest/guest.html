@@ -37,11 +37,11 @@
 											<div class="form-group">
 												<div class="input-group custom-style mb-3">
 													<div class="input-group-prepend">
-														<span class="input-group-text" id="basic-addon1">
+														<span class="input-group-text" id="name">
 															Name
 														</span>
 													</div>
-													<input type="text" class="form-control" aria-label="Name" aria-describedby="basic-addon1"  id="guestName" required>
+													<input type="text" class="form-control" aria-label="Name" aria-describedby="name"  id="guestName" required>
 												</div>
 											</div>
 										</div>
@@ -49,9 +49,9 @@
 											<div class="form-group">
 												<div class="input-group custom-style mb-3">
 													<div class="input-group-prepend">
-														<span class="input-group-text" id="basic-addon1">Email</span>
+														<span class="input-group-text" id="email">Email</span>
 													</div>
-													<input type="email" class="form-control" aria-label="Email" aria-describedby="basic-addon1"id="guestEmail" required>
+													<input type="email" class="form-control" aria-label="Email" aria-describedby="email"id="guestEmail" required>
 												</div>
 											</div>
 										</div>
@@ -61,11 +61,11 @@
 											<div class="form-group">
 												<div class="input-group custom-style mb-3">
 													<div class="input-group-prepend">
-														<span class="input-group-text" id="basic-addon1">
+														<span class="input-group-text" id="nopeople">
 															No of People
 														</span>
 													</div>
-													<input type="number" class="form-control" aria-label="Capacity" aria-describedby="basic-addon1" id="guestCapacity" min="1"
+													<input type="number" class="form-control" aria-label="Capacity" aria-describedby="nopeople" id="guestCapacity" min="1"
 												oninput="this.value = Math.abs(this.value)" required>
 												</div>
 											</div>
@@ -74,11 +74,11 @@
 											<div class="form-group">
 												<div class="input-group custom-style mb-3">
 													<div class="input-group-prepend">
-														<span class="input-group-text" id="basic-addon1">
+														<span class="input-group-text" id="rno">
 															Room No
 														</span>
 													</div>
-													<input type="text" class="form-control" aria-label="Room No" aria-describedby="basic-addon1" id="guestRoomId">
+													<input type="text" class="form-control" aria-label="Room No" aria-describedby="rno" id="guestRoomId">
 												</div>
 											</div>
 										</div>
@@ -88,11 +88,11 @@
 											<div class="form-group">
 												<div class="input-group custom-style mb-3">
 													<div class="input-group-prepend">
-														<span class="input-group-text" id="basic-addon1">
+														<span class="input-group-text" id="dat">
 															Date & Time
 														</span>
 													</div>
-													<input type="datetime-local" class="form-control" aria-label="datetime" aria-describedby="basic-addon1" id="guestDateTime" style="cursor:pointer; background-color: #FFFFFF">
+													<input type="datetime-local" class="form-control" aria-label="datetime" aria-describedby="dat" id="guestDateTime" style="cursor:pointer">
 												</div>
 											</div>
 										</div>
@@ -100,11 +100,11 @@
 											<div class="form-group">
 												<div class="input-group custom-style mb-3">
 													<div class="input-group-prepend">
-														<span class="input-group-text" id="basic-addon1">
+														<span class="input-group-text" id="type">
 															Type
 														</span>
 													</div>
-													<select class="custom-select" id="guestFoodType">
+													<select class="custom-select" id="guestFoodType" aria-label="datetime" aria-describedby="type">
 													    <option value="1">BreakFast</option>
 													    <option value="2">Lunch</option>
 													    <option value="3">Dinner</option>
@@ -181,49 +181,6 @@
 		</div>
 	</div>				
 </body>
-
-<!--<link rel="stylesheet" type="text/css" href="../assets/css/jquery.datetimepicker.min.css"/>
-<script src="../assets/js/guest/jquery.datetimepicker.js"></script>
-<script>
-	var checkPastTime = function(inputDateTime) {
-    if (typeof(inputDateTime) != "undefined" && inputDateTime !== null) {
-        var current = new Date();
- 
-        //check past year and month
-        if (inputDateTime.getFullYear() < current.getFullYear()) {
-            $('#guestDateTime').datetimepicker('reset');
-            alert("Sorry! Past date time not allow.");
-        } else if ((inputDateTime.getFullYear() == current.getFullYear()) && (inputDateTime.getMonth() < current.getMonth())) {
-            $('#guestDateTime').datetimepicker('reset');
-            alert("Sorry! Past date time not allow.");
-        }
- 
-        // 'this' is jquery object datetimepicker
-        // check input date equal to todate date
-        if (inputDateTime.getDate() == current.getDate()) {
-            if (inputDateTime.getHours() < current.getHours()) {
-                $('#guestDateTime').datetimepicker('reset');
-            }
-            this.setOptions({
-                minTime: current.getHours() + ':00' //here pass current time hour
-            });
-        } else {
-            this.setOptions({
-                minTime: false
-            });
-        }
-    }
-};
- 
-var currentYear = new Date();
-$('#guestDateTime').datetimepicker({
-    format:'Y-m-d H:i',
-    minDate : 0,
-    yearStart : currentYear.getFullYear(), // Start value for current Year selector
-    onChangeDateTime:checkPastTime,
-    onShow:checkPastTime
-});
-</script>-->
 
 </html>
 
