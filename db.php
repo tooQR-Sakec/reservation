@@ -1,8 +1,9 @@
 <?php
 //DB CONNECTION====================================
-$servername = "localhost";
-$username = "root";
+$serverName = "localhost";
+$username = "";
 $password = "";
 $database = "reservation";
 // Create connection
-$conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
+$conn = new PDO("sqlsrv:server=$serverName; Database=$database", "", "");
+$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

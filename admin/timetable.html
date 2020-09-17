@@ -31,7 +31,7 @@
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo02"></div>
 			<ul class="nav">
 				<li class="nav-item" role="presentation"  style="margin-right: 10px">
-				  <input type="date" class="form-control">
+				  <input type="date" class="form-control" id="date">
 				</li>
 				<div class="vl"></div>
 				<li class="nav-item" role="presentation">
@@ -57,37 +57,22 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="submit" class="btn btn-dark">Extend</button>
-					<button type="submit" class="btn btn-dark">Checkin</button>
-					<button type="submit" class="btn btn-dark">CheckOut</button>
+					<button type="submit" class="btn btn-dark" id="extend">Extend</button>
+					<button type="submit" class="btn btn-dark" id="checkIn">Checkin</button>
+					<button type="submit" class="btn btn-dark" id="checkOut">CheckOut</button>
 				</div>
 			</div>
 		</div>
 	</div>
+	
+	<script src="../assets/node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../assets/node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+	<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 
-	<script>
-		var timetable = new Timetable();
-  
-		timetable.setScope(0,23);
-		timetable.useTwelveHour();
-  
-		timetable.addLocations(['Table 1', 'Table 2', 'Table 3', 'Table 4', 'Table 5', 'Table 6', 'Table 7']);
-  
-		timetable.addEvent('Booking ID: 9367', 'Table 1', new Date(2015,7,17,9,00), new Date(2015,7,17,10,00), { url: '#' });
-		timetable.addEvent('Booking ID: 2387', 'Table 2', new Date(2015,7,17,12), new Date(2015,7,17,13), { url: '#' });
-		timetable.addEvent('Booking ID: 7483', 'Table 2', new Date(2015,7,17,13), new Date(2015,7,17,14), { url: '#' });
-		timetable.addEvent('Booking ID: 2093', 'Table 3', new Date(2015,7,17,17), new Date(2015,7,17,18));
-		timetable.addEvent('Booking ID: 8367', 'Table 4', new Date(2015,7,17,4), new Date(2015,7,17,5), { url: '#' });
-		timetable.addEvent('Booking ID: 3452', 'Table 5', new Date(2015,7,17,11), new Date(2015,7,17,12)); // options attribute is not used for this event
-		timetable.addEvent('Booking ID:1342', 'Table 6', new Date(2015,7,17,22), new Date(2015,7,17,23)); // options attribute is not used for this event
-		timetable.addEvent('Booking ID: 2345', 'Table 7', new Date(2015,7,17,9), new Date(2015,7,17,10), { onClick: function(event) {
-		  window.alert('You clicked on the ' + event.name + ' event in ' + event.location + '. This is an example of a click handler');
-		}});
-		timetable.addEvent('Booking ID:1234', 'Table 1', new Date(2015,7,18,00,00), new Date(2015,7,18,01,00));
-  
-		var renderer = new Timetable.Renderer(timetable);
-		renderer.draw('.timetable');
-	  </script>
+	<script src="../assets/js/admin/admin.js"></script>
+	<script src="../assets/js/admin/loadTT.js"></script>
+	<script src="../assets/js/admin/ttView.js"></script>
 </body>
 
 </html>

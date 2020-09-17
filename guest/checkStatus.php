@@ -4,16 +4,20 @@ include('../db.php');
 $statusName = $_POST['statusName'];
 $statusEmail = $_POST['statusEmail'];
 
-$getStatusSQL = "SELECT * FROM booking WHERE guestEmail = :guestEmail GROUP BY slot, date";
+$getStatusSQL = "SELECT * FROM booking
+	WHERE tableID in (
+		SELECT min(tableID) FROM booking
+		WHERE guestEmail = :guestEmail
+		GROUP BY startTime)";
 $getStatusSTMT = $conn->prepare($getStatusSQL);
 $getStatusSTMT->bindParam(':guestEmail', $statusEmail);
 $getStatusSTMT->execute();
 
 while($statusRow = $getStatusSTMT->fetchObject()) {
-	$booking['slot'] = $statusRow->slot;
 	$booking['guestName'] = $statusRow->guestName;
-	$booking['date'] = $statusRow->date;
 	$booking['numberOfPeople'] = $statusRow->numberOfPeople;
+	$booking['startTime'] = $statusRow->startTime;
+	$booking['endTime'] = $statusRow->endTime;
 	$booking['roomID'] = $statusRow->roomID;
 	$data[] = $booking;
 }

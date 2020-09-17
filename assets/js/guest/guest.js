@@ -1,25 +1,7 @@
 $(document).ready(function () {
-	loadSlots();
+	$("#reserveTableForm").submit(reserveTable);
+	$("#reserveStatusForm").submit(reserveStatusButton);
 });
-
-$("#reserveTableForm").submit(reserveTable);
-$("#reserveStatusForm").submit(reserveStatusButton);
-
-function loadSlots() {
-	$.ajax({
-		url: "loadSlots.php",
-		contentType: false, // Dont delete this (jQuery 1.6+)
-		processData: false, // Dont delete this
-		success: function (data) {
-			data = JSON.parse(data);
-			var guestSlot = document.getElementById('guestSlot');
-			data.forEach(element => {
-				guestSlot.options[guestSlot.options.length] = new Option(element.time, element.slot);
-			});
-		},
-		//Other options
-	});
-}
 
 function reserveTable(event) {
 	event.preventDefault();
@@ -27,16 +9,25 @@ function reserveTable(event) {
 	var guestName = $('#guestName').val();
 	var guestEmail = $('#guestEmail').val();
 	var guestCapacity = $('#guestCapacity').val();
-	var guestDate = $('#guestDate').val();
-	var guestSlot = $('#guestSlot').val();
+	var guestStartTime = Date.parse($('#guestDateTime').val()) / 1000;
+	var guestFoodType = parseInt($('#guestFoodType').val());
 	var roomID = $('#guestRoomId').val();
+	var guestEndTime = guestStartTime;
+	switch (guestFoodType) {
+		case 1: guestEndTime += 60 * 60; //breakfast 60 minutes
+			break;
+		case 2: guestEndTime += 60 * 90; //lunch 90 minutes
+			break;
+		case 3: guestEndTime += 60 * 120; //dinner 2 hours
+			break;
+	}
 
 	var formdata = new FormData();
 	formdata.append("guestName", guestName);
 	formdata.append("guestEmail", guestEmail);
 	formdata.append("guestCapacity", guestCapacity);
-	formdata.append("guestDate", guestDate);
-	formdata.append("guestSlot", guestSlot);
+	formdata.append("guestStartTime", guestStartTime);
+	formdata.append("guestEndTime", guestEndTime);
 	formdata.append("roomID", roomID);
 
 	$.ajax({
@@ -57,11 +48,10 @@ function reserveTable(event) {
 	});
 }
 
-function cancelBooking(guestEmail, date, slot){
+function cancelBooking(guestEmail, startTime) {
 	var formdata = new FormData();
 	formdata.append('guestEmail', guestEmail);
-	formdata.append('date', date);
-	formdata.append('slot', slot);
+	formdata.append('startTime', startTime);
 
 	$.ajax({
 		type: "POST",
@@ -102,7 +92,7 @@ function reserveStatus() {
 		processData: false, // Dont delete this
 		success: function (data) {
 			var html = '';
-			if(data) {
+			if (data) {
 				data = JSON.parse(data);
 				data.forEach(element => {
 					html += `
@@ -110,31 +100,31 @@ function reserveStatus() {
 						<tbody>
 							<tr>
 								<th scope="row">Name</th>
-								<td>`+element.guestName+`</td>
+								<td>`+ element.guestName + `</td>
 							</tr>
 							<tr>
 								<th scope="row">No of people</th>
-								<td>`+element.numberOfPeople+`</td>
+								<td>`+ element.numberOfPeople + `</td>
 							</tr>
 							<tr>
-								<th scope="row">Date</th>
-								<td>`+element.date+`</td>
+								<th scope="row">From</th>
+								<td>`+ new Date(parseInt(element.startTime)*1000) + `</td>
 							</tr>
 							<tr>
-								<th scope="row">Time Slot</th>
-								<td>`+element.slot+`</td>
+								<th scope="row">To</th>
+								<td>`+ new Date(parseInt(element.endTime)*1000) + `</td>
 							</tr>`;
-					if(element.roomID) {
-						html +=  `
+					if (element.roomID) {
+						html += `
 							<tr>
 								<th scope="row">Room no</th>
-								<td>`+element.roomID+`</td>
+								<td>`+ element.roomID + `</td>
 							</tr>`;
 					}
-					html +=`
+					html += `
 							<tr>
 								<td colspan="2">
-									<button class="btn btn-secondary" onclick="cancelBooking('`+statusEmail+`', '`+element.date+`', '`+element.slot+`')">
+									<button class="btn btn-secondary" onclick="cancelBooking('`+ statusEmail + `', '` + element.startTime + `')">
 										Cancel Booking
 									</button>
 								</td>
