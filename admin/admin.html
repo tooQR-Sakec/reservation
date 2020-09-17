@@ -45,28 +45,7 @@
 
   <!-- Table Component-->
 	  	<section class="container" style="padding-top: 5%;">
-			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
-	  			<div class="col-md-6 mb-5">
-					<div class="skill-card">
-						<header class="skill-card__header"><div class="skill-card__icon"></div></header>
-						<section class="skill-card__body">
-							<h2 class="skill-card__title">Table No:1</h2><div class="skill-card__duration">Capacity:</div>
-							<div class="skill-card__knowledge">
-								<div class="form-btn" style="text-align: center;">
-							<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#edit-table"
-								style="margin-top: 5%; width: 175px" onclick="editTableModal(`+ element.tableID + `)">
-								Edit Table
-							</button>
-						</div>
-						<div class="form-btn" style="text-align: center;">
-							<button type="button" class="btn btn-dark" style="margin-top: 5%; width: 175px" onclick="deleteTable(`+ element.tableID + `)">
-								Delete Table
-							</button>
-						</div>
-							</div>
-						</section>
-					</div>
-				</div>
+			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" id="tableCard">
 			</div>
 		</section>
 		<!--Modals-->
@@ -162,6 +141,13 @@
 			</div>
 		</div>
 	</section>
+	
+	<script src="../assets/node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../assets/node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+	<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+	<script src="../assets/js/admin/admin.js"></script>
 		 
 </body>
 </html>

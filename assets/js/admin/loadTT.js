@@ -71,10 +71,12 @@ function loadTT() {
 								$('#reservationModal').modal('show');
 								if(element.status == "checked") {
 									$('#checkIn').hide();
+									$('#cancel').hide();
 									$('#checkOut').show();
 								} else {
 									$('#checkOut').hide();
 									$('#checkIn').show();
+									$('#cancel').show();
 								}
 								var html = `
 								<table class="table table-bordered">
