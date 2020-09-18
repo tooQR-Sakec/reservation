@@ -78,11 +78,14 @@
 										<div class="col">
 											<div class="input-group mb-3">
 												<label>Start Time</label>
-												<input type="time" class="form-control">
+												<input type="time" class="form-control" id="hotelStartTime">
 											</div>
 											<div class="input-group mb-3">
 												<label>End Time</label>
-												<input type="time" class="form-control">
+												<input type="time" class="form-control" id="hotelEndTime">
+											</div>
+											<div>
+												<button type="submit" class="btn btn-dark" id="timing">Confirm</button>
 											</div>
 										</div>
 									</div>
@@ -101,6 +104,9 @@
 												<label for="buffer">Buffer</label>
 												<input type="time" class="form-control" id="buffer">
 											</div>
+											<div>
+												<button type="submit" class="btn btn-dark" id="bufferTime">Confirm</button>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -117,6 +123,7 @@
 	<script src="../assets/node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
 	<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+	<script src="../assets/js/settings/settings.js"></script>
 </body>
 
 </html>
