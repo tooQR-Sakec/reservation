@@ -8,25 +8,59 @@ $guestStartTime = $_POST['guestStartTime'];
 $guestEndTime = $_POST['guestEndTime'];
 $roomID = $_POST['roomID'];
 
-// check Hotel timings
+// buffer timing
+$bufferSQL = "SELECT value FROM settings WHERE parameter = 'bufferTime'";
+$bufferSTMT = $conn->prepare($bufferSQL);
+$bufferSTMT->execute();
+$bufferTime = $bufferSTMT->fetchObject()->value;
+$startTime  = $guestStartTime - $bufferTime;
+$endTime  = $guestEndTime + $bufferTime;
+
+// check Hotel start timing
+$startTimeSQL = "SELECT value FROM settings WHERE parameter = 'startTime'";
+$startTimeSTMT = $conn->prepare($startTimeSQL);
+$startTimeSTMT->execute();
+$restaurantStart = explode(":", $startTimeSTMT->fetchObject()->value);
+$restaurantStartSeconds = $restaurantStart[0] * 3600 + $restaurantStart[1] * 60;
+$startTimeSeconds = date("H", $startTime) * 3600 + date("i", $startTime) * 60;
+// check Hotel end timing
+$endTimeSQL = "SELECT value FROM settings WHERE parameter = 'endTime'";
+$endTimeSTMT = $conn->prepare($endTimeSQL);
+$endTimeSTMT->execute();
+$restaurantEnd = explode(":", $endTimeSTMT->fetchObject()->value);
+$restaurantEndSeconds = $restaurantEnd[0] * 3600 + $restaurantStart[1] * 60;
+$endTimeSeconds = date("H", $endTime) * 3600 + date("i", $endTime) * 60;
+if ($restaurantStartSeconds > $restaurantEndSeconds) {
+	if ($startTimeSeconds < $restaurantEndSeconds) {
+		$startTimeSeconds += 86400;
+	}
+	if ($endTimeSeconds < $restaurantEndSeconds) {
+		$endTimeSeconds += 86400;
+	}
+	$restaurantEndSeconds += 86400;
+}
+if (($startTimeSeconds < $restaurantStartSeconds) || ($restaurantEndSeconds < $startTimeSeconds) || ($restaurantEndSeconds < $endTimeSeconds) || ($endTimeSeconds < $restaurantStartSeconds)) {
+	echo "Closed";
+	exit;
+}
 
 // query to directly get table
-$getTableSQL = "DECLARE @guestStartTime BIGINT = :guestStartTime,
-@guestEndTime BIGINT = :guestEndTime;
+$getTableSQL = "DECLARE @startTime BIGINT = :startTime,
+@endTime BIGINT = :endTime;
 SELECT TOP 1 tables.tableID, tables.capacity
 FROM tables
 WHERE (tables.reserved = 0) AND capacity = :guestCapacity
 AND tables.tableID NOT IN (
 	SELECT booking.tableID
 	FROM booking
-	WHERE (@guestStartTime > booking.startTime AND @guestStartTime < booking.endTime)
-		OR (@guestEndTime > booking.startTime AND @guestEndTime < booking.endTime)
-		OR (@guestStartTime <= booking.startTime AND booking.endTime <= @guestEndTime)
+	WHERE (@startTime > booking.startTime AND @startTime < booking.endTime)
+		OR (@endTime > booking.startTime AND @endTime < booking.endTime)
+		OR (@startTime <= booking.startTime AND booking.endTime <= @endTime)
 	GROUP BY booking.tableID)";
 
 $getTableSTMT = $conn->prepare($getTableSQL, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
-$getTableSTMT->bindParam(':guestStartTime', $guestStartTime);
-$getTableSTMT->bindParam(':guestEndTime', $guestEndTime);
+$getTableSTMT->bindParam(':startTime', $startTime);
+$getTableSTMT->bindParam(':endTime', $endTime);
 $getTableSTMT->bindParam(':guestCapacity', $guestCapacity);
 $getTableSTMT->execute();
 $tableRow = $getTableSTMT->fetchObject();
@@ -39,24 +73,24 @@ try {
 		$reservedTables[] = $tableRow->tableID;
 	} else {
 		// query to get table count
-		$getTableCountSQL = "DECLARE @guestStartTime BIGINT = :guestStartTime,
-		@guestEndTime BIGINT = :guestEndTime;
+		$getTableCountSQL = "DECLARE @startTime BIGINT = :startTime,
+		@endTime BIGINT = :endTime;
 		SELECT count(*) AS tableCount, capacity
 		FROM tables
 		WHERE tableID NOT IN (
 			SELECT tableID
 			FROM booking
-			WHERE (@guestStartTime > booking.startTime AND @guestStartTime < booking.endTime)
-				OR (@guestEndTime > booking.startTime AND @guestEndTime < booking.endTime)
-				OR (@guestStartTime <= booking.startTime AND booking.endTime <= @guestEndTime)
+			WHERE (@startTime > booking.startTime AND @startTime < booking.endTime)
+				OR (@endTime > booking.startTime AND @endTime < booking.endTime)
+				OR (@startTime <= booking.startTime AND booking.endTime <= @endTime)
 			GROUP BY tableID
 		)
 		AND reserved = '0'
 		GROUP BY capacity";
 
 		$getTableCountSTMT = $conn->prepare($getTableCountSQL);
-		$getTableCountSTMT->bindParam(':guestStartTime', $guestStartTime);
-		$getTableCountSTMT->bindParam(':guestEndTime', $guestEndTime);
+		$getTableCountSTMT->bindParam(':startTime', $startTime);
+		$getTableCountSTMT->bindParam(':endTime', $endTime);
 		$getTableCountSTMT->execute();
 
 		while ($tableRow = $getTableCountSTMT->fetchObject()) {
@@ -67,24 +101,24 @@ try {
 
 		// query to get table data
 		$getTableDataSQL = "DECLARE @returnCount INT  = :requiredCount,
-		@guestStartTime BIGINT = :guestStartTime,
-		@guestEndTime BIGINT = :guestEndTime;
+		@startTime BIGINT = :startTime,
+		@endTime BIGINT = :endTime;
 		SELECT TOP (@returnCount) tableID, capacity
 			FROM tables
 			WHERE tables.tableID NOT IN (
 				SELECT tableID
 				FROM booking
-				WHERE (@guestStartTime > booking.startTime AND @guestStartTime < booking.endTime)
-					OR (@guestEndTime > booking.startTime AND @guestEndTime < booking.endTime)
-					OR (@guestStartTime <= booking.startTime AND booking.endTime <= @guestEndTime)
+				WHERE (@startTime > booking.startTime AND @startTime < booking.endTime)
+					OR (@endTime > booking.startTime AND @endTime < booking.endTime)
+					OR (@startTime <= booking.startTime AND booking.endTime <= @endTime)
 				GROUP BY tableID
 			) AND reserved = 0 AND capacity = :capacity";
 
 		$getTableDataSTMT = $conn->prepare($getTableDataSQL);
-		$getTableDataSTMT->bindParam(':guestStartTime', $guestStartTime);
-		$getTableDataSTMT->bindParam(':guestEndTime', $guestEndTime);
+		$getTableDataSTMT->bindParam(':startTime', $startTime);
+		$getTableDataSTMT->bindParam(':endTime', $endTime);
 
-		if(!isset($availableSlot)) { // if table not available
+		if (!isset($availableSlot)) { // if table not available
 			echo "full";
 			exit;
 		}
