@@ -1,9 +1,9 @@
 <?php
 include('../../db.php');
 
-$buffer=$_POST['buffer'];
+$bufferTime=$_POST['bufferTime'];
 
 $bufferTimeSQL="UPDATE settings SET value = :buffer WHERE parameter = 'bufferTime'";
 $bufferTimeSTMT=$conn->prepare($bufferTimeSQL);
-$bufferTimeSTMT->bindParam(':buffer',$buffer);
+$bufferTimeSTMT->bindParam(':buffer',$bufferTime);
 $bufferTimeSTMT->execute();

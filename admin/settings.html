@@ -102,10 +102,17 @@
 										<div class="col">
 											<div class="input-group mb-3">
 												<label for="buffer">Buffer</label>
-												<input type="time" class="form-control" id="buffer">
+												<form id='duration'>
+													<br>
+													<input id='min' name='min' type='number' min='0' max='59'>
+													<label for='min'>m</label>
+													<input id='sec' name='sec' type='number' min='0' max='59'>
+													<label for='sec'>s</label>
+												</form>
 											</div>
 											<div>
-												<button type="submit" class="btn btn-dark" id="bufferTime">Confirm</button>
+												<button type="submit" class="btn btn-dark"
+													id="bufferTime">Confirm</button>
 											</div>
 										</div>
 									</div>
@@ -118,7 +125,7 @@
 		</div>
 	</div>
 	</div>
-	
+
 	<script src="../assets/node_modules/jquery/dist/jquery.min.js"></script>
 	<script src="../assets/node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
 	<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>

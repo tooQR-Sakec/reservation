@@ -2,14 +2,17 @@
 include('../../db.php');
 
 $hotelStartTime=$_POST['hotelStartTime'];
+$startTimeParam = "startTime";
 $hotelEndTime=$_POST['hotelEndTime'];
+$endTimeParam = "endTime";
 
-$timeSQL="UPDATE settings SET value = :hotelStartTime WHERE parameter = 'startTime'";
+$timeSQL="UPDATE settings SET value = :value WHERE parameter = :parameter";
 $timeSTMT=$conn->prepare($timeSQL);
-$timeSTMT->bindParam(':hotelStartTime',$hotelStartTime);
+
+$timeSTMT->bindParam(':parameter', $startTimeParam);
+$timeSTMT->bindParam(':value', $hotelStartTime);
 $timeSTMT->execute();
 
-$closeTimeSQL="UPDATE settings SET value = :hotelEndTime WHERE parameter = 'endTime'";
-$closeTimeSTMT=$conn->prepare($closeTimeSQL);
-$closeTimeSTMT->bindParam(':hotelEndTime',$hotelEndTime);
-$closeTimeSTMT->execute();
+$timeSTMT->bindParam(':parameter', $endTimeParam);
+$timeSTMT->bindParam(':value', $hotelEndTime);
+$timeSTMT->execute();
