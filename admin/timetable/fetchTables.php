@@ -9,7 +9,7 @@ $fetchTableSTMT = $conn->prepare($fetchTableSQL);
 $fetchTableSTMT->execute();
 
 $statusSQL = "SELECT * FROM booking WHERE tableID = :tableID AND (startTime BETWEEN :startTime AND :endTime)";
-$getStatusSTMT = $conn->prepare($statusSQL);
+$getStatusSTMT = $conn->prepare($statusSQL, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 $getStatusSTMT->bindParam(':startTime', $dayStart);
 $getStatusSTMT->bindParam(':endTime', $dayEnd);
 
@@ -17,10 +17,9 @@ while($tableRow = $fetchTableSTMT->fetchObject()) {
 	$tableID = $tableRow->tableID;
 	$getStatusSTMT->bindParam(':tableID', $tableID);
 	$getStatusSTMT->execute();
-	$statusRow = $getStatusSTMT->fetchObject();
 	$data["allTables"][] = $tableID;
 
-	if(isset($statusRow->guestEmail)) {
+	while($statusRow = $getStatusSTMT->fetchObject()) {
 		$table['tableID'] = $tableID;
 		$table['guestName'] = $statusRow->guestName;
 		$table['guestEmail'] = $statusRow->guestEmail;

@@ -11,37 +11,44 @@ $roomID = $_POST['roomID'];
 // check Hotel timings
 
 // query to directly get table
-$getTableSQL = "SELECT TOP 1 tables.tableID, tables.capacity
-	FROM tables
-	WHERE (tables.reserved = 0) AND capacity = :guestCapacity
-	AND tables.tableID NOT IN (
-		SELECT booking.tableID
-		FROM booking
-		WHERE (NOT (booking.startTime > :guestStartTime)) OR (NOT (booking.endTime < :guestEndTime))
-		GROUP BY booking.tableID)";
+$getTableSQL = "DECLARE @guestStartTime BIGINT = :guestStartTime,
+@guestEndTime BIGINT = :guestEndTime;
+SELECT TOP 1 tables.tableID, tables.capacity
+FROM tables
+WHERE (tables.reserved = 0) AND capacity = :guestCapacity
+AND tables.tableID NOT IN (
+	SELECT booking.tableID
+	FROM booking
+	WHERE (@guestStartTime > booking.startTime AND @guestStartTime < booking.endTime)
+		OR (@guestEndTime > booking.startTime AND @guestEndTime < booking.endTime)
+		OR (@guestStartTime <= booking.startTime AND booking.endTime <= @guestEndTime)
+	GROUP BY booking.tableID)";
 
 $getTableSTMT = $conn->prepare($getTableSQL, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 $getTableSTMT->bindParam(':guestStartTime', $guestStartTime);
 $getTableSTMT->bindParam(':guestEndTime', $guestEndTime);
 $getTableSTMT->bindParam(':guestCapacity', $guestCapacity);
 $getTableSTMT->execute();
-$rowCount = $getTableSTMT->rowCount();
+$tableRow = $getTableSTMT->fetchObject();
 
 try {
 	// set the PDO error mode to exception
 	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	$conn->beginTransaction();
-	if ($rowCount == 1) {
-		$tableRow = $getTableSTMT->fetchObject();
+	if (isset($tableRow->tableID)) {
 		$reservedTables[] = $tableRow->tableID;
 	} else {
 		// query to get table count
-		$getTableCountSQL = "SELECT count(*) AS tableCount, capacity
+		$getTableCountSQL = "DECLARE @guestStartTime BIGINT = :guestStartTime,
+		@guestEndTime BIGINT = :guestEndTime;
+		SELECT count(*) AS tableCount, capacity
 		FROM tables
 		WHERE tableID NOT IN (
 			SELECT tableID
 			FROM booking
-			WHERE (NOT (booking.startTime > :guestStartTime)) OR (NOT (booking.endTime < :guestEndTime))
+			WHERE (@guestStartTime > booking.startTime AND @guestStartTime < booking.endTime)
+				OR (@guestEndTime > booking.startTime AND @guestEndTime < booking.endTime)
+				OR (@guestStartTime <= booking.startTime AND booking.endTime <= @guestEndTime)
 			GROUP BY tableID
 		)
 		AND reserved = '0'
@@ -59,14 +66,17 @@ try {
 		}
 
 		// query to get table data
-		$getTableDataSQL = "DECLARE @returnCount INT
-		SET @returnCount = :requiredCount
+		$getTableDataSQL = "DECLARE @returnCount INT  = :requiredCount,
+		@guestStartTime BIGINT = :guestStartTime,
+		@guestEndTime BIGINT = :guestEndTime;
 		SELECT TOP (@returnCount) tableID, capacity
 			FROM tables
 			WHERE tables.tableID NOT IN (
 				SELECT tableID
 				FROM booking
-				WHERE (NOT (booking.startTime > :guestStartTime)) OR (NOT (booking.endTime < :guestEndTime))
+				WHERE (@guestStartTime > booking.startTime AND @guestStartTime < booking.endTime)
+					OR (@guestEndTime > booking.startTime AND @guestEndTime < booking.endTime)
+					OR (@guestStartTime <= booking.startTime AND booking.endTime <= @guestEndTime)
 				GROUP BY tableID
 			) AND reserved = 0 AND capacity = :capacity";
 
@@ -74,6 +84,10 @@ try {
 		$getTableDataSTMT->bindParam(':guestStartTime', $guestStartTime);
 		$getTableDataSTMT->bindParam(':guestEndTime', $guestEndTime);
 
+		if(!isset($availableSlot)) { // if table not available
+			echo "full";
+			exit;
+		}
 		foreach ($availableSlot as $capacity => $count) {
 			$requiredCount = ceil($guestCapacity / $capacity);
 
