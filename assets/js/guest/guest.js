@@ -38,10 +38,12 @@ function reserveTable(event) {
 		processData: false, // Dont delete this
 		success: function (data) {
 			console.log(data);
-			if(data != "full") {
-				document.getElementById("bookingStatus").innerHTML = "Reserved!";
-			} else {
+			if(data == "full") {
 				document.getElementById("bookingStatus").innerHTML = "Sorry! All the tables have been booked!";
+			} else if(data == "Closed"){
+				document.getElementById("bookingStatus").innerHTML = "Closed!";
+			} else {
+				document.getElementById("bookingStatus").innerHTML = "Reserved!";
 			}
 		},
 		//Other options
