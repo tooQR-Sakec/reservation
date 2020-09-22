@@ -16,6 +16,7 @@
 	<script src="../assets/node_modules/jquery/dist/jquery.min.js"></script>
 	<script src="../assets/node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
 	<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="../node_modules/moment/moment.js"></script>
     <!-- Custom Stylesheet-->
     <link type="text/css" rel="stylesheet" href="../assets/css/style.css">
 </head>
@@ -92,7 +93,7 @@
 															Date & Time
 														</span>
 													</div>
-													<input type="datetime-local" class="form-control" aria-label="datetime" aria-describedby="dat" id="guestDateTime" style="cursor:pointer">
+													<input type="datetime-local" class="form-control" aria-label="datetime" aria-describedby="dat" id="guestDateTime" style="cursor:pointer" onfocus="setmin()">
 												</div>
 											</div>
 										</div>
@@ -184,6 +185,13 @@
 	<script src="../assets/node_modules/jquery/dist/jquery.min.js"></script>
 	<script src="../assets/node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
 	<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script>
+		function setmin() {
+		var d = moment().format().slice(0,16);
+		console.log(d);
+		document.getElementById("guestDateTime").setAttribute("min", d);
+		}
+	</script>
 
 	<script src="../assets/js/guest/guest.js"></script>
 </body>
