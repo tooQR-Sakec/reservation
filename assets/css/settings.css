@@ -1,18 +1,9 @@
-/*!
+.curve {
+  border-radius: 5px;
+  border: 1px solid rgb(189, 189, 189);
+  margin-right: 10px;
+}
 
- =========================================================
- * Material Dashboard - v2.1.0
- =========================================================
-
- * Product Page: https://www.creative-tim.com/product/material-dashboard
- * Copyright 2020 Creative Tim (http://www.creative-tim.com)
-
- =========================================================
-
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
- */
-/*     brand Colors              */
 .card {
     font-size: .875rem;
   }
@@ -3437,45 +3428,6 @@
   .show>.btn-outline-light.dropdown-toggle:focus {
     box-shadow: 0 0 0 0.2rem rgba(248, 249, 250, 0.5);
   }
-  
-  .btn-outline-dark {
-    color: #343a40;
-    background-color: transparent;
-    background-image: none;
-    border-color: #343a40;
-  }
-  
-  .btn-outline-dark:hover {
-    color: #ffffff;
-    background-color: #343a40;
-    border-color: #343a40;
-  }
-  
-  .btn-outline-dark:focus,
-  .btn-outline-dark.focus {
-    box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.5);
-  }
-  
-  .btn-outline-dark.disabled,
-  .btn-outline-dark:disabled {
-    color: #343a40;
-    background-color: transparent;
-  }
-  
-  .btn-outline-dark:not(:disabled):not(.disabled):active,
-  .btn-outline-dark:not(:disabled):not(.disabled).active,
-  .show>.btn-outline-dark.dropdown-toggle {
-    color: #ffffff;
-    background-color: #343a40;
-    border-color: #343a40;
-  }
-  
-  .btn-outline-dark:not(:disabled):not(.disabled):active:focus,
-  .btn-outline-dark:not(:disabled):not(.disabled).active:focus,
-  .show>.btn-outline-dark.dropdown-toggle:focus {
-    box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.5);
-  }
-  
   .btn-link {
     font-weight: 400;
     color: #9c27b0;
@@ -15459,9 +15411,9 @@
     color: #fff;
   }
   
-  .sidebar[data-color="purple"] li.active>a {
-    background-color: #9c27b0;
-    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
+  .sidebar[data-color="grey"] li.active>a {
+    background-color: #757575;
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(117, 117, 117, 0.4);
   }
   
   .sidebar[data-color="azure"] li.active>a {
@@ -15567,6 +15519,7 @@
     float: right;
     width: calc(100% - 260px);
     transition: 0.33s, cubic-bezier(0.685, 0.0473, 0.346, 1);
+    background-color: #fafafa;
   }
   
   .main-panel>.content {
@@ -17544,7 +17497,7 @@
   .card.bg-warning,
   .card.card-rotate.bg-warning .front,
   .card.card-rotate.bg-warning .back {
-    background: linear-gradient(60deg, #ffa726, #fb8c00);
+    background: linear-gradient(60deg, #616161, #212121);
   }
   
   .card .card-header-danger .card-icon,
@@ -19752,5 +19705,3 @@
       display: none !important;
     }
   }
-  
-  /*# sourceMappingURL=dashboard-free.css.map */

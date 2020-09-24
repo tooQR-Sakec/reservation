@@ -16,7 +16,7 @@
     <link type="text/css" rel="stylesheet" href="../assets/css/style.css">
 </head>
 
-<body style="background-color: #EEEEEE;">
+<body style="background-color: #fafafa;">
 	<!--NavBar-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="box-shadow: 0 3px 3px -3px rgba(0,0,0,.2);">
 		<a class="navbar-brand" href="#" style="font-family: 'Montserrat', sans-serif;
@@ -39,14 +39,14 @@
 
   <!-- Table Component-->
 	  	<section class="container" style="padding-top: 5%;">
-			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" id="tableCard">
+			<div class="row justify-content-center no-gutters" id="tableCard">
 			</div>
 		</section>
 		<!--Modals-->
 		<section>
 		<!-- Add Table -->
 		<div class="modal fade" id="add-table" data-target="#add-table" aria-hidden="true">
-			<div class="modal-dialog modal-lg">
+			<div class="modal-dialog modal-md">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title">
@@ -57,16 +57,22 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<div class="table-responsive-sm">
+						<div class="table-responsive-md">
 							<form id="addTable">
-								<div class="form-row">
-									<div class="col-md-6 mb-3">
+								<div class="row">
+									<div class="col mb-3">
 										<label for="add-table-no">Table No</label>
 										<input type="text" class="form-control" id="add-table-no" required>
 									</div>
 								</div>
-								<div class="form-row">
-									<div class="col-md-6 mb-3">
+								<div class="row">
+									<div class="col mb-3">
+										<label for="add-table-capacity">Capacity</label>
+										<input type="text" class="form-control" id="add-table-capacity" required>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col mb-3">
 										<label for="add-table-capacity">Capacity</label>
 										<input type="text" class="form-control" id="add-table-capacity" required>
 									</div>
@@ -74,10 +80,10 @@
 							</form>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">
+							<button type="button" class="btn btn-outline-danger" data-dismiss="modal">
 								Close
 							</button>
-							<button type="submit" class="btn btn-primary" form="addTable">Add Table</button>
+							<button type="submit" class="btn btn-outline-dark" form="addTable">Add Table</button>
 						</div>
 					</div>
 				</div>
@@ -86,7 +92,7 @@
 
 		<!-- Edit Table -->
 		<div class="modal fade" id="edit-table" data-target="#edit-table" aria-hidden="true">
-			<div class="modal-dialog modal-lg">
+			<div class="modal-dialog modal-md">
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title">
@@ -97,10 +103,10 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<div class="table-responsive-sm">
+						<div class="table-responsive-md">
 							<form id="editTable">
-								<div class="form-group row">
-									<div class="col-sm-10">
+								<div class="row">
+									<div class="col mb-3">
 										<div class="form-check">
 											<input class="form-check-input" type="checkbox" id="edit-table-reserved">
 											<label class="form-check-label" for="edit-table-reserved">
@@ -109,14 +115,14 @@
 										</div>
 									</div>
 								</div>
-								<div class="form-row">
-									<div class="col-md-6 mb-3">
+								<div class="row">
+									<div class="col mb-3">
 										<label for="edit-table-capacity">Capacity</label>
 										<input type="number" class="form-control" id="edit-table-capacity" required>
 									</div>
 								</div>
-								<div class="form-row">
-									<div class="col-md-6 mb-3">
+								<div class="row">
+									<div class="col mb-3">
 										<label for="edit-adj-tables">Adjacent Tables</label>
 										<input type="text" class="form-control" id="edit-adj-tables" >
 									</div>
@@ -125,10 +131,10 @@
 							</form>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">
+							<button type="button" class="btn btn-outline-danger" data-dismiss="modal">
 								Close
 							</button>
-							<button type="submit" class="btn btn-primary" form="editTable">Edit Table</button>
+							<button type="submit" class="btn btn-outline-dark" form="editTable">Edit Table</button>
 						</div>
 					</div>
 				</div>

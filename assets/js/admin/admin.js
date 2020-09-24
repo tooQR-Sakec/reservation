@@ -94,20 +94,20 @@ function loadTables() {
 				data = JSON.parse(data);
 				data.forEach(element => {
 					html += `
-					<div class="col-md-6 mb-5">
+					<div class="col d-flex justify-content-center mb-5">
 						<div class="skill-card">
 							<header class="skill-card__header"><div class="skill-card__icon"></div></header>
 							<section class="skill-card__body">
 								<h2 class="skill-card__title">Table no: `+ element.tableID + `</h2><div class="skill-card__duration">Capacity: ` + element.capacity + `</div>
 								<div class="skill-card__knowledge">
 									<div class="form-btn" style="text-align: center;">
-								<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#edit-table"
+								<button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#edit-table"
 									style="margin-top: 5%; width: 175px" onclick="editTableModal(`+ element.tableID + `)">
 									Edit Table
 								</button>
 							</div>
 							<div class="form-btn" style="text-align: center;">
-								<button type="button" class="btn btn-dark" style="margin-top: 5%; width: 175px" onclick="deleteTable(`+ element.tableID + `)">
+								<button type="button" class="btn btn-outline-dark" style="margin-top: 5%; width: 175px" onclick="deleteTable(`+ element.tableID + `)">
 									Delete Table
 								</button>
 							</div>
