@@ -10,5 +10,5 @@ $tableInfoSTMT->execute();
 $tableInfoRow = $tableInfoSTMT->fetchObject();
 
 $data['capacity'] = $tableInfoRow->capacity;
-$data['reserved'] = $tableInfoRow->reserved;
+$data['blocked'] = $tableInfoRow->blocked;
 echo json_encode($data);

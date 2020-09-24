@@ -21,6 +21,7 @@ function addTable(event) {
 		contentType: false, // Dont delete this (jQuery 1.6+)
 		processData: false, // Dont delete this
 		success: function (data) {
+			console.log(data);
 			$('#add-table').modal('toggle');
 			$('.modal-backdrop').remove();
 			loadTables();
@@ -43,28 +44,36 @@ function editTableModal(tableID) {
 			data = JSON.parse(data);
 			$('#edit-table-capacity').val(data.capacity);
 			$('#edit-table-reserved').prop("checked", false);
-			if (data.reserved == 1)
+			if (data.blocked == 1)
 				$('#edit-table-reserved').prop("checked", true);
 		}
 	});
 }
 
-function editTable() {
+function editTable(event) {
+	event.preventDefault();
+
 	var tableID = $('#edit-table-ID').val();
 	var capacity = $('#edit-table-capacity').val();
-	var reserved = 0;
-	if ($("#edit-table-reserved").is(':checked'))
-		reserved = 1;
+	var blocked = 0;
+	if ($("#edit-table-reserved").is(':checked')) //tabled blocked for reservation
+		blocked = 1;
 	var formdata = new FormData();
 	formdata.append("tableID", tableID);
 	formdata.append("capacity", capacity);
-	formdata.append("reserved", reserved);
+	formdata.append("blocked", blocked);
 	$.ajax({
 		type: "POST",
 		data: formdata,
 		url: "tableView/editTable.php",
 		contentType: false, // Dont delete this (jQuery 1.6+)
 		processData: false, // Dont delete this
+		success: function (data) {
+			console.log(data);
+			loadTables();
+			$('#edit-table').modal('toggle');
+			$('.modal-backdrop').remove();
+		}
 	});
 }
 

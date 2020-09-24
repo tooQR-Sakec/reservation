@@ -4,21 +4,18 @@ include('../db.php');
 $statusName = $_POST['statusName'];
 $statusEmail = $_POST['statusEmail'];
 
-$getStatusSQL = "SELECT * FROM booking
-	WHERE tableID in (
-		SELECT min(tableID) FROM booking
-		WHERE guestEmail = :guestEmail
-		GROUP BY startTime)";
+$getStatusSQL = "SELECT * FROM booking WHERE status = 'reserved' AND guestEmail = :guestEmail";
 $getStatusSTMT = $conn->prepare($getStatusSQL);
 $getStatusSTMT->bindParam(':guestEmail', $statusEmail);
 $getStatusSTMT->execute();
 
 while($statusRow = $getStatusSTMT->fetchObject()) {
+	$booking['bookingID'] = $statusRow->bookingID;
 	$booking['guestName'] = $statusRow->guestName;
 	$booking['numberOfPeople'] = $statusRow->numberOfPeople;
+	$booking['roomID'] = $statusRow->roomID;
 	$booking['startTime'] = $statusRow->startTime;
 	$booking['endTime'] = $statusRow->endTime;
-	$booking['roomID'] = $statusRow->roomID;
 	$data[] = $booking;
 }
 

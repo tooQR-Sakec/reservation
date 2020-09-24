@@ -8,7 +8,10 @@ $fetchTableSQL = "SELECT * FROM tables";
 $fetchTableSTMT = $conn->prepare($fetchTableSQL);
 $fetchTableSTMT->execute();
 
-$statusSQL = "SELECT * FROM booking WHERE tableID = :tableID AND (startTime BETWEEN :startTime AND :endTime)";
+$statusSQL = "SELECT *, reserved.startTime, reserved.endTime, reserved.status FROM reserved INNER JOIN booking
+	ON reserved.bookingID = booking.bookingID
+	WHERE tableID = :tableID AND reserved.status != 'cancelled'
+	AND (reserved.startTime BETWEEN :startTime AND :endTime)";
 $getStatusSTMT = $conn->prepare($statusSQL, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 $getStatusSTMT->bindParam(':startTime', $dayStart);
 $getStatusSTMT->bindParam(':endTime', $dayEnd);
@@ -21,6 +24,7 @@ while($tableRow = $fetchTableSTMT->fetchObject()) {
 
 	while($statusRow = $getStatusSTMT->fetchObject()) {
 		$table['tableID'] = $tableID;
+		$table['bookingID'] = $statusRow->bookingID;
 		$table['guestName'] = $statusRow->guestName;
 		$table['guestEmail'] = $statusRow->guestEmail;
 		$table['numberOfPeople'] = $statusRow->numberOfPeople;

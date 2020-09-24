@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" style="background:linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url(../assets/images/background.jpg) no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size:cover; background-size: cover;">
+<html lang="en"
+	style="background:linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.7)), url(../assets/images/background.jpg) no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size:cover; background-size: cover;">
 
 <head>
 	<meta charset="utf-8">
@@ -12,13 +13,8 @@
 	<!-- Bootstrap -->
 	<link type="text/css" rel="stylesheet" href="../assets/node_modules/bootstrap/dist/css/bootstrap.min.css" />
 
-	<!-- Scripts -->
-	<script src="../assets/node_modules/jquery/dist/jquery.min.js"></script>
-	<script src="../assets/node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
-	<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script src="../node_modules/moment/moment.js"></script>
-    <!-- Custom Stylesheet-->
-    <link type="text/css" rel="stylesheet" href="../assets/css/style.css">
+	<!-- Custom Stylesheet-->
+	<link type="text/css" rel="stylesheet" href="../assets/css/style.css">
 </head>
 
 <body>
@@ -42,7 +38,8 @@
 															Name
 														</span>
 													</div>
-													<input type="text" class="form-control" aria-label="Name" aria-describedby="name"  id="guestName" required>
+													<input type="text" class="form-control" aria-label="Name"
+														aria-describedby="name" id="guestName" required>
 												</div>
 											</div>
 										</div>
@@ -52,7 +49,8 @@
 													<div class="input-group-prepend">
 														<span class="input-group-text" id="email">Email</span>
 													</div>
-													<input type="email" class="form-control" aria-label="Email" aria-describedby="email"id="guestEmail" required>
+													<input type="email" class="form-control" aria-label="Email"
+														aria-describedby="email" id="guestEmail" required>
 												</div>
 											</div>
 										</div>
@@ -66,8 +64,9 @@
 															No of People
 														</span>
 													</div>
-													<input type="number" class="form-control" aria-label="Capacity" aria-describedby="nopeople" id="guestCapacity" min="1"
-												oninput="this.value = Math.abs(this.value)" required>
+													<input type="number" class="form-control" aria-label="Capacity"
+														aria-describedby="nopeople" id="guestCapacity" min="1"
+														oninput="this.value = Math.abs(this.value)" required>
 												</div>
 											</div>
 										</div>
@@ -79,7 +78,8 @@
 															Room No
 														</span>
 													</div>
-													<input type="text" class="form-control" aria-label="Room No" aria-describedby="rno" id="guestRoomId">
+													<input type="text" class="form-control" aria-label="Room No"
+														aria-describedby="rno" id="guestRoomId">
 												</div>
 											</div>
 										</div>
@@ -93,7 +93,9 @@
 															Date & Time
 														</span>
 													</div>
-													<input type="datetime-local" class="form-control" aria-label="datetime" aria-describedby="dat" id="guestDateTime" style="cursor:pointer" onfocus="setmin()">
+													<input type="datetime-local" class="form-control"
+														aria-label="datetime" aria-describedby="dat" id="guestDateTime"
+														style="cursor:pointer" onfocus="setmin()">
 												</div>
 											</div>
 										</div>
@@ -105,10 +107,11 @@
 															Type
 														</span>
 													</div>
-													<select class="custom-select" id="guestFoodType" aria-label="datetime" aria-describedby="type">
-													    <option value="1">BreakFast</option>
-													    <option value="2">Lunch</option>
-													    <option value="3">Dinner</option>
+													<select class="custom-select" id="guestFoodType"
+														aria-label="datetime" aria-describedby="type">
+														<option value="1">BreakFast</option>
+														<option value="2">Lunch</option>
+														<option value="3">Dinner</option>
 													</select>
 												</div>
 											</div>
@@ -116,23 +119,24 @@
 									</div>
 									<div class="row" style="padding-left: 33%; padding-right: 33%;">
 										<div class="col mb-3">
-												<button type="submit" class="btn btn-dark" style="width: 150px;" data-toggle="modal"
-												data-target="#bookingModal">Book Now</button>
+											<button type="submit" class="btn btn-dark" style="width: 150px;"
+												data-toggle="modal" data-target="#bookingModal">Book Now</button>
 										</div>
 										<div class="col">
-												<button type="button" class="btn btn-dark" style="width: 150px;" data-toggle="modal"
-												data-target="#statusModal" onclick="clearStatusModal()">Check Status</button>
+											<button type="button" class="btn btn-dark" style="width: 150px;"
+												data-toggle="modal" data-target="#statusModal"
+												onclick="clearStatusModal()">Check Status</button>
 										</div>
 									</div>
 								</form>
 							</div>
 						</div>
-					</div>	
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="modal fade" id="statusModal" tabindex="-1" aria-labelledby="statusModal" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -181,15 +185,16 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<script src="../assets/node_modules/jquery/dist/jquery.min.js"></script>
 	<script src="../assets/node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
 	<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="../assets/node_modules/moment/min/moment.min.js"></script>
 	<script>
 		function setmin() {
-		var d = moment().format().slice(0,16);
-		console.log(d);
-		document.getElementById("guestDateTime").setAttribute("min", d);
+			var d = moment().format().slice(0, 16);
+			console.log(d);
+			document.getElementById("guestDateTime").setAttribute("min", d);
 		}
 	</script>
 
@@ -197,4 +202,3 @@
 </body>
 
 </html>
-

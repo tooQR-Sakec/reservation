@@ -1,17 +1,14 @@
 <?php
 include('../../db.php');
 
-$guestEmail = $_POST['guestEmail'];
-$startTime = $_POST['startTime'];
+$bookingID = $_POST['bookingID'];
 
-$cancelSQL = "DELETE FROM booking WHERE guestEmail = :guestEmail AND startTime = :startTime";
-$cancelSTMT = $conn->prepare($cancelSQL);
-$cancelSTMT->bindParam(':guestEmail', $guestEmail);
-$cancelSTMT->bindParam(':startTime', $startTime);
-$cancelSTMT->execute();
+$cancelReservedSQL = "UPDATE reserved SET status = 'cancelled' WHERE bookingID = :bookingID";
+$cancelReservedSTMT = $conn->prepare($cancelReservedSQL);
+$cancelReservedSTMT->bindParam(':bookingID', $bookingID);
+$cancelReservedSTMT->execute();
 
-$cancelLogSQL = "UPDATE logs SET status = 'cancelled' WHERE guestEmail = :guestEmail AND startTime = :startTime";
-$cancelLogSTMT = $conn->prepare($cancelLogSQL);
-$cancelLogSTMT->bindParam(':guestEmail', $guestEmail);
-$cancelLogSTMT->bindParam(':startTime', $startTime);
-$cancelLogSTMT->execute();
+$cancelBookingSQL = "UPDATE booking SET status = 'cancelled' WHERE bookingID = :bookingID";
+$cancelBookingSTMT = $conn->prepare($cancelBookingSQL);
+$cancelBookingSTMT->bindParam(':bookingID', $bookingID);
+$cancelBookingSTMT->execute();

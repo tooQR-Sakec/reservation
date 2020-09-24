@@ -53,6 +53,7 @@ function loadTT() {
 			timetable.setScope(0, 23);
 			timetable.useTwelveHour();
 			if(data) {
+				console.log(data);
 				data = JSON.parse(data);
 
 				// load table headings
@@ -69,12 +70,13 @@ function loadTT() {
 						timetable.addEvent(element.guestName, table, new Date(element.startTime*1000), new Date(element.endTime*1000), {
 							onClick: function (event) {
 								$('#reservationModal').modal('show');
-								if(element.status == "checked") {
 									$('#checkIn').hide();
-									$('#cancel').hide();
-									$('#checkOut').show();
-								} else {
 									$('#checkOut').hide();
+									$('#cancel').hide();
+									$('#extend').hide();
+								if(element.status == "checkedIn") {
+									$('#checkOut').show();
+								} else if(element.status == "reserved") {
 									$('#checkIn').show();
 									$('#cancel').show();
 								}
@@ -82,12 +84,16 @@ function loadTT() {
 								<table class="table table-bordered">
 							<tbody>
 								<tr>
+									<th scope="row">Booking</th>
+									<td id="bookingID">`+ element.bookingID + `</td>
+								</tr>
+								<tr>
 									<th scope="row">Name</th>
 									<td>`+ element.guestName + `</td>
 								</tr>
 								<tr>
 									<th scope="row">Email</th>
-									<td id="guestEmail">`+ element.guestEmail + `</td>
+									<td>`+ element.guestEmail + `</td>
 								</tr>
 								<tr>
 									<th scope="row">No of people</th>
@@ -95,7 +101,7 @@ function loadTT() {
 								</tr>
 								<tr>
 									<th scope="row">From</th>
-									<td id="startTime">`+ new Date(parseInt(element.startTime)*1000) + `</td>
+									<td>`+ new Date(parseInt(element.startTime)*1000) + `</td>
 								</tr>
 								<tr>
 									<th scope="row">To</th>

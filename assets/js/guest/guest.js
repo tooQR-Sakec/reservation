@@ -50,10 +50,9 @@ function reserveTable(event) {
 	});
 }
 
-function cancelBooking(guestEmail, startTime) {
+function cancelBooking(bookingID) {
 	var formdata = new FormData();
-	formdata.append('guestEmail', guestEmail);
-	formdata.append('startTime', startTime);
+	formdata.append('bookingID', bookingID);
 
 	$.ajax({
 		type: "POST",
@@ -101,6 +100,10 @@ function reserveStatus() {
 					<table class="table table-bordered">
 						<tbody>
 							<tr>
+								<th scope="row">Booking ID</th>
+								<td>`+ element.bookingID + `</td>
+							</tr>
+							<tr>
 								<th scope="row">Name</th>
 								<td>`+ element.guestName + `</td>
 							</tr>
@@ -126,7 +129,7 @@ function reserveStatus() {
 					html += `
 							<tr>
 								<td colspan="2">
-									<button class="btn btn-secondary" onclick="cancelBooking('`+ statusEmail + `', '` + element.startTime + `')">
+									<button class="btn btn-secondary" onclick="cancelBooking('`+ element.bookingID + `')">
 										Cancel Booking
 									</button>
 								</td>

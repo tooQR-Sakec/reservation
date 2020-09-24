@@ -49,14 +49,15 @@ $getTableSQL = "DECLARE @startTime BIGINT = :startTime,
 @endTime BIGINT = :endTime;
 SELECT TOP 1 tables.tableID, tables.capacity
 FROM tables
-WHERE (tables.reserved = 0) AND capacity = :guestCapacity
+WHERE (tables.blocked = 0) AND capacity = :guestCapacity
 AND tables.tableID NOT IN (
-	SELECT booking.tableID
-	FROM booking
-	WHERE (@startTime > booking.startTime AND @startTime < booking.endTime)
-		OR (@endTime > booking.startTime AND @endTime < booking.endTime)
-		OR (@startTime <= booking.startTime AND booking.endTime <= @endTime)
-	GROUP BY booking.tableID)";
+	SELECT reserved.tableID
+	FROM reserved
+	WHERE ((@startTime > reserved.startTime AND @startTime < reserved.endTime)
+		OR (@endTime > reserved.startTime AND @endTime < reserved.endTime)
+		OR (@startTime <= reserved.startTime AND reserved.endTime <= @endTime))
+		AND (status = 'reserved' OR status = 'checkedIn')
+	GROUP BY reserved.tableID)";
 
 $getTableSTMT = $conn->prepare($getTableSQL, array(PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL));
 $getTableSTMT->bindParam(':startTime', $startTime);
@@ -79,13 +80,14 @@ try {
 		FROM tables
 		WHERE tableID NOT IN (
 			SELECT tableID
-			FROM booking
-			WHERE (@startTime > booking.startTime AND @startTime < booking.endTime)
-				OR (@endTime > booking.startTime AND @endTime < booking.endTime)
-				OR (@startTime <= booking.startTime AND booking.endTime <= @endTime)
+			FROM reserved
+			WHERE (@startTime > reserved.startTime AND @startTime < reserved.endTime)
+				OR (@endTime > reserved.startTime AND @endTime < reserved.endTime)
+				OR (@startTime <= reserved.startTime AND reserved.endTime <= @endTime)
+				AND status != 'cancelled'
 			GROUP BY tableID
 		)
-		AND reserved = '0'
+		AND blocked = '0'
 		GROUP BY capacity";
 
 		$getTableCountSTMT = $conn->prepare($getTableCountSQL);
@@ -107,12 +109,13 @@ try {
 			FROM tables
 			WHERE tables.tableID NOT IN (
 				SELECT tableID
-				FROM booking
-				WHERE (@startTime > booking.startTime AND @startTime < booking.endTime)
-					OR (@endTime > booking.startTime AND @endTime < booking.endTime)
-					OR (@startTime <= booking.startTime AND booking.endTime <= @endTime)
+				FROM reserved
+				WHERE (@startTime > reserved.startTime AND @startTime < reserved.endTime)
+					OR (@endTime > reserved.startTime AND @endTime < reserved.endTime)
+					OR (@startTime <= reserved.startTime AND reserved.endTime <= @endTime)
+					AND status != 'cancelled'
 				GROUP BY tableID
-			) AND reserved = 0 AND capacity = :capacity";
+			) AND blocked = 0 AND capacity = :capacity";
 
 		$getTableDataSTMT = $conn->prepare($getTableDataSQL);
 		$getTableDataSTMT->bindParam(':startTime', $startTime);
@@ -163,8 +166,9 @@ try {
 	}
 
 	print_r($reservedTables);
+	$status = "reserved";
 	// booking table
-	$reserveTableSQL = "INSERT INTO booking (tableID, guestName, guestEmail, numberOfPeople, roomID, startTime, endTime, status) VALUES (:tableID, :name, :email, :numberOfPeople, :roomID, :startTime, :endTime, :status)";
+	$reserveTableSQL = "INSERT INTO booking (guestName, guestEmail, numberOfPeople, roomID, startTime, endTime, status) VALUES (:name, :email, :numberOfPeople, :roomID, :startTime, :endTime, :status)";
 	$reserveTableSTMT = $conn->prepare($reserveTableSQL);
 	$reserveTableSTMT->bindParam(':name', $guestName);
 	$reserveTableSTMT->bindParam(':email', $guestEmail);
@@ -173,22 +177,18 @@ try {
 	$reserveTableSTMT->bindParam(':startTime', $guestStartTime);
 	$reserveTableSTMT->bindParam(':endTime', $guestEndTime);
 	$reserveTableSTMT->bindParam(':status', $status);
+	$reserveTableSTMT->execute();
+	$bookingID = $conn->lastInsertId();
 
 	//logs table
-	$logTableSQL = "INSERT INTO logs (tableID, guestName, guestEmail, numberOfPeople, roomID, startTime, endTime, status) VALUES (:tableID, :name, :email, :numberOfPeople, :roomID, :startTime, :endTime, :status)";
-	$status = "reserved";
+	$logTableSQL = "INSERT INTO reserved (bookingID, tableID, startTime, endTime, status) VALUES (:bookingID, :tableID, :startTime, :endTime, :status)";
 	$logTableSTMT = $conn->prepare($logTableSQL);
-	$logTableSTMT->bindParam(':name', $guestName);
-	$logTableSTMT->bindParam(':email', $guestEmail);
-	$logTableSTMT->bindParam(':numberOfPeople', $guestCapacity);
-	$logTableSTMT->bindParam(':roomID', $roomID);
+	$logTableSTMT->bindParam(':bookingID', $bookingID);
 	$logTableSTMT->bindParam(':startTime', $guestStartTime);
 	$logTableSTMT->bindParam(':endTime', $guestEndTime);
 	$logTableSTMT->bindParam(':status', $status);
 
 	foreach ($reservedTables as $tableID) {
-		$reserveTableSTMT->bindParam(':tableID', $tableID);
-		$reserveTableSTMT->execute();
 		$logTableSTMT->bindParam(':tableID', $tableID);
 		$logTableSTMT->execute();
 	}

@@ -1,9 +1,7 @@
 $('#checkIn').click(function() {
-	var guestEmail = $('#guestEmail').text();
-    var startTime = Date.parse($('#startTime').text())/1000;
+	var bookingID = $('#bookingID').text();
     var formdata = new FormData();
-    formdata.append('guestEmail', guestEmail);
-    formdata.append('startTime', startTime);
+    formdata.append('bookingID', bookingID);
     
     $.ajax({
 		type: "POST",
@@ -22,11 +20,9 @@ $('#checkIn').click(function() {
 });
 
 $('#checkOut').click(function() {
-	var guestEmail = $('#guestEmail').text();
-    var startTime = Date.parse($('#startTime').text())/1000;
+	var bookingID = $('#bookingID').text();
     var formdata = new FormData();
-    formdata.append('guestEmail', guestEmail);
-    formdata.append('startTime', startTime);
+    formdata.append('bookingID', bookingID);
 
     $.ajax({
 		type: "POST",
@@ -49,11 +45,9 @@ $('#extend').click(function() {
 });
 
 $('#cancel').click(function() {
-	var guestEmail = $('#guestEmail').text();
-    var startTime = Date.parse($('#startTime').text())/1000;
+	var bookingID = $('#bookingID').text();
     var formdata = new FormData();
-    formdata.append('guestEmail', guestEmail);
-    formdata.append('startTime', startTime);
+    formdata.append('bookingID', bookingID);
     
     $.ajax({
 		type: "POST",
