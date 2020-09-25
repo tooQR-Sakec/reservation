@@ -2,11 +2,11 @@
 include('../db.php');
 
 $statusName = $_POST['statusName'];
-$statusEmail = $_POST['statusEmail'];
+$statusMobile = $_POST['statusMobile'];
 
-$getStatusSQL = "SELECT * FROM booking WHERE status = 'reserved' AND guestEmail = :guestEmail";
+$getStatusSQL = "SELECT * FROM booking WHERE status = 'reserved' AND guestMobile = :guestMobile";
 $getStatusSTMT = $conn->prepare($getStatusSQL);
-$getStatusSTMT->bindParam(':guestEmail', $statusEmail);
+$getStatusSTMT->bindParam(':guestMobile', $statusMobile);
 $getStatusSTMT->execute();
 
 while($statusRow = $getStatusSTMT->fetchObject()) {

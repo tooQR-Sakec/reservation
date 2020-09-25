@@ -93,8 +93,8 @@ function loadTT() {
 									<td>`+ element.guestName + `</td>
 								</tr>
 								<tr>
-									<th scope="row">Email</th>
-									<td>`+ element.guestEmail + `</td>
+									<th scope="row">Mobile</th>
+									<td>`+ element.guestMobile + `</td>
 								</tr>
 								<tr>
 									<th scope="row">No of people</th>

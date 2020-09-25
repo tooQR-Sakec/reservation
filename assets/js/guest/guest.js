@@ -7,7 +7,7 @@ function reserveTable(event) {
 	event.preventDefault();
 
 	var guestName = $('#guestName').val();
-	var guestEmail = $('#guestEmail').val();
+	var guestMobile = $('#guestMobile').val();
 	var guestCapacity = $('#guestCapacity').val();
 	var guestStartTime = Date.parse($('#guestDateTime').val()) / 1000;
 	var guestFoodType = parseInt($('#guestFoodType').val());
@@ -15,7 +15,7 @@ function reserveTable(event) {
 
 	var formdata = new FormData();
 	formdata.append("guestName", guestName);
-	formdata.append("guestEmail", guestEmail);
+	formdata.append("guestMobile", guestMobile);
 	formdata.append("guestCapacity", guestCapacity);
 	formdata.append("guestStartTime", guestStartTime);
 	formdata.append("guestFoodType", guestFoodType);
@@ -70,11 +70,11 @@ function reserveStatusButton(event) {
 
 function reserveStatus() {
 	var statusName = $('#statusName').val();
-	var statusEmail = $('#statusEmail').val();
+	var statusMobile = $('#statusMobile').val();
 
 	var formdata = new FormData();
 	formdata.append("statusName", statusName);
-	formdata.append("statusEmail", statusEmail);
+	formdata.append("statusMobile", statusMobile);
 
 	$.ajax({
 		type: "POST",

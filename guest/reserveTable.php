@@ -2,7 +2,7 @@
 include('../db.php');
 
 $guestName = $_POST['guestName'];
-$guestEmail = $_POST['guestEmail'];
+$guestMobile = $_POST['guestMobile'];
 $guestCapacity = $_POST['guestCapacity'];
 $guestStartTime = $_POST['guestStartTime'];
 $guestFoodType = $_POST['guestFoodType'];
@@ -64,10 +64,10 @@ function dayOfTheWeek($startDay) //to determine day of the week
 }
 //start time day
 $startDay = date('N', $guestStartTime);
-$startDayParam = dayOfTheWeek($startDay)."Start";
+$startDayParam = dayOfTheWeek($startDay) . "Start";
 // end time day
 $endDay = date('N', $guestEndTime);
-$endDayParam = dayOfTheWeek($endDay)."End";
+$endDayParam = dayOfTheWeek($endDay) . "End";
 
 // check Hotel start timing
 $startTimeSQL = "SELECT value FROM settings WHERE parameter = :startTime";
@@ -155,13 +155,17 @@ try {
 			$capacity = $tableRow->capacity;
 			$availableSlot[$capacity] = $tableCount;
 		}
+		print_r($availableSlot);
+		exit;
 
-		// query to get table data
-		$getTableDataSQL = "DECLARE @returnCount INT  = :requiredCount,
-		@startTime BIGINT = :startTime,
+		if (!isset($availableSlot)) { // if table not available
+			echo "full";
+			exit;
+		}
+		$getAdjacentSQL = "DECLARE @startTime BIGINT = :startTime,
 		@endTime BIGINT = :endTime;
-		SELECT TOP (@returnCount) tableID, capacity
-			FROM tables
+		SELECT tableA, tableB FROM adjacent
+			INNER JOIN tables ON tables.tableID = adjacent.tableA
 			WHERE tables.tableID NOT IN (
 				SELECT tableID
 				FROM reserved
@@ -170,27 +174,24 @@ try {
 					OR (@startTime <= reserved.startTime AND reserved.endTime <= @endTime)
 					AND status != 'cancelled'
 				GROUP BY tableID
-			) AND blocked = 0 AND capacity = :capacity";
+			) AND blocked = '0' AND capacity = :capacity";
+		$getAdjacentSTMT = $conn->prepare($getAdjacentSQL);
+		$getAdjacentSTMT->bindParam(':startTime', $startTime);
+		$getAdjacentSTMT->bindParam(':endTime', $endTime);
 
-		$getTableDataSTMT = $conn->prepare($getTableDataSQL);
-		$getTableDataSTMT->bindParam(':startTime', $startTime);
-		$getTableDataSTMT->bindParam(':endTime', $endTime);
-
-		if (!isset($availableSlot)) { // if table not available
-			echo "full";
-			exit;
-		}
 		foreach ($availableSlot as $capacity => $count) {
 			$requiredCount = ceil($guestCapacity / $capacity);
-
-			// get table for each capacity
-			$getTableDataSTMT->bindParam(':capacity', $capacity);
-			$getTableDataSTMT->bindParam(':requiredCount', $requiredCount, PDO::PARAM_INT);
-			$getTableDataSTMT->execute();
-			while ($tableRow = $getTableDataSTMT->fetchObject()) {
-				$tableID = $tableRow->tableID;
-				$capacity = $tableRow->capacity;
-				$availableTables[$tableID] = $capacity;
+			if ($requiredCount > $count) {
+				$requiredCount = $count;
+			}
+			for ($i = 0; $i < $requiredCount; $i++) {
+				$availableTables[] = $capacity;
+			}
+			$getAdjacentSTMT->bindParam(':capacity', $capacity);
+			$getAdjacentSTMT->execute();
+			while ($row = $getAdjacentSTMT->fetchObject()) {
+				$adjacentTables[$row->tableA]["Capacity"] = (int)$capacity;
+				$adjacentTables[$row->tableA]["Adjacent"][] = (int)$row->tableB;
 			}
 
 			// avoid table with capacity greater then guest capacity
@@ -198,9 +199,10 @@ try {
 				break;
 			}
 		}
-		print_r($availableTables);
+		//print_r($availableTables);
 		$data["capacity"] = $guestCapacity;
 		$data["table"] = $availableTables;
+		print_r($data);
 		$data = json_encode($data);
 
 		$ch = curl_init('localhost:5000');
@@ -218,15 +220,30 @@ try {
 			exit;
 		}
 		$reservedTables = json_decode($result, true);
+
+		$toPython["tableCombinations"] = $reservedTables;
+		$toPython["tables"] = $adjacentTables;
+		$toPython = json_encode($toPython);
+	
+		$ch = curl_init('localhost:5000/adjacency');
+		# Setup request to send json via POST.
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $toPython);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+		# Return response instead of printing.
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		# Send request.
+		$result = curl_exec($ch);
+		curl_close($ch);
+		$reservedTables = json_decode($result, true)[0];
+		print_r($reservedTables);
 	}
 
-	print_r($reservedTables);
 	$status = "reserved";
 	// booking table
-	$reserveTableSQL = "INSERT INTO booking (guestName, guestEmail, numberOfPeople, roomID, startTime, endTime, status) VALUES (:name, :email, :numberOfPeople, :roomID, :startTime, :endTime, :status)";
+	$reserveTableSQL = "INSERT INTO booking (guestName, guestMobile, numberOfPeople, roomID, startTime, endTime, status) VALUES (:name, :mobile, :numberOfPeople, :roomID, :startTime, :endTime, :status)";
 	$reserveTableSTMT = $conn->prepare($reserveTableSQL);
 	$reserveTableSTMT->bindParam(':name', $guestName);
-	$reserveTableSTMT->bindParam(':email', $guestEmail);
+	$reserveTableSTMT->bindParam(':mobile', $guestMobile);
 	$reserveTableSTMT->bindParam(':numberOfPeople', $guestCapacity);
 	$reserveTableSTMT->bindParam(':roomID', $roomID);
 	$reserveTableSTMT->bindParam(':startTime', $guestStartTime);
@@ -235,7 +252,7 @@ try {
 	$reserveTableSTMT->execute();
 	$bookingID = $conn->lastInsertId();
 
-	//logs table
+	//reserved table
 	$logTableSQL = "INSERT INTO reserved (bookingID, tableID, startTime, endTime, status) VALUES (:bookingID, :tableID, :startTime, :endTime, :status)";
 	$logTableSTMT = $conn->prepare($logTableSQL);
 	$logTableSTMT->bindParam(':bookingID', $bookingID);
