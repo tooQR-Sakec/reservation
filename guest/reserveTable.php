@@ -155,8 +155,6 @@ try {
 			$capacity = $tableRow->capacity;
 			$availableSlot[$capacity] = $tableCount;
 		}
-		print_r($availableSlot);
-		exit;
 
 		if (!isset($availableSlot)) { // if table not available
 			echo "full";
@@ -199,10 +197,8 @@ try {
 				break;
 			}
 		}
-		//print_r($availableTables);
 		$data["capacity"] = $guestCapacity;
 		$data["table"] = $availableTables;
-		print_r($data);
 		$data = json_encode($data);
 
 		$ch = curl_init('localhost:5000');
@@ -220,11 +216,12 @@ try {
 			exit;
 		}
 		$reservedTables = json_decode($result, true);
+		print_r($reservedTables);
 
 		$toPython["tableCombinations"] = $reservedTables;
 		$toPython["tables"] = $adjacentTables;
 		$toPython = json_encode($toPython);
-	
+
 		$ch = curl_init('localhost:5000/adjacency');
 		# Setup request to send json via POST.
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $toPython);

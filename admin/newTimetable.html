@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Admin Slot View</title>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="../assets/node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+	<!-- Custom Stylesheet-->
+	<link type="text/css" rel="stylesheet" href="../assets/css/style.css">
+	<link type="text/css" rel="stylesheet" href="../assets/css/newtimetablejs.css">
+</head>
+
+<body>
+	<!--NavBar-->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="box-shadow: 0 3px 3px -3px rgba(0,0,0,.2);">
+		<a class="navbar-brand" href="#" style="font-family: 'Montserrat', sans-serif;
+      	font-size: xx-large; color: #616161;">Administrator Panel</a>
+		<div class="collapse navbar-collapse" id="navbarTogglerDemo02"></div>
+		<ul class="nav">
+			<li class="nav-item" role="presentation" style="margin-right: 10px">
+				<input type="date" class="form-control btn-outline-secondary" id="date">
+			</li>
+			<div class="vl" style="border-left: 2px solid #9e9e9e;"></div>
+			<li class="nav-item" role="presentation">
+				<a class="btn btn-outline-secondary ml" href="admin.html">Table View</a>
+			</li>
+			<li class="nav-item" role="presentation">
+				<a href="settings.html" class="btn btn-outline-secondary ml">Settings</a>
+			</li>
+		</ul>
+		</div>
+	</nav>
+	<!-- Timetable Component-->
+	<div class="cd-schedule cd-schedule--loading margin-top-lg margin-bottom-lg js-cd-schedule">
+		<div class="cd-schedule__timeline">
+			<ul>
+				<li><span>09:00</span></li>
+				<li><span>09:30</span></li>
+				<li><span>10:00</span></li>
+				<li><span>10:30</span></li>
+				<li><span>11:00</span></li>
+				<li><span>11:30</span></li>
+				<li><span>12:00</span></li>
+				<li><span>12:30</span></li>
+				<li><span>13:00</span></li>
+				<li><span>13:30</span></li>
+				<li><span>14:00</span></li>
+				<li><span>14:30</span></li>
+				<li><span>15:00</span></li>
+				<li><span>15:30</span></li>
+				<li><span>16:00</span></li>
+				<li><span>16:30</span></li>
+				<li><span>17:00</span></li>
+				<li><span>17:30</span></li>
+				<li><span>18:00</span></li>
+			</ul>
+		</div>
+
+		<div class="cd-schedule__events">
+			<ul>
+				<li class="cd-schedule__group">
+					<div class="cd-schedule__top-info"><span>Table 1</span></div>
+
+					<ul>
+						<li class="cd-schedule__event">
+							<a data-start="09:30" data-end="10:30" data-content="event-abs-circuit" data-event="event-1"
+								href="#0">
+								<em class="cd-schedule__name">Manjunath </em>
+							</a>
+						</li>
+
+						<li class="cd-schedule__event">
+							<a data-start="11:00" data-end="12:30" data-content="event-rowing-workout"
+								data-event="event-2" href="#0">
+								<em class="cd-schedule__name">Prem</em>
+							</a>
+						</li>
+
+						<li class="cd-schedule__event">
+							<a data-start="14:00" data-end="15:15" data-content="event-yoga-1" data-event="event-3"
+								href="#0">
+								<em class="cd-schedule__name">Simran</em>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="cd-schedule__group">
+					<div class="cd-schedule__top-info"><span>Table 2</span></div>
+
+					<ul>
+						<li class="cd-schedule__event">
+							<a data-start="09:30" data-end="10:30" data-content="event-abs-circuit" data-event="event-1"
+								href="#0">
+								<em class="cd-schedule__name">Aakash</em>
+							</a>
+						</li>
+
+						<li class="cd-schedule__event">
+							<a data-start="11:00" data-end="12:30" data-content="event-rowing-workout"
+								data-event="event-2" href="#0">
+								<em class="cd-schedule__name">Kirti</em>
+							</a>
+						</li>
+
+						<li class="cd-schedule__event">
+							<a data-start="14:00" data-end="15:15" data-content="event-yoga-1" data-event="event-3"
+								href="#0">
+								<em class="cd-schedule__name">Disha</em>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="cd-schedule__group">
+					<div class="cd-schedule__top-info"><span>Table 3</span></div>
+
+					<ul>
+						<li class="cd-schedule__event">
+							<a data-start="09:30" data-end="10:30" data-content="event-abs-circuit" data-event="event-1"
+								href="#0">
+								<em class="cd-schedule__name">Sanket</em>
+							</a>
+						</li>
+
+						<li class="cd-schedule__event">
+							<a data-start="11:00" data-end="12:30" data-content="event-rowing-workout"
+								data-event="event-2" href="#0">
+								<em class="cd-schedule__name">Mahesh</em>
+							</a>
+						</li>
+
+						<li class="cd-schedule__event">
+							<a data-start="14:00" data-end="15:15" data-content="event-yoga-1" data-event="event-3"
+								href="#0">
+								<em class="cd-schedule__name">Jupjyot</em>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="cd-schedule__group">
+					<div class="cd-schedule__top-info"><span>Table 4</span></div>
+
+					<ul>
+						<li class="cd-schedule__event">
+							<a data-start="09:30" data-end="10:30" data-content="event-abs-circuit" data-event="event-1"
+								href="#0">
+								<em class="cd-schedule__name">Sonali</em>
+							</a>
+						</li>
+
+						<li class="cd-schedule__event">
+							<a data-start="11:00" data-end="12:30" data-content="event-rowing-workout"
+								data-event="event-2" href="#0">
+								<em class="cd-schedule__name">Rhea</em>
+							</a>
+						</li>
+
+						<li class="cd-schedule__event">
+							<a data-start="14:00" data-end="15:15" data-content="event-yoga-1" data-event="event-3"
+								href="#0">
+								<em class="cd-schedule__name">Showik</em>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="cd-schedule__group">
+					<div class="cd-schedule__top-info"><span>Table 5</span></div>
+
+					<ul>
+						<li class="cd-schedule__event">
+							<a data-start="09:30" data-end="10:30" data-content="event-abs-circuit" data-event="event-1"
+								href="#0">
+								<em class="cd-schedule__name">Sushant</em>
+							</a>
+						</li>
+
+						<li class="cd-schedule__event">
+							<a data-start="11:00" data-end="12:30" data-content="event-rowing-workout"
+								data-event="event-2" href="#0">
+								<em class="cd-schedule__name">Ankita</em>
+							</a>
+						</li>
+
+						<li class="cd-schedule__event">
+							<a data-start="14:00" data-end="15:15" data-content="event-yoga-1" data-event="event-3"
+								href="#0">
+								<em class="cd-schedule__name">Deepika</em>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="cd-schedule__group">
+					<div class="cd-schedule__top-info"><span>Table 6</span></div>
+
+					<ul>
+						<li class="cd-schedule__event">
+							<a data-start="09:30" data-end="10:30" data-content="event-abs-circuit" data-event="event-1"
+								href="#0">
+								<em class="cd-schedule__name">Mr.Bean</em>
+							</a>
+						</li>
+
+						<li class="cd-schedule__event">
+							<a data-start="11:00" data-end="12:30" data-content="event-rowing-workout"
+								data-event="event-2" href="#0">
+								<em class="cd-schedule__name">Baahubali</em>
+							</a>
+						</li>
+
+						<li class="cd-schedule__event">
+							<a data-start="14:00" data-end="15:15" data-content="event-yoga-1" data-event="event-3"
+								href="#0">
+								<em class="cd-schedule__name">Dhoni</em>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="cd-schedule__group">
+					<div class="cd-schedule__top-info"><span>Table 7</span></div>
+
+					<ul>
+						<li class="cd-schedule__event">
+							<a data-start="09:30" data-end="10:30" data-content="event-abs-circuit" data-event="event-1"
+								href="#0">
+								<em class="cd-schedule__name">Kokila</em>
+							</a>
+						</li>
+
+						<li class="cd-schedule__event">
+							<a data-start="11:00" data-end="12:30" data-content="event-rowing-workout"
+								data-event="event-2" href="#0">
+								<em class="cd-schedule__name">Rashi</em>
+							</a>
+						</li>
+
+						<li class="cd-schedule__event">
+							<a data-start="14:00" data-end="15:15" data-content="event-yoga-1" data-event="event-3"
+								href="#0">
+								<em class="cd-schedule__name">Bhavini</em>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="cd-schedule__group">
+					<div class="cd-schedule__top-info"><span>Table 8</span></div>
+
+					<ul>
+						<li class="cd-schedule__event">
+							<a data-start="09:30" data-end="10:30" data-content="event-abs-circuit" data-event="event-1"
+								href="#0">
+								<em class="cd-schedule__name">Anjali</em>
+							</a>
+						</li>
+
+						<li class="cd-schedule__event">
+							<a data-start="11:00" data-end="12:30" data-content="event-rowing-workout"
+								data-event="event-2" href="#0">
+								<em class="cd-schedule__name">Bhavesh</em>
+							</a>
+						</li>
+
+						<li class="cd-schedule__event">
+							<a data-start="14:00" data-end="15:15" data-content="event-yoga-1" data-event="event-3"
+								href="#0">
+								<em class="cd-schedule__name">Ganpat</em>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="cd-schedule__group">
+					<div class="cd-schedule__top-info"><span>Table 9</span></div>
+
+					<ul>
+						<li class="cd-schedule__event">
+							<a data-start="09:30" data-end="10:30" data-content="event-abs-circuit" data-event="event-1"
+								href="#0">
+								<em class="cd-schedule__name">Jake</em>
+							</a>
+						</li>
+
+						<li class="cd-schedule__event">
+							<a data-start="11:00" data-end="12:30" data-content="event-rowing-workout"
+								data-event="event-2" href="#0">
+								<em class="cd-schedule__name">Ross</em>
+							</a>
+						</li>
+
+						<li class="cd-schedule__event">
+							<a data-start="14:00" data-end="15:15" data-content="event-yoga-1" data-event="event-3"
+								href="#0">
+								<em class="cd-schedule__name">Jeniffer</em>
+							</a>
+						</li>
+					</ul>
+				</li>
+				<li class="cd-schedule__group">
+					<div class="cd-schedule__top-info"><span>Table 10</span></div>
+
+					<ul>
+						<li class="cd-schedule__event">
+							<a data-start="09:30" data-end="10:30" data-content="event-abs-circuit" data-event="event-1"
+								href="#0">
+								<em class="cd-schedule__name">Shakira</em>
+							</a>
+						</li>
+
+						<li class="cd-schedule__event">
+							<a data-start="11:00" data-end="12:30" data-content="event-rowing-workout"
+								data-event="event-2" href="#0">
+								<em class="cd-schedule__name">Eminem</em>
+							</a>
+						</li>
+
+						<li class="cd-schedule__event">
+							<a data-start="14:00" data-end="15:15" data-content="event-yoga-1" data-event="event-3"
+								href="#0">
+								<em class="cd-schedule__name">Modi</em>
+							</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+
+		<div class="cd-schedule-modal">
+			<header class="cd-schedule-modal__header">
+				<div class="cd-schedule-modal__content">
+					<span class="cd-schedule-modal__date"></span>
+					<h3 class="cd-schedule-modal__name"></h3>
+				</div>
+
+				<div class="cd-schedule-modal__header-bg"></div>
+			</header>
+
+			<div class="cd-schedule-modal__body">
+				<div class="cd-schedule-modal__event-info"></div>
+				<div class="cd-schedule-modal__body-bg"></div>
+			</div>
+
+			<a href="#0" class="cd-schedule-modal__close text-replace">Close</a>
+		</div>
+
+		<div class="cd-schedule__cover-layer"></div>
+	</div>
+	<!-- Scripts -->
+	<script src="../assets/node_modules/jquery/dist/jquery.min.js"></script>
+	<script>document.getElementsByTagName("html")[0].className += " js";</script>
+	<script src="../assets/node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+	<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="../assets/js/admin/util.js"></script> <!-- util functions included in the CodyHouse framework -->
+	<script src="../assets/js/admin/main.js"></script>
+</body>
+
+</html>

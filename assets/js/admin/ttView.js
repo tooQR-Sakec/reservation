@@ -40,8 +40,22 @@ $('#checkOut').click(function() {
 });
 
 $('#extend').click(function() {
-	var guestEmail = $('#guestEmail').text();
-    var startTime = Date.parse($('#startTime').text())/1000;
+	var bookingID = $('#bookingID').text();
+    var formdata = new FormData();
+	formdata.append('bookingID', bookingID);
+	
+	$.ajax({
+		type: "POST",
+		data: formdata,
+		url: "timetable/extendReservation.php",
+		contentType: false, // Dont delete this (jQuery 1.6+)
+		processData: false, // Dont delete this
+		success: function(data) {
+			console.log(data);
+			loadTT();
+			//$('#reservationModal').modal('toggle');
+		}
+	});
 });
 
 $('#cancel').click(function() {
