@@ -5,8 +5,27 @@ $guestName = $_POST['guestName'];
 $guestEmail = $_POST['guestEmail'];
 $guestCapacity = $_POST['guestCapacity'];
 $guestStartTime = $_POST['guestStartTime'];
-$guestEndTime = $_POST['guestEndTime'];
+$guestFoodType = $_POST['guestFoodType'];
 $roomID = $_POST['roomID'];
+
+// calculate duration of reservation
+switch ($guestFoodType) {
+	case 1:
+		$foodType = "breakfast";
+		break;
+	case 2:
+		$foodType = "lunch";
+		break;
+	case 3:
+		$foodType = "dinner";
+		break;
+}
+$foodTypeSQL = "SELECT value FROM settings WHERE parameter = :foodType";
+$foodTypeSTMT = $conn->prepare($foodTypeSQL);
+$foodTypeSTMT->bindParam(':foodType', $foodType);
+$foodTypeSTMT->execute();
+$duration = $foodTypeSTMT->fetchObject()->value;
+$guestEndTime  = $guestStartTime + $duration;
 
 // buffer timing
 $bufferSQL = "SELECT value FROM settings WHERE parameter = 'bufferTime'";
@@ -16,16 +35,52 @@ $bufferTime = $bufferSTMT->fetchObject()->value;
 $startTime  = $guestStartTime - $bufferTime;
 $endTime  = $guestEndTime + $bufferTime;
 
+function dayOfTheWeek($startDay) //to determine day of the week
+{
+	switch ($startDay) {
+		case 1:
+			$startTimeDay = "monday";
+			break;
+		case 2:
+			$startTimeDay = "tuesday";
+			break;
+		case 3:
+			$startTimeDay = "wednesday";
+			break;
+		case 4:
+			$startTimeDay = "thursday";
+			break;
+		case 5:
+			$startTimeDay = "friday";
+			break;
+		case 6:
+			$startTimeDay = "saturday";
+			break;
+		case 7:
+			$startTimeDay = "sunday";
+			break;
+	}
+	return $startTimeDay;
+}
+//start time day
+$startDay = date('N', $guestStartTime);
+$startDayParam = dayOfTheWeek($startDay)."Start";
+// end time day
+$endDay = date('N', $guestEndTime);
+$endDayParam = dayOfTheWeek($endDay)."End";
+
 // check Hotel start timing
-$startTimeSQL = "SELECT value FROM settings WHERE parameter = 'startTime'";
+$startTimeSQL = "SELECT value FROM settings WHERE parameter = :startTime";
 $startTimeSTMT = $conn->prepare($startTimeSQL);
+$startTimeSTMT->bindParam(':startTime', $startDayParam);
 $startTimeSTMT->execute();
 $restaurantStart = explode(":", $startTimeSTMT->fetchObject()->value);
 $restaurantStartSeconds = $restaurantStart[0] * 3600 + $restaurantStart[1] * 60;
 $startTimeSeconds = date("H", $startTime) * 3600 + date("i", $startTime) * 60;
 // check Hotel end timing
-$endTimeSQL = "SELECT value FROM settings WHERE parameter = 'endTime'";
+$endTimeSQL = "SELECT value FROM settings WHERE parameter = :endTime";
 $endTimeSTMT = $conn->prepare($endTimeSQL);
+$endTimeSTMT->bindParam(':endTime', $endDayParam);
 $endTimeSTMT->execute();
 $restaurantEnd = explode(":", $endTimeSTMT->fetchObject()->value);
 $restaurantEndSeconds = $restaurantEnd[0] * 3600 + $restaurantStart[1] * 60;

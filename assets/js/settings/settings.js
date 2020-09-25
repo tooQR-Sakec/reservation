@@ -30,6 +30,12 @@ function loadTimings() {
 			$('#min').val(min);
 			var sec = bufferTime%60;
 			$('#sec').val(sec);
+			//booking Limit
+			$('#bLimitDay').val(data.bookingPerDay);
+			//foodType
+			$('#breakfast').val(data.breakfast/60);
+			$('#lunch').val(data.lunch/60);
+			$('#dinner').val(data.dinner/60);
 		}
 	});
 }
@@ -118,9 +124,9 @@ $('#bookingLimit').click(function(){
 });
 
 $('#bookingExtend').click(function(){
-	var breakfast = $('#breakfast').val();
-	var lunch = $('#lunch').val();
-	var dinner = $('#dinner').val();
+	var breakfast = parseInt($('#breakfast').val())*60;
+	var lunch = parseInt($('#lunch').val())*60;
+	var dinner = parseInt($('#dinner').val())*60;
 	var formdata = new FormData;
 	formdata.append('breakfast', breakfast);
 	formdata.append('lunch', lunch);

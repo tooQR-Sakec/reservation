@@ -53,7 +53,6 @@ function loadTT() {
 			timetable.setScope(0, 23);
 			timetable.useTwelveHour();
 			if(data) {
-				console.log(data);
 				data = JSON.parse(data);
 
 				// load table headings
@@ -76,9 +75,11 @@ function loadTT() {
 									$('#extend').hide();
 								if(element.status == "checkedIn") {
 									$('#checkOut').show();
+									$('#extend').show();
 								} else if(element.status == "reserved") {
 									$('#checkIn').show();
 									$('#cancel').show();
+									$('#extend').show();
 								}
 								var html = `
 								<table class="table table-bordered">

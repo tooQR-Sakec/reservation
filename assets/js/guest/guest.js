@@ -12,22 +12,13 @@ function reserveTable(event) {
 	var guestStartTime = Date.parse($('#guestDateTime').val()) / 1000;
 	var guestFoodType = parseInt($('#guestFoodType').val());
 	var roomID = $('#guestRoomId').val();
-	var guestEndTime = guestStartTime;
-	switch (guestFoodType) {
-		case 1: guestEndTime += 60 * 60; //breakfast 60 minutes
-			break;
-		case 2: guestEndTime += 60 * 90; //lunch 90 minutes
-			break;
-		case 3: guestEndTime += 60 * 120; //dinner 2 hours
-			break;
-	}
 
 	var formdata = new FormData();
 	formdata.append("guestName", guestName);
 	formdata.append("guestEmail", guestEmail);
 	formdata.append("guestCapacity", guestCapacity);
 	formdata.append("guestStartTime", guestStartTime);
-	formdata.append("guestEndTime", guestEndTime);
+	formdata.append("guestFoodType", guestFoodType);
 	formdata.append("roomID", roomID);
 
 	$.ajax({
