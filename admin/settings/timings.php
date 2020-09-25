@@ -1,89 +1,92 @@
 <?php
 include('../../db.php');
 
+$timingsSQL="UPDATE settings SET value = :value WHERE parameter = :parameter";
+$timingsSTMT=$conn->prepare($timingsSQL);
+
 $sundayStartTime=$_POST['sundayStartTime'];
-$sundaySSQL="UPDATE settings SET value = :sundayStartTime WHERE parameter = 'sundayStart'";
-$sundaySSTMT=$conn->prepare($sundaySSQL);
-$sundaySSTMT->bindParam(':sundayStartTime', $sundayStartTime);
-$sundaySSTMT->execute();
+$sundayStart = "sundayStart";
+$timingsSTMT->bindParam(':value', $sundayStartTime);
+$timingsSTMT->bindParam(':parameter', $sundayStart);
+$timingsSTMT->execute();
 
 $sundayEndTime=$_POST['sundayEndTime'];
-$sundayESQL="UPDATE settings SET value = :sundayEndTime WHERE parameter = 'sundayEnd'";
-$sundayESTMT=$conn->prepare($sundayESQL);
-$sundayESTMT->bindParam(':sundayEndTime', $sundayEndTime);
-$sundayESTMT->execute();
+$sundayEnd = "sundayEnd";
+$timingsSTMT->bindParam(':value', $sundayEndTime);
+$timingsSTMT->bindParam(':parameter', $sundayEnd);
+$timingsSTMT->execute();
 
 $mondayStartTime=$_POST['mondayStartTime'];
-$mondaySSQL="UPDATE settings SET value = :mondayStartTime WHERE parameter = 'mondayStart'";
-$mondaySSTMT=$conn->prepare($mondaySSQL);
-$mondaySSTMT->bindParam(':mondayStartTime', $mondayStartTime);
-$mondaySSTMT->execute();
+$sundayStart = "mondayStart";
+$timingsSTMT->bindParam(':value', $mondayStartTime);
+$timingsSTMT->bindParam(':parameter', $sundayStart);
+$timingsSTMT->execute();
 
 $mondayEndTime=$_POST['mondayEndTime'];
-$mondayESQL="UPDATE settings SET value = :mondayEndTime WHERE parameter = 'mondayEnd'";
-$mondayESTMT=$conn->prepare($mondayESQL);
-$mondayESTMT->bindParam(':mondayEndTime', $mondayEndTime);
-$mondayESTMT->execute();
+$mondayEnd = "mondayEnd";
+$timingsSTMT->bindParam(':value', $mondayEndTime);
+$timingsSTMT->bindParam(':parameter', $mondayEnd);
+$timingsSTMT->execute();
 
 $tuesdayStartTime=$_POST['tuesdayStartTime'];
-$tuesdaySSQL="UPDATE settings SET value = :tuesdayStartTime WHERE parameter = 'tuesdayStart'";
-$tuesdaySSTMT=$conn->prepare($tuesdaySSQL);
-$tuesdaySSTMT->bindParam(':tuesdayStartTime', $tuesdayStartTime);
-$tuesdaySSTMT->execute();
+$tuesdayStart = "tuesdayStart";
+$timingsSTMT->bindParam(':value', $tuesdayStartTime);
+$timingsSTMT->bindParam(':parameter', $tuesdayStart);
+$timingsSTMT->execute();
 
 $tuesdayEndTime=$_POST['tuesdayEndTime'];
-$tuesdayESQL="UPDATE settings SET value = :tuesdayEndTime WHERE parameter = 'tuesdayEnd'";
-$tuesdayESTMT=$conn->prepare($tuesdayESQL);
-$tuesdayESTMT->bindParam(':tuesdayEndTime', $tuesdayEndTime);
-$tuesdayESTMT->execute();
+$tuesdayEnd = "tuesdayEnd";
+$timingsSTMT->bindParam(':value', $tuesdayEndTime);
+$timingsSTMT->bindParam(':parameter', $tuesdayEnd);
+$timingsSTMT->execute();
 
 $wednesdayStartTime=$_POST['wednesdayStartTime'];
-$wednesdaySSQL="UPDATE settings SET value = :wednesdayStartTime WHERE parameter = 'wednesdayStart'";
-$wednesdaySSTMT=$conn->prepare($wednesdaySSQL);
-$wednesdaySSTMT->bindParam(':wednesdayStartTime', $wednesdayStartTime);
-$wednesdaySSTMT->execute();
+$wednesdayStart = "wednesdayStart";
+$timingsSTMT->bindParam(':value', $wednesdayStartTime);
+$timingsSTMT->bindParam(':parameter', $wednesdayStart);
+$timingsSTMT->execute();
 
 $wednesdayEndTime=$_POST['wednesdayEndTime'];
-$wednesdayESQL="UPDATE settings SET value = :wednesdayEndTime WHERE parameter = 'wednesdayEnd'";
-$wednesdayESTMT=$conn->prepare($wednesdayESQL);
-$wednesdayESTMT->bindParam(':wednesdayEndTime', $wednesdayEndTime);
-$wednesdayESTMT->execute();
+$wednesdayEnd = "wednesdayEnd";
+$timingsSTMT->bindParam(':value', $wednesdayEndTime);
+$timingsSTMT->bindParam(':parameter', $wednesdayEnd);
+$timingsSTMT->execute();
 
 $thursdayStartTime=$_POST['thursdayStartTime'];
-$thursdaySSQL="UPDATE settings SET value = :thursdayStartTime WHERE parameter = 'thursdayStart'";
-$thursdaySSTMT=$conn->prepare($thursdaySSQL);
-$thursdaySSTMT->bindParam(':thursdayStartTime', $thursdayStartTime);
-$thursdaySSTMT->execute();
+$sundayStart = "thursdayStart";
+$timingsSTMT->bindParam(':value', $thursdayStartTime);
+$timingsSTMT->bindParam(':parameter', $sundayStart);
+$timingsSTMT->execute();
 
 $thursdayEndTime=$_POST['thursdayEndTime'];
-$thursdayESQL="UPDATE settings SET value = :thursdayEndTime WHERE parameter = 'thursdayEnd'";
-$thursdayESTMT=$conn->prepare($thursdayESQL);
-$thursdayESTMT->bindParam(':thursdayEndTime', $thursdayEndTime);
-$thursdayESTMT->execute();
+$thursdayEnd = "thursdayEnd";
+$timingsSTMT->bindParam(':value', $thursdayEndTime);
+$timingsSTMT->bindParam(':parameter', $thursdayEnd);
+$timingsSTMT->execute();
 
 $fridayStartTime=$_POST['fridayStartTime'];
-$fridaySSQL="UPDATE settings SET value = :fridayStartTime WHERE parameter = 'fridayStart'";
-$fridaySSTMT=$conn->prepare($fridaySSQL);
-$fridaySSTMT->bindParam(':fridayStartTime', $fridayStartTime);
-$fridaySSTMT->execute();
+$fridayStart = "fridayStart";
+$timingsSTMT->bindParam(':value', $fridayStartTime);
+$timingsSTMT->bindParam(':parameter', $fridayStart);
+$timingsSTMT->execute();
 
 $fridayEndTime=$_POST['fridayEndTime'];
-$fridayESQL="UPDATE settings SET value = :fridayEndTime WHERE parameter = 'fridayEnd'";
-$fridayESTMT=$conn->prepare($fridayESQL);
-$fridayESTMT->bindParam(':fridayEndTime', $fridayEndTime);
-$fridayESTMT->execute();
+$fridayEnd = "fridayEnd";
+$timingsSTMT->bindParam(':value', $fridayEndTime);
+$timingsSTMT->bindParam(':parameter', $fridayEnd);
+$timingsSTMT->execute();
 
 $saturdayStartTime=$_POST['saturdayStartTime'];
-$saturdaySSQL="UPDATE settings SET value = :saturdayStartTime WHERE parameter = 'saturdayStart'";
-$saturdaySSTMT=$conn->prepare($saturdaySSQL);
-$saturdaySSTMT->bindParam(':saturdayStartTime', $saturdayStartTime);
-$saturdaySSTMT->execute();
+$saturdayStart = "saturdayStart";
+$timingsSTMT->bindParam(':value', $saturdayStartTime);
+$timingsSTMT->bindParam(':parameter', $saturdayStart);
+$timingsSTMT->execute();
 
 $saturdayEndTime=$_POST['saturdayEndTime'];
-$saturdayESQL="UPDATE settings SET value = :saturdayEndTime WHERE parameter = 'saturdayEnd'";
-$saturdayESTMT=$conn->prepare($saturdayESQL);
-$saturdayESTMT->bindParam(':saturdayEndTime', $saturdayEndTime);
-$saturdayESTMT->execute();
+$saturdayEnd = "saturdayEnd";
+$timingsSTMT->bindParam(':value', $saturdayEndTime);
+$timingsSTMT->bindParam(':parameter', $saturdayEnd);
+$timingsSTMT->execute();
 
 
 

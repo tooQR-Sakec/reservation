@@ -10,9 +10,20 @@ function loadTimings() {
 		success: function (data) {
 			data = JSON.parse(data);
 			// restaurant timmings
-			$('#hotelStartTime').val(data.startTime);
-			$('#hotelEndTime').val(data.endTime);
-			
+			$('#sundayStartTime').val(data.sundayStart);
+			$('#sundayEndTime').val(data.sundayEnd);
+			$('#mondayStartTime').val(data.mondayStart);
+			$('#mondayEndTime').val(data.mondayEnd);
+			$('#tuesdayStartTime').val(data.tuesdayStart);
+			$('#tuesdayEndTime').val(data.tuesdayEnd);
+			$('#wednesdayStartTime').val(data.wednesdayStart);
+			$('#wednesdayEndTime').val(data.wednesdayEnd);
+			$('#thursdayStartTime').val(data.thursdayStart);
+			$('#thursdayEndTime').val(data.thursdayEnd);
+			$('#fridayStartTime').val(data.fridayStart);
+			$('#fridayEndTime').val(data.fridayEnd);
+			$('#saturdayStartTime').val(data.saturdayStart);
+			$('#saturdayEndTime').val(data.saturdayEnd);
 			// buffer times
 			var bufferTime = data.bufferTime;
 			var min = Math.floor(bufferTime/60);
