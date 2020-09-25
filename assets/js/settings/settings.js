@@ -24,11 +24,36 @@ function loadTimings() {
 }
 
 $('#timing').click(function () {
-	var hotelStartTime = $('#hotelStartTime').val();
-	var hotelEndTime = $('#hotelEndTime').val();
+	var sundayStartTime = $('#sundayStartTime').val();
+	var sundayEndTime = $('#sundayEndTime').val();
+	var mondayStartTime = $('#mondayStartTime').val();
+	var mondayEndTime = $('#mondayEndTime').val();
+	var tuesdayStartTime = $('#tuesdayStartTime').val();
+	var tuesdayEndTime = $('#tuesdayEndTime').val();
+	var wednesdayStartTime = $('#wednesdayStartTime').val();
+	var wednesdayEndTime = $('#wednesdayEndTime').val();
+	var thursdayStartTime = $('#thursdayStartTime').val();
+	var thursdayEndTime = $('#thursdayEndTime').val();
+	var fridayStartTime = $('#fridayStartTime').val();
+	var fridayEndTime = $('#fridayEndTime').val();
+	var saturdayStartTime = $('#saturdayStartTime').val();
+	var saturdayEndTime = $('#saturdayEndTime').val();
 	var formdata = new FormData;
-	formdata.append('hotelStartTime', hotelStartTime);
-	formdata.append('hotelEndTime', hotelEndTime);
+	console.log(sundayStartTime);
+	formdata.append('sundayStartTime', sundayStartTime);
+	formdata.append('sundayEndTime', sundayEndTime);
+	formdata.append('mondayStartTime', mondayStartTime);
+	formdata.append('mondayEndTime', mondayEndTime);
+	formdata.append('tuesdayStartTime', tuesdayStartTime);
+	formdata.append('tuesdayEndTime', tuesdayEndTime);
+	formdata.append('wednesdayStartTime', wednesdayStartTime);
+	formdata.append('wednesdayEndTime', wednesdayEndTime);
+	formdata.append('thursdayStartTime', thursdayStartTime);
+	formdata.append('thursdayEndTime', thursdayEndTime);
+	formdata.append('fridayStartTime', fridayStartTime);
+	formdata.append('fridayEndTime', fridayEndTime);
+	formdata.append('saturdayStartTime', saturdayStartTime);
+	formdata.append('saturdayEndTime', saturdayEndTime);
 	$.ajax({
 		type: "POST",
 		data: formdata,
@@ -60,4 +85,45 @@ $('#bufferTime').click(function () {
 			loadTimings();
 		}
 	});
+});
+
+
+$('#bookingLimit').click(function(){
+	var bLimitDay = $('#bLimitDay').val();
+	var formdata = new FormData;
+	formdata.append('bLimitDay', bLimitDay);
+	$.ajax({
+		type: "POST",
+		data: formdata,
+		url: "settings/bookLimit.php",
+		contentType: false, // Dont delete this (jQuery 1.6+)
+		processData: false, // Dont delete this
+		success: function (data) {
+			console.log(data);
+			loadTimings();
+		}
+	});
+
+});
+
+$('#bookingExtend').click(function(){
+	var breakfast = $('#breakfast').val();
+	var lunch = $('#lunch').val();
+	var dinner = $('#dinner').val();
+	var formdata = new FormData;
+	formdata.append('breakfast', breakfast);
+	formdata.append('lunch', lunch);
+	formdata.append('dinner', dinner);
+	$.ajax({
+		type: "POST",
+		data: formdata,
+		url: "settings/bookExtend.php",
+		contentType: false, // Dont delete this (jQuery 1.6+)
+		processData: false, // Dont delete this
+		success: function (data) {
+			console.log(data);
+			loadTimings();
+		}
+	});
+
 });
