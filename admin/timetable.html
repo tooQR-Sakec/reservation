@@ -12,475 +12,63 @@
 
 	<!-- Bootstrap -->
 	<link type="text/css" rel="stylesheet" href="../assets/node_modules/bootstrap/dist/css/bootstrap.min.css" />
-
+	
 	<!-- Custom stlylesheet -->
-	<link type="text/css" rel="stylesheet" href="../assets/css/style.css">
+	<link type="text/css" rel="stylesheet" href="../assets/css/style.css" />
 	<link rel="stylesheet" href="../assets/css/timetablejs.css">
-	<!--link rel="stylesheet" href="../assets/css/demo.css"-->
+    <link rel="stylesheet" href="../assets/css/demo.css">
 </head>
 
-<body>
+<body style="background-color: #EEEEEE;">
 	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="box-shadow: 0 3px 3px -3px rgba(0,0,0,.2);">
 		<a class="navbar-brand" href="#" style="font-family: 'Montserrat', sans-serif;
-      	font-size: xx-large; color: #616161;">Administrator Panel</a>
+		font-size: xx-large; color: #616161;">Administrator Panel</a>
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo02"></div>
-		<ul class="nav">
-			<li class="nav-item" role="presentation" style="margin-right: 10px">
-				<input type="date" class="form-control btn-outline-secondary" id="date">
-			</li>
-			<div class="vl" style="border-left: 2px solid #9e9e9e;"></div>
-			<li class="nav-item" role="presentation">
-				<a class="btn btn-outline-secondary ml" href="admin.html">Table View</a>
-			</li>
-			<li class="nav-item" role="presentation">
-				<a href="settings.html" class="btn btn-outline-secondary ml">Settings</a>
-			</li>
-		</ul>
+			<ul class="nav">
+				<li class="nav-item" role="presentation"  style="margin-right: 10px">
+				  <input type="date" class="form-control btn-outline-secondary" id="date">
+				</li>
+				<div class="vl" style="border-left: 2px solid #9e9e9e;"></div>
+				<li class="nav-item" role="presentation">
+				  <a class="btn btn-outline-secondary ml" href="admin.html">Table View</a>
+				</li>
+				<li class="nav-item" role="presentation">
+				  <a href="settings.html" class="btn btn-outline-secondary ml">Settings</a>
+				</li>
+			</ul>
 		</div>
-	</nav>
+	  </nav>
+	<div class="timetable"></div>
 
-	<!--Modal>
-      <div class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="reservationModal" aria-hidden="true">
-  		<div class="modal-dialog">
-  			<div class="modal-content">
-  				<div class="modal-header">
-      				<h3 class=" col-12 modal-title text-center" id="resinfo">Reservation Info</h3>
-      			</div>
-  				<div class="modal-body">
-  					<div class="container" id="reservationStatus"></div>
-      			</div>
-      			<div class="modal-footer">
-  					<button type="submit" class="btn btn-dark" id="extend">Extend</button>
-  					<button type="submit" class="btn btn-dark" id="checkIn">Checkin</button>
-  					<button type="submit" class="btn btn-dark" id="checkOut">CheckOut</button>
-  					<button type="submit" class="btn btn-dark" id="cancel">Cancel</button>
-  					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-  				</div>
-  			</div>
-  		</div>
-  	</div-->
-	<br />
-	<div class="timetable">
-		<div class="week-names">
-			<div>Table No 1</div>
-			<div>Table No 2</div>
-			<div>Table No 3</div>
-			<div>Table No 4</div>
-			<div>Table No 5</div>
-			<div>Table No 6</div>
-			<div>Table No 7</div>
-			<div>Table No 8</div>
-			<div>Table No 9</div>
-			<div>Table No 10</div>
-			<div>Table No 11</div>
-			<div class="weekend">Table No 12</div>
-			<div class="weekend">Table No 13</div>
-			<div class="weekend">Table No 14</div>
-			<div class="weekend">Table No 15</div>
-			<div class="weekend">Table No 16</div>
-			<div class="weekend">Table No 17</div>
+	<!--Modal-->
+	<div class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="reservationModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class=" col-12 modal-title text-center" id="resinfo">Reservation Info</h3>
+				</div>
+				<div class="modal-body">
+					<div class="container" id="reservationStatus"></div>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-dark" id="extend">Extend</button>
+					<button type="submit" class="btn btn-dark" id="checkIn">Checkin</button>
+					<button type="submit" class="btn btn-dark" id="checkOut">CheckOut</button>
+					<button type="submit" class="btn btn-dark" id="cancel">Cancel</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
 		</div>
-		<div class="time-interval">
-			<div>8:00 - 9:00</div>
-			<div>9:00 - 10:00</div>
-			<div>10:00 - 11:00</div>
-			<div>11:00 - 12:00</div>
-			<div>12:00 - 13:00</div>
-			<div>13:00 - 14:00</div>
-			<div>14:00 - 15:00</div>
-			<div>15:00 - 16:00</div>
-			<div>16:00 - 17:00</div>
-			<div>17:00 - 18:00</div>
-			<div>18:00 - 19:00</div>
-			<div>19:00 - 20:00</div>
-			<div>20:00 - 21:00</div>
-			<div>21:00 - 22:00</div>
-		</div>
-		<div class="content">
-			<div>
-				<div class="accent-orange-gradient"></div>
-			</div>
-			<div></div>
-			<div>
-				<div class="accent-cyan-gradient"></div>
-			</div>
-			<div></div>
-			<div></div>
-			<div>
-				<div class="accent-green-gradient"></div>
-			</div>
-			<div>
-				<div></div>
-			</div>
-			<div></div>
-			<div class="weekend"></div>
-			<div class="weekend"></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div>
-				<div class="accent-cyan-gradient"></div>
-			</div>
-			<div></div>
-			<div class="weekend"></div>
-			<div class="weekend"></div>
-			<div>
-				<div class="accent-pink-gradient"></div>
-			</div>
-			<div></div>
-			<div>
-				<div class="accent-purple-gradient"></div>
-			</div>
-			<div></div>
-			<div></div>
-			<div class="weekend"></div>
-			<div class="weekend"></div>
-			<div></div>
-			<div>
-				<div class="accent-purple-gradient"></div>
-			</div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div class="weekend"></div>
-			<div class="weekend"></div>
-			<div>
-				<div class="accent-purple-gradient"></div>
-			</div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div class="weekend"></div>
-			<div class="weekend"></div>
-			<div></div>
-			<div>
-				<div class="accent-purple-gradient"></div>
-			</div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div class="weekend"></div>
-			<div class="weekend"></div>
-			<div></div>
-			<div></div>
-			<div>
-				<div class="accent-cyan-gradient"></div>
-			</div>
-			<div></div>
-			<div class="weekend"></div>
-			<div class="weekend"></div>
-			<div>
-				<div class="accent-pink-gradient"></div>
-			</div>
-			<div></div>
-			<div>
-				<div class="accent-purple-gradient"></div>
-			</div>
-			<div></div>
-			<div></div>
-			<div class="weekend"></div>
-			<div class="weekend"></div>
-			<div></div>
-			<div>
-				<div class="accent-purple-gradient"></div>
-			</div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div class="weekend"></div>
-			<div class="weekend"></div>
-			<div></div>
-				<div></div>
-				<div></div>
-				<div>
-					<div class="accent-cyan-gradient"></div>
-				</div>
-				<div></div>
-				<div class="weekend"></div>
-				<div class="weekend"></div>
-				<div>
-					<div class="accent-pink-gradient"></div>
-				</div>
-				<div></div>
-				<div>
-					<div class="accent-purple-gradient"></div>
-				</div>
-				<div></div>
-				<div></div>
-				<div class="weekend"></div>
-				<div class="weekend"></div>
-				<div></div>
-				<div>
-					<div class="accent-purple-gradient"></div>
-				</div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div class="weekend"></div>
-				<div class="weekend"></div>
-				<div></div>
-					<div></div>
-					<div></div>
-					<div>
-						<div class="accent-cyan-gradient"></div>
-					</div>
-					<div></div>
-					<div class="weekend"></div>
-					<div class="weekend"></div>
-					<div>
-						<div class="accent-pink-gradient"></div>
-					</div>
-					<div></div>
-					<div>
-						<div class="accent-purple-gradient"></div>
-					</div>
-					<div></div>
-					<div></div>
-					<div class="weekend"></div>
-					<div class="weekend"></div>
-					<div></div>
-					<div>
-						<div class="accent-purple-gradient"></div>
-					</div>
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
-					<div class="weekend"></div>
-					<div class="weekend"></div>
-					<div></div>
-						<div></div>
-						<div></div>
-						<div>
-							<div class="accent-cyan-gradient"></div>
-						</div>
-						<div></div>
-						<div class="weekend"></div>
-						<div class="weekend"></div>
-						<div>
-							<div class="accent-pink-gradient"></div>
-						</div>
-						<div></div>
-						<div>
-							<div class="accent-purple-gradient"></div>
-						</div>
-						<div></div>
-						<div></div>
-						<div class="weekend"></div>
-						<div class="weekend"></div>
-						<div></div>
-						<div>
-							<div class="accent-purple-gradient"></div>
-						</div>
-						<div></div>
-						<div></div>
-						<div></div>
-						<div></div>
-						<div class="weekend"></div>
-						<div class="weekend"></div>
-						<div></div>
-							<div></div>
-							<div></div>
-							<div>
-								<div class="accent-cyan-gradient"></div>
-							</div>
-							<div></div>
-							<div class="weekend"></div>
-							<div class="weekend"></div>
-							<div>
-								<div class="accent-pink-gradient"></div>
-							</div>
-							<div></div>
-							<div>
-								<div class="accent-purple-gradient"></div>
-							</div>
-							<div></div>
-							<div></div>
-							<div class="weekend"></div>
-							<div class="weekend"></div>
-							<div></div>
-							<div>
-								<div class="accent-purple-gradient"></div>
-							</div>
-							<div></div>
-							<div></div>
-							<div></div>
-							<div></div>
-							<div class="weekend"></div>
-							<div class="weekend"></div>
-							<div></div>
-								<div></div>
-								<div></div>
-								<div>
-									<div class="accent-cyan-gradient"></div>
-								</div>
-								<div></div>
-								<div class="weekend"></div>
-								<div class="weekend"></div>
-								<div>
-									<div class="accent-pink-gradient"></div>
-								</div>
-								<div></div>
-								<div>
-									<div class="accent-purple-gradient"></div>
-								</div>
-								<div></div>
-								<div></div>
-								<div class="weekend"></div>
-								<div class="weekend"></div>
-								<div></div>
-								<div>
-									<div class="accent-purple-gradient"></div>
-								</div>
-								<div></div>
-								<div></div>
-								<div></div>
-								<div></div>
-								<div class="weekend"></div>
-								<div class="weekend"></div>
-								<div></div>
-									<div></div>
-									<div></div>
-									<div>
-										<div class="accent-cyan-gradient"></div>
-									</div>
-									<div></div>
-									<div class="weekend"></div>
-									<div class="weekend"></div>
-									<div>
-										<div class="accent-pink-gradient"></div>
-									</div>
-									<div></div>
-									<div>
-										<div class="accent-purple-gradient"></div>
-									</div>
-									<div></div>
-									<div></div>
-									<div class="weekend"></div>
-									<div class="weekend"></div>
-									<div></div>
-									<div>
-										<div class="accent-purple-gradient"></div>
-									</div>
-									<div></div>
-									<div></div>
-									<div></div>
-									<div></div>
-									<div class="weekend"></div>
-									<div class="weekend"></div>
-									<div></div>
-										<div></div>
-										<div></div>
-										<div>
-											<div class="accent-cyan-gradient"></div>
-										</div>
-										<div></div>
-										<div class="weekend"></div>
-										<div class="weekend"></div>
-										<div>
-											<div class="accent-pink-gradient"></div>
-										</div>
-										<div></div>
-										<div>
-											<div class="accent-purple-gradient"></div>
-										</div>
-										<div></div>
-										<div></div>
-										<div class="weekend"></div>
-										<div class="weekend"></div>
-										<div></div>
-										<div>
-											<div class="accent-purple-gradient"></div>
-										</div>
-										<div></div>
-										<div></div>
-										<div></div>
-										<div></div>
-										<div class="weekend"></div>
-										<div class="weekend"></div>
-										<div></div>
-											<div></div>
-											<div></div>
-											<div>
-												<div class="accent-cyan-gradient"></div>
-											</div>
-											<div></div>
-											<div class="weekend"></div>
-											<div class="weekend"></div>
-											<div>
-												<div class="accent-pink-gradient"></div>
-											</div>
-											<div></div>
-											<div>
-												<div class="accent-purple-gradient"></div>
-											</div>
-											<div></div>
-											<div></div>
-											<div class="weekend"></div>
-											<div class="weekend"></div>
-											<div></div>
-											<div>
-												<div class="accent-purple-gradient"></div>
-											</div>
-											<div></div>
-											<div></div>
-											<div></div>
-											<div></div>
-											<div class="weekend"></div>
-											<div class="weekend"></div>
-											<div>
-											</div>
-											<div></div>
-											<div></div>
-											<div></div>
-											<div></div>
-											<div>
-												<div class="accent-cyan-gradient"></div>
-											</div>
-											<div></div>
-											<div class="weekend"></div>
-											<div class="weekend"></div>
-											<div>
-												<div class="accent-pink-gradient"></div>
-											</div>
-											<div></div>
-											<div>
-												<div class="accent-purple-gradient"></div>
-											</div>
-											<div></div>
-											<div></div>
-											<div class="weekend"></div>
-											<div class="weekend"></div>
-											<div></div>
-											<div>
-												<div class="accent-purple-gradient"></div>
-											</div>
-											<div></div>
-											<div></div>
-											<div></div>
-											<div></div>
-											<div class="weekend"></div>
-											<div class="weekend"></div>
-											<div>
-											</div>
-											<div></div>
-										</div>
-</div>
+	</div>
+	
+	<script src="../assets/node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../assets/node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+	<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 
-										<script src="../assets/node_modules/jquery/dist/jquery.min.js"></script>
-										<script
-											src="../assets/node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
-										<script
-											src="../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-
-										<script src="../assets/js/admin/timetable.js"></script>
-										<script src="../assets/js/admin/loadTT.js"></script>
-										<script src="../assets/js/admin/ttView.js"></script>
+	<script src="../assets/js/admin/timetable.js"></script>
+	<script src="../assets/js/admin/loadTT.js"></script>
+	<script src="../assets/js/admin/ttView.js"></script>
 </body>
 
 </html>
