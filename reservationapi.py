@@ -3,7 +3,7 @@ import itertools
 from flask import Flask, jsonify, request
 
 
-def combinations(noOfPeople, table):
+def combinations(noOfPeople, table, tables):
     def capacity(noOfPeople, tableCombinations):
         caplist = []
         for i in tableCombinations:
@@ -35,7 +35,8 @@ def combinations(noOfPeople, table):
 
         # sorting all the combinations
         minCapacityAll = sorted(minCapacityAll, key=sum)
-        return minCapacityAll
+        # calling the adjacent function
+        return findAdjacent(tables, minCapacityAll)
 
     # checking if number of people are greater than the maximum combination possible
     if (sum(table) < noOfPeople):
@@ -60,9 +61,10 @@ def findAdjacent(tables, tableCombinations):
                 adjacentTables = []
                 adjacentTables += tables[solution[len(solution)-1]]['Adjacent']
                 return findAdjacentHelper(adjacentTables, tableCapacity)
+
         elif adjacentTables[0] not in tables:
             adjacentTables.pop(0)
-            return findAdjacentHelper(adjacentTables, tableCapacity) 
+            return findAdjacentHelper(adjacentTables, tableCapacity)
 
         elif tables[adjacentTables[0]]['Capacity'] not in tableCapacity or adjacentTables[0] in solution or adjacentTables[0] in rejected or adjacentTables[0] in usedTables:
             adjacentTables.pop(0)
@@ -83,14 +85,17 @@ def findAdjacent(tables, tableCombinations):
     usedTables = []
     finaltables = []
 
-    for i in tableCombinations:
+    for i in tableCombinations: 
+    #checking for all the combinations to find a valid combiantion
         for firstTable in tables:
+        # checking for every table
             solution = []
             rejected = []
             adjacentTables = []
             tableCapacity = []
             tablesConsidered = {}
             if i != []:
+            #checking if the combination is not empty
                 tableCapacity += i
                 if tables[firstTable]['Capacity'] in tableCapacity and firstTable not in usedTables:
                     tablesConsidered.update(
@@ -105,7 +110,7 @@ def findAdjacent(tables, tableCombinations):
         if usedTables != []:
             break
 
-    return jsonify(finaltables)
+    return finaltables
 
 
 app = Flask(__name__)
@@ -117,23 +122,16 @@ def index():
         tableInfo = dict(some_json)
         noOfPeople = int(tableInfo.get("capacity"))
         table = [int(v) for v in tableInfo.get('table')]
-        return combinations(noOfPeople, table)
-
-
-@app.route('/adjacency', methods=['GET', 'POST'])
-def adjacency():
-    if (request.method == 'POST'):
-        info = request.get_json()
-        info = dict(info)
-        tables = {int(k): v for k, v in (info.get("tables")).items()}
-        tableCombinations = info.get("tableCombinations")
-        return findAdjacent(tables, tableCombinations)
+        tables = {int(k): v for k, v in (tableInfo.get("tables")).items()}
+        return combinations(noOfPeople, table, tables)
 
 
 if __name__ == "__main__":
     app.run(debug=True)
-{"capacity": "6", "table": [2, 2, 2, 2, 4]}
-{"tableCombinations": [[2, 4], [2, 2, 2], [2, 2, 4], [2, 2, 2, 2], [2, 2, 2, 4], [2, 2, 2, 2, 4]], "tables": {
+
+""" {"capacity": "6",
+"table": [2, 2, 2, 2, 4],
+"tables": {
     "1": {"Capacity": 2, "Adjacent": [2, 7]},
     "2": {"Capacity": 3, "Adjacent": [1, 8, 3]},
     "3": {"Capacity": 4, "Adjacent": [2, 9, 4]},
@@ -149,6 +147,4 @@ if __name__ == "__main__":
     "13": {"Capacity": 3, "Adjacent": [8, 14]},
     "14": {"Capacity": 2, "Adjacent": [13, 9, 15]},
     "15": {"Capacity": 3, "Adjacent": [14, 10, 16]},
-    "16": {"Capacity": 4, "Adjacent": [15, 11]}
-}}
-
+ } """

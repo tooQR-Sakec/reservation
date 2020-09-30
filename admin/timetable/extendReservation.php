@@ -55,5 +55,13 @@ if($extendOK) {
 	$extendSTMT->bindParam(':bookingID', $bookingID);
 	$extendSTMT->execute();
 } else {
+	/*
+	check booking conflict and soft delete all the reservations
+	for every booking conflict, try to re-book in other tables by calling reserve.php
+	if all bookings are successful then extend current booking
+	else show error
+	*/
 	"Can't Extend!"; 
 }
+
+
