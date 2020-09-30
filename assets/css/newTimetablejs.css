@@ -3353,7 +3353,7 @@ u,.text-underline {
 }
 
 @supports (--css: variables) {
-@	media (min-width: 64rem) {
+@media (min-width: 64rem) {
 		:root{--space-unit: 1.25em;
 	}
 }}
@@ -3379,7 +3379,7 @@ u,.text-underline {
 }
 
 @supports (--css: variables) {
-@	media (min-width: 64rem) {
+@media (min-width: 64rem) {
 		:root{--text-base-size: 1.25em;
 		--text-scale-ratio: 1.25;
 	}

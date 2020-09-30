@@ -10,9 +10,19 @@ function addTable(event) {
 
 	var tableID = $('#add-table-no').val();
 	var capacity = $('#add-table-capacity').val();
+	var adjCounter = parseInt($("#adjCounter").val());
+	var adjacent = [];
+	for(var i=0; i<adjCounter; i++) {
+		if($("#adj"+i).val() != "") {
+			adjacent.push($("#adj"+i).val());
+		}
+	}
+	adjacent = JSON.stringify(adjacent);
+
 	var formdata = new FormData();
 	formdata.append('tableID', tableID);
 	formdata.append('capacity', capacity);
+	formdata.append('adjacent', adjacent);
 
 	$.ajax({
 		type: "POST",
@@ -131,3 +141,13 @@ function loadTables() {
 		//Other options
 	});
 }
+
+$("#adj").keyup(function(){
+	var adjCounter = parseInt($("#adjCounter").val());
+	if($("#adj"+adjCounter).val() != ""){
+		adjCounter += 1;
+		var html = `<input type="number" class="form-control mb-2" id=adj`+adjCounter+`>`;
+		$('#adj').append(html);
+		$("#adjCounter").val(adjCounter);
+	}
+});

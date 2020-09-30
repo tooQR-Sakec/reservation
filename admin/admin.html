@@ -73,9 +73,10 @@
 									</div>
 								</div>
 								<div class="row">
-									<div class="col mb-3">
-										<label for="edit-adj-tables">Adjacent Tables</label>
-										<input type="text" class="form-control" id="add-adj-tables">
+									<div class="col mb-3" id="adj">
+										<input type="hidden" id="adjCounter" value="0"/>
+										<label for="add-adj-tables">Adjacent Tables</label>
+										<input type="number" class="form-control mb-2" id="adj0">
 									</div>
 								</div>
 							</form>
@@ -147,9 +148,16 @@
 	<script src="../assets/node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
 	<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="../assets/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
-
 	<script src="../assets/js/admin/admin.js"></script>
-
+	<script>
+		function addadjinput() {
+				var input = document.createElement("input");
+                input.type = "number";
+				input.className = "form-control mb-2";
+				input.onkeyup = addadjinput;
+                document.getElementById("adj").appendChild(input);
+		}
+	</script>
 </body>
 
 </html>
