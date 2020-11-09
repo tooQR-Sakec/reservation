@@ -84,9 +84,8 @@ function reserveTable($conn, $guestName, $guestMobile, $guestCapacity, $guestSta
 		AND tables.tableID NOT IN (
 			SELECT reserved.tableID
 			FROM reserved
-			WHERE ((@startTime > reserved.startTime AND @startTime < reserved.endTime)
-				OR (@endTime > reserved.startTime AND @endTime < reserved.endTime)
-				OR (@startTime <= reserved.startTime AND reserved.endTime <= @endTime))
+			WHERE ((reserved.startTime < @endTime AND @endTime < reserved.endTime)
+				OR (@startTime < reserved.endTime AND reserved.endTime < @endTime))
 				AND (status = 'reserved' OR status = 'checkedIn')
 			GROUP BY reserved.tableID)";
 
@@ -112,9 +111,8 @@ function reserveTable($conn, $guestName, $guestMobile, $guestCapacity, $guestSta
 				WHERE tableID NOT IN (
 					SELECT tableID
 					FROM reserved
-					WHERE (@startTime > reserved.startTime AND @startTime < reserved.endTime)
-						OR (@endTime > reserved.startTime AND @endTime < reserved.endTime)
-						OR (@startTime <= reserved.startTime AND reserved.endTime <= @endTime)
+					WHERE ((reserved.startTime < @endTime AND @endTime < reserved.endTime)
+						OR (@startTime < reserved.endTime AND reserved.endTime < @endTime))
 						AND status != 'cancelled'
 					GROUP BY tableID
 				)
@@ -143,9 +141,8 @@ function reserveTable($conn, $guestName, $guestMobile, $guestCapacity, $guestSta
 					WHERE tables.tableID NOT IN (
 						SELECT tableID
 						FROM reserved
-						WHERE (@startTime > reserved.startTime AND @startTime < reserved.endTime)
-							OR (@endTime > reserved.startTime AND @endTime < reserved.endTime)
-							OR (@startTime <= reserved.startTime AND reserved.endTime <= @endTime)
+						WHERE ((reserved.startTime < @endTime AND @endTime < reserved.endTime)
+							OR (@startTime < reserved.endTime AND reserved.endTime < @endTime))
 							AND status != 'cancelled'
 						GROUP BY tableID
 					) AND blocked = '0' AND capacity = :capacity";

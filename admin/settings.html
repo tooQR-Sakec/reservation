@@ -200,6 +200,27 @@
 									</div>
 								</div>
 							</div>
+							<div class="card">
+								<div class="card-header card-header-warning">
+									<h3 class="card-title">Extend Table</h3>
+								</div>
+								<div class="card-body">
+									<div class="tab-content">
+										<div class="col">
+											<div class="form-group">
+												<form id='duration'>
+													<input class="curve" id='extendMin' name='extendMin' type='number' min='0' max='59'>
+													<label for='min' style="margin-right: 20px;">min</label>
+												</form>
+											</div>
+											<div>
+												<button type="submit" class="btn btn-dark"
+													id="extendDuration">Confirm</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 						<div class="col-lg-6 col-md-12">
 							<div class="card">
@@ -212,9 +233,9 @@
 											<div class="form-group">
 												<label for="buffer" class="bmd-label-floating">Buffer</label>
 												<form id='duration'>
-													<input class="curve" id='min' name='min' type='number' min='0' max='59'>
+													<input class="curve" id='bufferMin' name='bufferMin' type='number' min='0' max='59'>
 													<label for='min' style="margin-right: 20px;">min</label>
-													<input class="curve" id='sec' name='sec' type='number' min='0' max='59'>
+													<input class="curve" id='bufferSec' name='bufferSec' type='number' min='0' max='59'>
 													<label for='sec'>sec</label>
 												</form>
 											</div>
@@ -251,7 +272,7 @@
 							</div>
 							<div class="card">
 								<div class="card-header card-header-warning">
-									<h3 class="card-title">Timing Extent</h3>
+									<h3 class="card-title">Booking Duration</h3>
 								</div>
 								<div class="card-body">
 									<div class="tab-content">
@@ -293,7 +314,7 @@
 											</div>
 											<div>
 												<button type="submit" class="btn btn-dark"
-													id="bookingExtend">Confirm</button>
+													id="bookingDuration">Confirm</button>
 											</div>
 										</div>
 									</div>

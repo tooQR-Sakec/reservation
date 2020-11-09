@@ -24,12 +24,14 @@ function loadTimings() {
 			$('#fridayEndTime').val(data.fridayEnd);
 			$('#saturdayStartTime').val(data.saturdayStart);
 			$('#saturdayEndTime').val(data.saturdayEnd);
+			//Extend Ducation
+			$('#extendMin').val(Math.floor(data.extendDuration/60));
 			// buffer times
 			var bufferTime = data.bufferTime;
 			var min = Math.floor(bufferTime/60);
-			$('#min').val(min);
+			$('#bufferMin').val(min);
 			var sec = bufferTime%60;
-			$('#sec').val(sec);
+			$('#bufferSec').val(sec);
 			//booking Limit
 			$('#bLimitDay').val(data.bookingPerDay);
 			//foodType
@@ -85,9 +87,27 @@ $('#timing').click(function () {
 
 });
 
+$('#extendDuration').click(function () {
+	var min = parseInt($('#extendMin').val());
+	var totalSec = min*60;
+	var formdata = new FormData;
+	formdata.append('extendDuration', totalSec);
+	$.ajax({
+		type: "POST",
+		data: formdata,
+		url: "settings/extendDuration.php",
+		contentType: false, // Dont delete this (jQuery 1.6+)
+		processData: false, // Dont delete this
+		success: function (data) {
+			console.log(data);
+			loadTimings();
+		}
+	});
+});
+
 $('#bufferTime').click(function () {
-	var min = parseInt($('#min').val());
-	var sec = parseInt($('#sec').val());
+	var min = parseInt($('#bufferMin').val());
+	var sec = parseInt($('#bufferSec').val());
 	var totalSec = min*60 + sec;
 	var formdata = new FormData;
 	formdata.append('bufferTime', totalSec);
@@ -123,7 +143,7 @@ $('#bookingLimit').click(function(){
 
 });
 
-$('#bookingExtend').click(function(){
+$('#bookingDuration').click(function(){
 	var breakfast = parseInt($('#breakfast').val())*60;
 	var lunch = parseInt($('#lunch').val())*60;
 	var dinner = parseInt($('#dinner').val())*60;
@@ -134,7 +154,7 @@ $('#bookingExtend').click(function(){
 	$.ajax({
 		type: "POST",
 		data: formdata,
-		url: "settings/bookExtend.php",
+		url: "settings/bookDuration.php",
 		contentType: false, // Dont delete this (jQuery 1.6+)
 		processData: false, // Dont delete this
 		success: function (data) {
