@@ -50,8 +50,7 @@ function loadTT() {
 		success: function (data) {
 			var timetable = new Timetable();
 			var tableHeadings = [];
-			timetable.setScope(0, 23);
-			timetable.useTwelveHour();
+			timetable.setScope(0, 24);
 			if(data) {
 				data = JSON.parse(data);
 
@@ -65,8 +64,10 @@ function loadTT() {
 				// load table
 				if(data["bookedTables"]) {
 					data["bookedTables"].forEach(element => {
+						var eventClass = element.status + "Event";
 						var table = "Table " + element.tableID;
 						timetable.addEvent(element.guestName, table, new Date(element.startTime*1000), new Date(element.endTime*1000), {
+							class: eventClass,
 							onClick: function (event) {
 								$('#reservationModal').modal('show');
 									$('#checkIn').hide();

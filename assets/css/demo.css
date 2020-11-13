@@ -1,1 +1,47 @@
-body{font-family:Helvetica Neue,Helvetica,Arial,sans-serif;color:#333;font-size:15px}a{text-decoration:none}.row-heading{font-weight:500;font-size:.7em;text-transform:uppercase}.timetable .time-label{font-size:.8em;font-weight:500}.timetable .time-entry.vip-only{background-color:#c490f5;border:1px solid #6a16b8}.timetable .time-entry.vip-only:hover{background-color:#ae67f0}
+body {
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+	color: #333;
+	font-size: 15px
+}
+a {
+	text-decoration: none
+}
+.row-heading {
+	font-weight: 500;
+	font-size: .7em;
+	text-transform: uppercase
+}
+.timetable .time-label {
+	font-size: .8em;
+	font-weight: 500
+}
+.timetable .time-entry.checkedOutEvent {
+    background-color:#ffdf50d3;
+    border: 1px solid #ebc726;
+    color: #fff;
+    border-radius: 4px;
+}
+.timetable .time-entry.checkedOutEvent:hover {
+	
+	background-color: #ebc726;
+}
+.timetable .time-entry.checkedInEvent {
+	background-color:#009c49d5;
+	color:#fff;
+    border: 1px solid #006b00;
+    border-radius: 4px;
+}
+.timetable .time-entry.checkedInEvent:hover {
+	color: #fff;
+	background-color:#006b00;
+}
+.timetable .time-entry.reservedEvent {
+    background-color: #ff736c;
+    color: #fff;
+    border: 1px solid #d60c01;
+    border-radius: 4px;
+}
+.timetable .time-entry.reservedEvent:hover {
+	background-color: #d60c01;
+	color: #ffffff;
+}
